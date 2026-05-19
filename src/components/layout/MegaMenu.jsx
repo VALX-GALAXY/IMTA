@@ -2,13 +2,16 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowUpRight, Sparkles, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { AuthNavLink } from '@/components/layout/AuthNavLink'
 import { BrandLogo } from '@/components/layout/BrandLogo'
 import { PillButton } from '@/components/ui/pill-button'
 import { megaMenuCategories } from '@/config/navigation'
 import { ROUTES } from '@/constants/routes'
+import { useAuth } from '@/hooks/useAuth'
 import { cn } from '@/lib/utils'
 
 export function MegaMenu({ open, onOpenChange }) {
+  const { isLoggedIn } = useAuth()
   const [activeId, setActiveId] = useState(megaMenuCategories[0].id)
   const scrollRef = useRef(null)
   const sectionRefs = useRef({})
@@ -92,9 +95,23 @@ export function MegaMenu({ open, onOpenChange }) {
               </nav>
 
               <div className="flex items-center gap-2 md:gap-3">
+                <AuthNavLink
+                  onNavigate={close}
+                  className="inline-flex h-10 items-center rounded-full border border-border px-3 text-xs font-medium text-ink transition-colors hover:bg-highlight sm:h-11 sm:px-4 sm:text-sm"
+                />
+                {!isLoggedIn ? (
+                  <PillButton
+                    to={ROUTES.register}
+                    showIcon={false}
+                    className="h-10 px-3 text-xs sm:h-11 sm:px-5 sm:text-sm"
+                    onClick={close}
+                  >
+                    Register
+                  </PillButton>
+                ) : null}
                 <PillButton
                   to={ROUTES.introduction}
-                  className="hidden sm:inline-flex"
+                  className="hidden lg:inline-flex"
                   onClick={close}
                 >
                   Membership

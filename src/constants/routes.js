@@ -20,4 +20,6 @@ export const ROUTES = {
   collaboratingInstitutions: '/collaborating-institutions',
   accreditation: '/accreditation',
   contact: '/contact',
+  login: '/login',
+  register: '/register',
 }

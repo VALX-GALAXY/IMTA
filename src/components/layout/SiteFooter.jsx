@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom'
+import { AuthNavLink } from '@/components/layout/AuthNavLink'
 import { BrandLogo } from '@/components/layout/BrandLogo'
 import { footerColumns, site } from '@/config/site'
 import { ROUTES } from '@/constants/routes'
+import { useAuth } from '@/hooks/useAuth'
 
 export function SiteFooter() {
+  const { isLoggedIn } = useAuth()
   return (
     <footer className="border-t border-border bg-surface">
       <div className="mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-16">
@@ -32,6 +35,12 @@ export function SiteFooter() {
         <div className="mt-10 flex flex-col gap-4 border-t border-border pt-8 text-sm text-earth md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} {site.fullName}. All rights reserved.</p>
           <nav className="flex flex-wrap gap-x-5 gap-y-2">
+            <AuthNavLink className="hover:text-ink" />
+            {!isLoggedIn ? (
+              <Link to={ROUTES.register} className="hover:text-ink">
+                Register
+              </Link>
+            ) : null}
             <Link to={ROUTES.introduction} className="hover:text-ink">
               About
             </Link>

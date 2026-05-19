@@ -1,15 +1,18 @@
 import { useState } from 'react'
 import { AnimatedSearchIcon } from '@/components/ui/animated-search-icon'
+import { AuthNavLink } from '@/components/layout/AuthNavLink'
 import { BrandLogo } from '@/components/layout/BrandLogo'
 import { MegaMenu } from '@/components/layout/MegaMenu'
 import { IconButton } from '@/components/ui/icon-button'
 import { StaggeredMenuIcon } from '@/components/ui/staggered-menu-icon'
 import { PillButton } from '@/components/ui/pill-button'
 import { ROUTES } from '@/constants/routes'
+import { useAuth } from '@/hooks/useAuth'
 import { cn } from '@/lib/utils'
 
 export function SiteHeader({ variant = 'hero', className }) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const { isLoggedIn } = useAuth()
   const isHero = variant === 'hero'
 
   return (
@@ -26,7 +29,24 @@ export function SiteHeader({ variant = 'hero', className }) {
         <BrandLogo variant={isHero ? 'hero' : 'default'} />
 
         <div className="flex items-center gap-2 md:gap-3">
-          <PillButton to={ROUTES.introduction} className="hidden sm:inline-flex">
+          <AuthNavLink
+            className={cn(
+              'inline-flex h-10 items-center rounded-full px-3 text-xs font-medium transition-colors sm:h-11 sm:px-4 sm:text-sm',
+              isHero
+                ? 'bg-surface text-ink shadow-surface hover:bg-canvas'
+                : 'border border-border text-ink hover:bg-highlight',
+            )}
+          />
+          {!isLoggedIn ? (
+            <PillButton
+              to={ROUTES.register}
+              showIcon={false}
+              className="h-10 px-3 text-xs sm:h-11 sm:px-5 sm:text-sm"
+            >
+              Register
+            </PillButton>
+          ) : null}
+          <PillButton to={ROUTES.introduction} className="hidden lg:inline-flex">
             Membership
           </PillButton>
           <IconButton aria-label="Search" className="group/search">

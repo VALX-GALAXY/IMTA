@@ -172,4 +172,78 @@
   .group\/search:hover .search-icon-slide {
     animation: search-slide-down 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
+
+  @keyframes auth-note-float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-4deg);
+    }
+    50% {
+      transform: translateY(-14px) rotate(4deg);
+    }
+  }
+
+  @keyframes auth-sparkle-pulse {
+    0%,
+    100% {
+      transform: scale(1) rotate(0deg);
+      opacity: 0.85;
+    }
+    50% {
+      transform: scale(1.15) rotate(12deg);
+      opacity: 1;
+    }
+  }
+
+  @keyframes auth-gradient-shift {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .auth-note-float {
+    animation: auth-note-float 5s ease-in-out infinite;
+  }
+
+  .auth-sparkle-pulse {
+    animation: auth-sparkle-pulse 2.5s ease-in-out infinite;
+  }
+
+  .auth-panel-gradient {
+    background-size: 200% 200%;
+    animation: auth-gradient-shift 12s ease infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .auth-note-float,
+    .auth-sparkle-pulse,
+    .auth-panel-gradient {
+      animation: none;
+    }
+
+    .group\/auth-primary span[aria-hidden] {
+      transition: none;
+    }
+  }
+
+  /* Hero background — autoplay only, no native tap controls on mobile */
+  .hero-bg-video {
+    pointer-events: none;
+  }
+
+  .hero-bg-video::-webkit-media-controls,
+  .hero-bg-video::-webkit-media-controls-enclosure,
+  .hero-bg-video::-webkit-media-controls-panel,
+  .hero-bg-video::-webkit-media-controls-play-button,
+  .hero-bg-video::-webkit-media-controls-start-playback-button,
+  .hero-bg-video::-webkit-media-controls-overlay-play-button {
+    display: none !important;
+    -webkit-appearance: none;
+    opacity: 0;
+    pointer-events: none;
+  }
 }

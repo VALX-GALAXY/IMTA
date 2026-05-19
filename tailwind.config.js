@@ -11,6 +11,9 @@ export default {
         earth: '#7C6D5A', // muted earth — secondary text
         surface: '#FFFFFF', // cards, elevated panels
         highlight: '#F0EBE3', // alternating sections, soft card fills
+        'imta-indigo': '#4F56A1',
+        'auth-lavender': '#F0F0FF',
+        'auth-muted': '#F8F9FC',
       },
       boxShadow: {
         surface:
