@@ -15,7 +15,6 @@ export const pages = [
     path: ROUTES.introduction,
     title: 'IMTA Introduction',
     description: 'Our founding story, mission, and the journey of music therapy in India.',
-    note: 'Rich text, founding story',
     category: 'about',
   },
   {
@@ -32,15 +31,13 @@ export const pages = [
     path: ROUTES.awardWinners,
     title: 'Award Winners',
     description: 'National honourees recognised for excellence across years and categories.',
-    note: 'Filterable by year, grid',
     category: 'awards-events',
   },
   {
     id: 'core-group',
     path: ROUTES.coreGroup,
-    title: 'Core Group',
+    title: 'Core Group & Governing Council',
     description: 'Leadership and core committee members guiding IMTA initiatives.',
-    note: 'Profile cards',
     category: 'about',
   },
   {
@@ -56,7 +53,6 @@ export const pages = [
     path: ROUTES.conferences,
     title: 'Annual Conferences (Past)',
     description: 'Archive of past annual conferences with themes, venues, and highlights.',
-    note: 'Timeline layout',
     category: 'awards-events',
   },
   {
@@ -65,7 +61,6 @@ export const pages = [
     title: 'Symposia, Seminars, Webinars & Workshops',
     description:
       'Programs filterable by type and year — symposia, seminars, webinars, workshops.',
-    note: 'Filterable by type, year',
     category: 'awards-events',
   },
   {
@@ -73,7 +68,6 @@ export const pages = [
     path: ROUTES.awardAnnouncement2026,
     title: 'Award Announcement 2026',
     description: 'Official announcement, categories, timelines, and how to apply or nominate.',
-    note: 'Announcement hero',
     category: 'programs',
   },
   {
@@ -137,7 +131,6 @@ export const pages = [
     path: ROUTES.bookshelf,
     title: 'Bookshelf',
     description: 'Recommended books and resources with authors and external links.',
-    note: 'Book cards, author, links',
     category: 'publications',
   },
   {
@@ -145,7 +138,6 @@ export const pages = [
     path: ROUTES.lifeMembers,
     title: 'Life Members',
     description: 'Searchable directory of IMTA life members across the country.',
-    note: 'Searchable list, 100s of entries',
     category: 'about',
   },
   {

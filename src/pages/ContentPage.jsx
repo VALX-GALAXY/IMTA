@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom'
 import { PageShell } from '@/components/layout/PageShell'
 import { pagesByPath } from '@/config/pages'
 import { NotFoundPage } from '@/pages/NotFoundPage'
+import { pageComponents } from '@/pages/content/pageRegistry'
 
 export function ContentPage() {
   const { pathname } = useLocation()
@@ -9,6 +10,12 @@ export function ContentPage() {
 
   if (!page || page.layout === 'home') {
     return <NotFoundPage />
+  }
+
+  const PageComponent = pageComponents[page.id]
+
+  if (PageComponent) {
+    return <PageComponent />
   }
 
   return (

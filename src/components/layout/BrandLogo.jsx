@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
 import { site } from '@/config/site'
+import { publicAsset } from '@/lib/publicAsset'
 import { cn } from '@/lib/utils'
+
+const LOGO_SRC = publicAsset('Logo.png')
 
 export function BrandLogo({ className, variant = 'hero', onClick }) {
   const isHero = variant === 'hero'
@@ -10,17 +13,19 @@ export function BrandLogo({ className, variant = 'hero', onClick }) {
       to="/"
       onClick={onClick}
       className={cn(
-        'inline-flex flex-col justify-center rounded-md px-3 py-2 transition-opacity hover:opacity-90',
-        isHero ? 'bg-ink text-canvas min-w-[140px] md:min-w-[160px]' : 'bg-ink text-canvas',
+        'inline-flex shrink-0 items-center transition-opacity hover:opacity-90',
         className,
       )}
     >
-      <span className="text-[10px] font-semibold uppercase tracking-[0.2em] md:text-xs">
-        {site.name}
-      </span>
-      <span className="mt-0.5 text-[9px] leading-tight opacity-90 md:text-[10px]">
-        {site.fullName}
-      </span>
+      <img
+        src={LOGO_SRC}
+        alt={site.fullName}
+        className={cn(
+          'h-auto w-auto max-w-[180px] object-contain md:max-w-[220px]',
+          isHero ? 'h-11 md:h-14' : 'h-9 md:h-11',
+        )}
+      />
+      <span className="sr-only">{site.fullName}</span>
     </Link>
   )
 }
