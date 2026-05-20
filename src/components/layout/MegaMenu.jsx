@@ -69,30 +69,34 @@ export function MegaMenu({ open, onOpenChange }) {
             <div className="flex shrink-0 flex-wrap items-center justify-between gap-4 border-b border-border px-4 py-4 md:px-8 md:py-5">
               <BrandLogo variant="default" className="shrink-0" onClick={close} />
 
-              <nav
-                className="order-3 flex w-full gap-x-5 overflow-x-auto overscroll-x-contain pb-1 [-webkit-overflow-scrolling:touch] md:order-none md:w-auto md:flex-1 md:flex-wrap md:justify-center md:overflow-visible md:pb-0"
-                aria-label="Menu categories"
-              >
-                {megaMenuCategories.map((cat) => {
-                  const isActive = cat.id === activeId
-                  return (
-                    <button
-                      key={cat.id}
-                      type="button"
-                      onClick={() => scrollToCategory(cat.id)}
-                      className={cn(
-                        'inline-flex shrink-0 items-center gap-1.5 text-sm font-medium transition-colors',
-                        isActive ? 'text-ink' : 'text-earth hover:text-ink',
-                      )}
-                    >
-                      {cat.label}
-                      {isActive ? (
-                        <Sparkles className="size-3.5 fill-gold text-gold" />
-                      ) : null}
-                    </button>
-                  )
-                })}
-              </nav>
+              {megaMenuCategories.length > 1 ? (
+                <nav
+                  className="order-3 flex w-full gap-x-5 overflow-x-auto overscroll-x-contain pb-1 [-webkit-overflow-scrolling:touch] md:order-none md:w-auto md:flex-1 md:flex-wrap md:justify-center md:overflow-visible md:pb-0"
+                  aria-label="Menu categories"
+                >
+                  {megaMenuCategories.map((cat) => {
+                    const isActive = cat.id === activeId
+                    return (
+                      <button
+                        key={cat.id}
+                        type="button"
+                        onClick={() => scrollToCategory(cat.id)}
+                        className={cn(
+                          'inline-flex shrink-0 items-center gap-1.5 text-sm font-medium transition-colors',
+                          isActive ? 'text-ink' : 'text-earth hover:text-ink',
+                        )}
+                      >
+                        {cat.label}
+                        {isActive ? (
+                          <Sparkles className="size-3.5 fill-gold text-gold" />
+                        ) : null}
+                      </button>
+                    )
+                  })}
+                </nav>
+              ) : (
+                <div className="order-3 hidden md:order-none md:block md:flex-1" aria-hidden />
+              )}
 
               <div className="flex items-center gap-2 md:gap-3">
                 <AuthNavLink
@@ -110,7 +114,7 @@ export function MegaMenu({ open, onOpenChange }) {
                   </PillButton>
                 ) : null}
                 <PillButton
-                  to={ROUTES.introduction}
+                  to={ROUTES.membership}
                   className="hidden lg:inline-flex"
                   onClick={close}
                 >

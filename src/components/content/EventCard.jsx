@@ -41,6 +41,23 @@ export function EventCard({ event, className }) {
           <p className="text-sm leading-relaxed text-earth">{event.description}</p>
         ) : null}
 
+        {event.links?.length ? (
+          <ul className="flex flex-col gap-1.5 text-sm">
+            {event.links.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-gold underline decoration-gold/40 underline-offset-2 transition-colors hover:text-ink hover:decoration-ink/30"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+
         <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-earth">
           <span className="inline-flex items-center gap-1.5">
             <CalendarDays className="size-3.5 text-gold" aria-hidden />

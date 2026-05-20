@@ -1,17 +1,41 @@
 import { motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { useRef } from 'react'
+import { useMemo, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Autoplay } from 'swiper/modules'
+import { Autoplay } from 'swiper/modules'
 import { heroPromoSlides } from '@/config/site'
+import { getLatestAnnouncement } from '@/data/announcements'
 import { cn } from '@/lib/utils'
 
 import 'swiper/css'
 
+function buildCarouselSlides() {
+  const latest = getLatestAnnouncement()
+  const rest = latest
+    ? heroPromoSlides.filter((s) => s.href !== latest.href && s.id !== latest.id)
+    : [...heroPromoSlides]
+
+  if (!latest) return { slides: heroPromoSlides, latestId: null }
+
+  return {
+    slides: [
+      {
+        id: latest.id,
+        title: latest.title,
+        description: latest.description,
+        image: latest.image,
+        href: latest.href,
+      },
+      ...rest,
+    ],
+    latestId: latest.id,
+  }
+}
+
 export function HeroPromoCarousel({ className }) {
-  const prevRef = useRef(null)
-  const nextRef = useRef(null)
+  const swiperRef = useRef(null)
+  const { slides, latestId } = useMemo(() => buildCarouselSlides(), [])
 
   return (
     <motion.div
@@ -24,24 +48,23 @@ export function HeroPromoCarousel({ className }) {
       )}
     >
       <Swiper
-        modules={[Navigation, Autoplay]}
+        modules={[Autoplay]}
         spaceBetween={0}
         slidesPerView={1}
-        loop
+        loop={slides.length > 1}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
-        navigation={{
-          prevEl: prevRef.current,
-          nextEl: nextRef.current,
-        }}
-        onBeforeInit={(swiper) => {
-          swiper.params.navigation.prevEl = prevRef.current
-          swiper.params.navigation.nextEl = nextRef.current
+        onSwiper={(instance) => {
+          swiperRef.current = instance
         }}
         className="!overflow-visible"
       >
-        {heroPromoSlides.map((slide) => (
+        {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <Link to={slide.href} className="group flex gap-3">
+            <Link
+              to={slide.href}
+              className="group flex gap-3 rounded-lg outline-none ring-canvas/0 transition-[box-shadow] focus-visible:ring-2 focus-visible:ring-gold/80"
+              aria-label={`Open: ${slide.title}`}
+            >
               <div className="size-16 shrink-0 overflow-hidden rounded-lg md:size-[4.5rem]">
                 <img
                   src={slide.image}
@@ -50,7 +73,19 @@ export function HeroPromoCarousel({ className }) {
                 />
               </div>
               <div className="min-w-0 flex-1 pt-0.5">
-                <p className="text-sm font-semibold leading-snug">{slide.title}</p>
+                {latestId && slide.id === latestId ? (
+                  <p className="text-xs font-medium uppercase tracking-wide text-gold/90">
+                    Latest announcement
+                  </p>
+                ) : null}
+                <p
+                  className={cn(
+                    'text-sm font-semibold leading-snug',
+                    !(latestId && slide.id === latestId) && 'pt-0.5',
+                  )}
+                >
+                  {slide.title}
+                </p>
                 <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-canvas/80">
                   {slide.description}
                 </p>
@@ -62,20 +97,28 @@ export function HeroPromoCarousel({ className }) {
 
       <div className="mt-3 flex justify-end gap-1.5">
         <button
-          ref={prevRef}
           type="button"
           aria-label="Previous slide"
-          className="inline-flex size-8 items-center justify-center rounded-md bg-canvas/15 text-canvas transition-colors hover:bg-canvas/25"
+          disabled={slides.length < 2}
+          onClick={(e) => {
+            e.preventDefault()
+            swiperRef.current?.slidePrev()
+          }}
+          className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg bg-ink/90 text-canvas shadow-sm ring-1 ring-canvas/15 transition-colors hover:bg-ink hover:ring-canvas/25 disabled:pointer-events-none disabled:opacity-40"
         >
-          <ChevronLeft className="size-4" />
+          <ChevronLeft className="size-4 shrink-0 stroke-[2]" aria-hidden />
         </button>
         <button
-          ref={nextRef}
           type="button"
           aria-label="Next slide"
-          className="inline-flex size-8 items-center justify-center rounded-md bg-canvas/15 text-canvas transition-colors hover:bg-canvas/25"
+          disabled={slides.length < 2}
+          onClick={(e) => {
+            e.preventDefault()
+            swiperRef.current?.slideNext()
+          }}
+          className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg bg-ink/90 text-canvas shadow-sm ring-1 ring-canvas/15 transition-colors hover:bg-ink hover:ring-canvas/25 disabled:pointer-events-none disabled:opacity-40"
         >
-          <ChevronRight className="size-4" />
+          <ChevronRight className="size-4 shrink-0 stroke-[2]" aria-hidden />
         </button>
       </div>
     </motion.div>

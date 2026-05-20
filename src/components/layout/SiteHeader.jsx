@@ -46,7 +46,7 @@ export function SiteHeader({ variant = 'hero', className }) {
               Register
             </PillButton>
           ) : null}
-          <PillButton to={ROUTES.introduction} className="hidden lg:inline-flex">
+          <PillButton to={ROUTES.membership} className="hidden lg:inline-flex">
             Membership
           </PillButton>
           <IconButton aria-label="Search" className="group/search">

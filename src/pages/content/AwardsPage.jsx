@@ -56,7 +56,7 @@ export function AwardsPage() {
         <div className="grid gap-6 sm:grid-cols-2">
           {filtered.map((award) => (
             <AwardCard
-              key={`${award.year}-${award.name ?? award.title}`}
+              key={`${award.year}-${award.category}-${award.name ?? award.title}`}
               award={award}
             />
           ))}

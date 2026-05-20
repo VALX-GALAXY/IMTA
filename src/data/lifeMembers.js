@@ -42,4 +42,24 @@ export const lifeMembers = [
     membershipId: 'LM-0007',
     image: publicAsset('Dr. Siddharth Sahai, .jpeg'),
   },
+  {
+    name: 'Dr Renu Kishore',
+    title: 'Psychologist',
+    location: 'Gurugram, Haryana',
+    membershipId: 'Life member',
+    image: publicAsset('Dr Renu Kishore,.jpeg'),
+  },
+  {
+    name: 'Dr Vidya Shenoy',
+    title: 'Integrative Therapist, Ageing & Dementia Care Specialist',
+    location: 'Mumbai',
+    membershipId: 'LM-0082',
+    image: publicAsset('Dr Vidya Shenoy,.jpeg'),
+  },
+  {
+    name: 'K. Komala Gowri',
+    location: 'Erode',
+    membershipId: 'LM-0019',
+    image: publicAsset('K. KOMALA GOWRI.jpeg'),
+  },
 ]

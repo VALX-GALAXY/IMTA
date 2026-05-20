@@ -35,6 +35,14 @@ export const awardWinners = [
   },
   {
     year: 2025,
+    category: 'Dr. Krishnamurthy Chandramouleshwar Award - Best Scientific Article on Music Therapy',
+    name: 'Dr. Farah Husain',
+    location: 'New Delhi',
+    description: 'Chandramouleshwara Award for the best scientific article on music therapy (IMTA).',
+    image: publicAsset('Dr Farah Husain.jpeg'),
+  },
+  {
+    year: 2025,
     category: 'Smt. Radha Sairam Creative Music Therapist Award',
     name: 'Ms. Gitashree Majumdar',
     location: 'Hyderabad',
@@ -48,11 +56,26 @@ export const awardWinners = [
     image: publicAsset('Dr. Geetha R. Bhat, Bengaluru.jpeg'),
   },
   {
+    year: 2024,
+    category: 'Popular Musician Award',
+    name: 'Dr. C. Lalithambal',
+    description: 'Recognised at the annual conference, 2024.',
+    image: publicAsset('Lalithambal.jpeg'),
+  },
+  {
     year: 2023,
     category: 'Popular Singers in Conference',
     name: 'Manasvini Lakhanpal',
     location: 'Ghaziabad',
     image: publicAsset('MANASVINI LAKHANPAL, GHAZIABAD,.jpeg'),
+  },
+  {
+    year: 2022,
+    category: 'Smt. Radha Sairam Creative Music Therapist of the Year',
+    name: 'Dr. Farah Husain',
+    location: 'New Delhi',
+    description: 'Creative Music Therapist of the Year (IMTA).',
+    image: publicAsset('Dr Farah Husain.jpeg'),
   },
   {
     year: 2022,
@@ -69,5 +92,12 @@ export const awardWinners = [
     location: 'Bengaluru',
     description:
       'MD, DM (NIMHANS), HRRS Fellow 2019. Consultant Child and Adolescent Psychiatrist.',
+  },
+  {
+    year: 2020,
+    category: 'Smt. Radha Sairam Creative Music Therapist Award',
+    name: 'Dr. Durgesh Upadhyay',
+    location: 'Varanasi',
+    image: publicAsset('d.jpeg'),
   },
 ]

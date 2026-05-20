@@ -11,11 +11,11 @@ export function AwardCard({ award, className }) {
           className,
         )}
       >
-        <div className="relative aspect-[16/9] overflow-hidden bg-highlight">
+        <div className="relative flex w-full justify-center bg-ink px-3 py-4 sm:px-6 sm:py-8">
           <img
             src={award.image}
             alt={award.title}
-            className="size-full object-cover object-top"
+            className="mx-auto max-h-[min(92vh,960px)] w-full max-w-4xl object-contain object-center"
             loading="lazy"
           />
         </div>

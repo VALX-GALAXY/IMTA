@@ -65,6 +65,30 @@ export const conferences = [
     format: 'Virtual',
     souvenir: true,
   },
+  {
+    edition: 7,
+    title: '7th IMTA World Conference',
+    date: '2024',
+    venue: 'India',
+    highlights: [
+      'Annual conference including awards and scientific sessions',
+      'Popular Musician Award and other honours presented during the conference',
+    ],
+    image: publicAsset('CONFERENCE 2024.jpeg'),
+    format: 'In-person',
+  },
+  {
+    edition: 8,
+    title: '8th IMTA World Conference',
+    date: 'December 2025',
+    venue: 'New Town',
+    highlights: [
+      'Gathering of IMTA life members',
+      'World conference programme and community sessions',
+    ],
+    image: publicAsset('8th World Conference.jpeg'),
+    format: 'In-person',
+  },
 ]
 
 export const conference2022Schedule = {

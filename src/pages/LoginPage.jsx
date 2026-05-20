@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { Sparkles } from 'lucide-react'
 import { toast } from 'sonner'
 import { login } from '@/api/auth/login'
+import { getSafeReturnPath } from '@/lib/safeReturnPath'
 import { AuthField } from '@/components/auth/AuthField'
 import { AuthDivider, GoogleAuthButton } from '@/components/auth/GoogleAuthButton'
 import { AuthPrimaryButton } from '@/components/auth/AuthPrimaryButton'
@@ -13,6 +14,8 @@ import { ApiRequestError } from '@/lib/api'
 
 export function LoginPage() {
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const returnTo = getSafeReturnPath(searchParams.get('next'))
   const [remember, setRemember] = useState(false)
   const [fieldErrors, setFieldErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -31,14 +34,14 @@ export function LoginPage() {
         remember,
       })
       toast.success(result.message || 'Signed in successfully')
-      navigate(ROUTES.home)
+      navigate(returnTo ?? ROUTES.home, { replace: true })
     } catch (err) {
       if (err instanceof ApiRequestError && err.errors?.length) {
-        const next = {}
+        const fieldErrorMap = {}
         for (const item of err.errors) {
-          next[item.field] = item.message
+          fieldErrorMap[item.field] = item.message
         }
-        setFieldErrors(next)
+        setFieldErrors(fieldErrorMap)
       }
       toast.error(
         err instanceof ApiRequestError ? err.message : 'Unable to sign in. Please try again.',
@@ -134,7 +137,11 @@ export function LoginPage() {
         <p className="mt-8 text-center text-sm text-earth">
           Don&apos;t have an account?{' '}
           <Link
-            to={ROUTES.register}
+            to={
+              returnTo
+                ? `${ROUTES.register}?next=${encodeURIComponent(returnTo)}`
+                : ROUTES.register
+            }
             className="font-semibold text-ink transition-colors hover:text-gold"
           >
             Register now

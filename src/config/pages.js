@@ -1,6 +1,6 @@
 import { ROUTES } from '@/constants/routes'
 
-/** All 21 site pages — metadata for routes, mega menu, and placeholders */
+/** All site pages — metadata for routes, mega menu, and placeholders */
 export const pages = [
   {
     id: 'home',
@@ -58,9 +58,9 @@ export const pages = [
   {
     id: 'events',
     path: ROUTES.events,
-    title: 'Symposia, Seminars, Webinars & Workshops',
+    title: 'IMTA Events',
     description:
-      'Programs filterable by type and year — symposia, seminars, webinars, workshops.',
+      'IMTA programmes year by year — symposia, seminars, webinars, workshops, conferences, and outreach.',
     category: 'awards-events',
   },
   {
@@ -154,6 +154,14 @@ export const pages = [
     title: 'Accreditation',
     description: 'Individual and organisational accreditation standards and listings.',
     note: 'Individual + org listings',
+    category: 'about',
+  },
+  {
+    id: 'membership',
+    path: ROUTES.membership,
+    title: 'Membership',
+    description:
+      'Benefits, fee categories, bank details, downloadable registration form, and online application.',
     category: 'about',
   },
   {

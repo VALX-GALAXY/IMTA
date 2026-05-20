@@ -22,4 +22,5 @@ export const ROUTES = {
   contact: '/contact',
   login: '/login',
   register: '/register',
+  membership: '/membership',
 }

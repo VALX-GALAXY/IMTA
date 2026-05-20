@@ -22,14 +22,6 @@ export const site = {
 
 export const heroPromoSlides = [
   {
-    id: 'award-2026',
-    title: 'Award Announcement 2026',
-    description: 'Categories, timelines, and nomination guidance for national awards.',
-    image:
-      'https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=200&h=120&fit=crop',
-    href: '/award-announcement-2026',
-  },
-  {
     id: 'pg-diploma',
     title: 'PG Diploma Course',
     description: 'Postgraduate diploma in music therapy — distance learning pathway.',

@@ -67,7 +67,7 @@ export function AuthShell({
           <BrandLogo variant="default" className="shrink-0" />
 
           <div className="flex items-center gap-2 md:gap-3">
-            <PillButton to={ROUTES.introduction} className="hidden lg:inline-flex">
+            <PillButton to={ROUTES.membership} className="hidden lg:inline-flex">
               Membership
             </PillButton>
             <button
