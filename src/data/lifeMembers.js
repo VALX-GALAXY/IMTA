@@ -2,9 +2,10 @@ import { publicAsset } from '@/lib/publicAsset'
 
 export const lifeMembers = [
   {
-    name: 'Suguna Varadarajan',
+    name: 'Dr. Suguna Varadarajan',
+    title: 'Music Therapist',
     location: 'Puducherry',
-    membershipId: 'LM-0012',
+    membershipId: 'LL No. 12',
     image: publicAsset('SUGUNA VARADARAJAN, PUDUCHERI .jpeg'),
   },
   {
@@ -61,5 +62,11 @@ export const lifeMembers = [
     location: 'Erode',
     membershipId: 'LM-0019',
     image: publicAsset('K. KOMALA GOWRI.jpeg'),
+  },
+  {
+    name: 'Manju Verma',
+    location: 'New Delhi',
+    membershipId: 'LM-00021',
+    image: publicAsset('MANJU VERMA.jpeg'),
   },
 ]

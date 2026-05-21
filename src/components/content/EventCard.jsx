@@ -3,22 +3,41 @@ import { cn } from '@/lib/utils'
 import { SectionBadge } from '@/components/content/ContentSection'
 
 export function EventCard({ event, className }) {
+  const photos = event.images?.length
+    ? event.images
+    : event.image
+      ? [event.image]
+      : []
+
   return (
     <article
       className={cn(
         'group overflow-hidden rounded-2xl bg-surface shadow-surface transition-shadow hover:shadow-surface-lg',
-        event.image ? 'grid md:grid-cols-[220px_1fr]' : '',
+        photos.length ? 'grid md:grid-cols-[220px_1fr]' : '',
         className,
       )}
     >
-      {event.image ? (
-        <div className="relative aspect-[16/10] overflow-hidden bg-highlight md:aspect-auto md:min-h-[180px]">
-          <img
-            src={event.image}
-            alt=""
-            className="size-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-            loading="lazy"
-          />
+      {photos.length ? (
+        <div
+          className={cn(
+            'relative overflow-hidden bg-highlight',
+            photos.length === 1
+              ? 'aspect-[16/10] md:aspect-auto md:min-h-[180px]'
+              : 'grid grid-rows-3 gap-0.5 md:min-h-[180px]',
+          )}
+        >
+          {photos.map((src, index) => (
+            <img
+              key={src}
+              src={src}
+              alt=""
+              className={cn(
+                'object-cover transition-transform duration-500 group-hover:scale-[1.03]',
+                photos.length === 1 ? 'size-full' : 'aspect-[4/3] size-full min-h-0',
+              )}
+              loading="lazy"
+            />
+          ))}
         </div>
       ) : null}
 

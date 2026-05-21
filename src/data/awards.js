@@ -70,6 +70,13 @@ export const awardWinners = [
     image: publicAsset('MANASVINI LAKHANPAL, GHAZIABAD,.jpeg'),
   },
   {
+    year: 2023,
+    category: 'Popular Singer Awardee',
+    name: 'Pranava Nagasudha',
+    location: 'Hyderabad',
+    image: publicAsset('Pranava Nagasudha.jpeg'),
+  },
+  {
     year: 2022,
     category: 'Smt. Radha Sairam Creative Music Therapist of the Year',
     name: 'Dr. Farah Husain',
@@ -99,5 +106,13 @@ export const awardWinners = [
     name: 'Dr. Durgesh Upadhyay',
     location: 'Varanasi',
     image: publicAsset('d.jpeg'),
+  },
+  {
+    year: 2020,
+    category: 'Best Signature Tune Award',
+    name: 'Chaitrra Sairam',
+    location: 'Chennai',
+    description: 'Vocalist & Music Therapist',
+    image: publicAsset('Chaitrra Sairam.jpeg'),
   },
 ]

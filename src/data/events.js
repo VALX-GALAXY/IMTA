@@ -34,6 +34,18 @@ export const eventsByYear = [
     year: 2024,
     events: [
       {
+        title: '2024 Symposium',
+        subtitle: 'GITAM University, Visakhapatnam',
+        date: 'July 31, 2024',
+        type: 'Symposium',
+        location: 'GITAM University, Visakhapatnam',
+        images: [
+          publicAsset('event1.jpeg'),
+          publicAsset('event2.jpeg'),
+          publicAsset('event3.jpeg'),
+        ],
+      },
+      {
         title: 'Health Benefits of Music Therapy — World Health Day',
         subtitle:
           'One-day seminar in collaboration with Aryabhata College (Department of Psychology), South Campus, Dhaula Kuan, University of Delhi',
