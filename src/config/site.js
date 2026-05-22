@@ -1,3 +1,5 @@
+import { publicAsset } from '@/lib/publicAsset'
+
 export { footerColumns } from '@/config/navigation'
 export { megaMenuCategories } from '@/config/navigation'
 
@@ -31,10 +33,9 @@ export const heroPromoSlides = [
   },
   {
     id: 'annual-conference',
-    title: 'Annual Conferences',
-    description: 'Explore past conferences, themes, and highlights nationwide.',
-    image:
-      'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=200&h=120&fit=crop',
+    title: '9th World Music Therapy Conference',
+    description: 'Trivandrum — December 4–6, 2026. Watch the preview and save the date.',
+    image: publicAsset('WORLD MUSIC THERAPY CONFERENC.jpeg'),
     href: '/conferences',
   },
 ]

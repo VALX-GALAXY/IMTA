@@ -56,6 +56,20 @@ export const awardWinners = [
     image: publicAsset('Dr. Geetha R. Bhat, Bengaluru.jpeg'),
   },
   {
+    year: 2025,
+    category: 'Popular Presenter Awardee',
+    name: 'Smt. Pallavi Nagpal',
+    location: 'Ludhiana',
+    image: publicAsset('Smt Pallavi Nagpal.jpeg'),
+  },
+  {
+    year: 2024,
+    category: 'Popular Presenter Awardee',
+    name: 'I Nagasudha Pranava',
+    location: 'Hyderabad',
+    image: publicAsset('I Nagasudha Pranava.jpeg'),
+  },
+  {
     year: 2024,
     category: 'Popular Musician Award',
     name: 'Dr. C. Lalithambal',
@@ -64,17 +78,17 @@ export const awardWinners = [
   },
   {
     year: 2023,
+    category: 'Popular Singer Awardee',
+    name: 'Smt. Falguni Rawal',
+    location: 'Gujarat',
+    image: publicAsset('Smt Falguni Rawal.jpeg'),
+  },
+  {
+    year: 2023,
     category: 'Popular Singers in Conference',
     name: 'Manasvini Lakhanpal',
     location: 'Ghaziabad',
     image: publicAsset('MANASVINI LAKHANPAL, GHAZIABAD,.jpeg'),
-  },
-  {
-    year: 2023,
-    category: 'Popular Singer Awardee',
-    name: 'Pranava Nagasudha',
-    location: 'Hyderabad',
-    image: publicAsset('Pranava Nagasudha.jpeg'),
   },
   {
     year: 2022,
@@ -85,12 +99,13 @@ export const awardWinners = [
     image: publicAsset('Dr Farah Husain.jpeg'),
   },
   {
-    year: 2022,
-    category: 'Smt. Radha Sairam Creative Music Therapist Award',
+    year: 2021,
+    category: 'Smt. Radha Sairam Creative Music Therapist Awardee',
     name: 'Dr. Shambhavi Das',
-    location: 'Gurugram',
+    location: 'Gurugram, NCR',
     description:
       'PhD in Indian Classical Music. Vocalist, music guru at Surdemy, and music therapist at Nadamaya Clinic and Ananya Child Care & Development Center.',
+    image: publicAsset('Dr. Shambhavi Das.jpeg'),
   },
   {
     year: 2022,

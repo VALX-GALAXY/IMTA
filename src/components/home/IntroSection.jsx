@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { GradientOrbs, SectionDivider } from '@/components/home/HomeMusicDecor'
 import { Button } from '@/components/ui/button'
 import { ROUTES } from '@/constants/routes'
 import { getHomeStats } from '@/lib/homeStats'
@@ -25,12 +26,18 @@ function StatCard({ stat }) {
       <Link
         to={stat.href}
         className={cn(
-          'group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border/80 bg-surface p-5 shadow-surface outline-none',
+          'home-stat-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-gold/15 bg-surface/90 p-5 shadow-surface outline-none backdrop-blur-sm',
           'transition-all duration-300 hover:-translate-y-1 hover:border-gold/40 hover:shadow-surface-lg',
           'focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-highlight',
         )}
       >
-        <div className="flex items-start justify-between gap-2">
+        <div
+          className="pointer-events-none absolute -right-4 -top-4 font-serif text-5xl text-gold/10 transition-colors group-hover:text-gold/20"
+          aria-hidden
+        >
+          ♪
+        </div>
+        <div className="relative flex items-start justify-between gap-2">
           <p className="text-2xl font-semibold tracking-tight text-ink md:text-[1.65rem]">
             {stat.value}
           </p>
@@ -39,8 +46,8 @@ function StatCard({ stat }) {
             aria-hidden
           />
         </div>
-        <p className="mt-2 text-sm font-medium text-ink">{stat.label}</p>
-        {stat.hint ? <p className="mt-1 text-xs text-earth">{stat.hint}</p> : null}
+        <p className="relative mt-2 text-sm font-medium text-ink">{stat.label}</p>
+        {stat.hint ? <p className="relative mt-1 text-xs text-earth">{stat.hint}</p> : null}
       </Link>
     </motion.div>
   )
@@ -50,18 +57,23 @@ export function IntroSection() {
   const stats = getHomeStats()
 
   return (
-    <section className="bg-highlight py-16 md:py-24">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 md:grid-cols-2 md:gap-14 md:px-6">
+    <section className="relative overflow-hidden bg-highlight py-16 md:py-24">
+      <GradientOrbs className="opacity-40" />
+      <div className="home-intro-pattern pointer-events-none absolute inset-0 opacity-[0.4]" aria-hidden />
+
+      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 md:grid-cols-2 md:gap-14 md:px-6">
         <motion.div
           initial={{ opacity: 0, x: -24 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
+          className="relative"
         >
-          <p className="text-sm font-medium uppercase tracking-widest text-gold">
+          <div className="absolute -left-3 top-0 hidden h-full w-1 rounded-full bg-gradient-to-b from-gold/60 via-imta-indigo/40 to-transparent md:block" />
+          <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold">
             Indian Music Therapy Association
           </p>
-          <h2 className="mt-3 font-sans text-3xl font-semibold text-ink md:text-4xl">
+          <h2 className="mt-3 font-serif text-3xl font-medium leading-snug text-ink md:text-4xl">
             Advancing evidence-based music therapy across India
           </h2>
           <p className="mt-4 text-base leading-relaxed text-earth">
@@ -71,14 +83,14 @@ export function IntroSection() {
           <div className="mt-8 flex flex-wrap gap-3">
             <Button
               asChild
-              className="shadow-sm transition-transform hover:translate-y-px active:translate-y-0"
+              className="bg-ink shadow-surface transition-transform hover:translate-y-px hover:bg-ink/90 active:translate-y-0"
             >
               <Link to={ROUTES.introduction}>About IMTA</Link>
             </Button>
             <Button
               variant="outline"
               asChild
-              className="border-border bg-surface/80 shadow-sm transition-all hover:border-gold/50 hover:bg-surface"
+              className="border-gold/40 bg-surface/80 shadow-sm transition-all hover:border-gold hover:bg-surface"
             >
               <Link to={ROUTES.awardWinners}>View Awards</Link>
             </Button>
@@ -97,6 +109,8 @@ export function IntroSection() {
           ))}
         </motion.div>
       </div>
+
+      <SectionDivider className="relative mx-auto mt-14 max-w-lg" />
     </section>
   )
 }

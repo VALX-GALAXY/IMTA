@@ -104,7 +104,7 @@ export function ForthcomingEventCard({ event }) {
           className="size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 p-5 text-surface md:p-6">
           <SectionBadge className="mb-3 bg-surface/20 text-surface">{event.type}</SectionBadge>
           <h3 className="text-xl font-semibold md:text-2xl">{event.title}</h3>

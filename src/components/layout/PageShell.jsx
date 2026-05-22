@@ -14,7 +14,7 @@ export function PageShell({ title, description, children, className }) {
         ) : null}
       </div>
       {children ? (
-        <div className="mx-auto mt-12 max-w-5xl px-4 md:px-6">{children}</div>
+        <div className="mx-auto mt-12 w-full max-w-5xl px-4 md:px-6">{children}</div>
       ) : null}
     </section>
   )

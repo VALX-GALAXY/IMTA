@@ -20,7 +20,7 @@ export function LifeMembersPage() {
 
   return (
     <PageShell
-      title="Life Members"
+      title="IMTA Life Members"
       description="Directory of IMTA life members — practitioners and scholars advancing music therapy across India."
       className="pb-20"
     >

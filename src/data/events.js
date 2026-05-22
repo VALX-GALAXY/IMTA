@@ -2,13 +2,6 @@ import { publicAsset } from '@/lib/publicAsset'
 
 export const forthcomingEvents = [
   {
-    title: 'IMTA World Conference 2026',
-    subtitle: 'Trivandrum',
-    date: 'December 4–6, 2026',
-    type: 'Conference',
-    image: publicAsset('FORTHCOMING EVENTS\u00a0.jpeg'),
-  },
-  {
     title: 'Bollywood Music Therapy Webinar',
     date: 'May 17, 2026',
     type: 'Webinar',
@@ -406,11 +399,11 @@ export const eventsByYear = [
     year: 2019,
     events: [
       {
-        title: '2nd IMTA Annual Conference',
-        subtitle: 'With MIT-World Peace University, Pune',
-        date: 'December 1–2, 2019',
+        title: '2nd World Music Therapy Conference',
+        subtitle: 'Pune — December 2019',
+        date: 'December 2019',
         type: 'Conference',
-        location: 'MIT-World Peace University, Pune',
+        location: 'Pune',
         image: publicAsset('2ND IMTA WORLD CONFERENCE.jpeg'),
       },
       {
@@ -432,13 +425,13 @@ export const eventsByYear = [
     year: 2018,
     events: [
       {
-        title: '1st IMTA Annual Conference & Launch of IMTA',
-        subtitle: 'Music Therapy in the Indian Milieu',
-        date: 'December 1–2, 2018',
+        title: '1st World Music Therapy Conference & Launch of IMTA',
+        subtitle: 'New Delhi — December 2018',
+        date: 'December 2018',
         type: 'Conference',
-        location: 'YWCA of Delhi, 1 Ashoka Road, New Delhi',
+        location: 'New Delhi',
         description: 'Launch of the Indian Music Therapy Association (IMTA).',
-        image: publicAsset('FIRST IMTA WORLD CONFERENCE, NEW DELHI. DEC 2018.jpeg'),
+        image: publicAsset('1st WORLD MUSIC THERAPY CONFERENCE, NEW DELHI , DEC. 2018..jpeg'),
       },
       {
         title: 'Pre-Conference Dinner — Eve of First Annual Conference',

@@ -8,10 +8,10 @@ export const megaMenuCategories = [
   {
     id: 'imta-sections',
     label: 'Sections',
-    headline: 'Indian Music Therapy Association',
+    headline: 'IMTA Life Members',
     description:
       'Award programmes, governance, learning pathways, archives, publications, and professional accreditation.',
-    knowMoreHref: ROUTES.home,
+    knowMoreHref: ROUTES.lifeMembers,
     links: [
       {
         title: 'IMTA Award Winners',
@@ -32,10 +32,10 @@ export const megaMenuCategories = [
           'Digital magazine issues with covers, features, and downloadable PDFs.',
       },
       {
-        title: 'IMTA Annual Conferences (Past)',
+        title: 'World Music Therapy Conference',
         href: ROUTES.conferences,
         description:
-          'Archive of past annual conferences with themes, venues, and highlights.',
+          '9th edition in Trivandrum, Dec 2026 — plus archive of past world conferences.',
       },
       {
         title: 'IMTA Events',
@@ -98,7 +98,7 @@ export const megaMenuCategories = [
           'Books authored by members with bibliographic detail and links.',
       },
       {
-        title: 'List of Life Members of IMTA',
+        title: 'IMTA Life Members',
         href: ROUTES.lifeMembers,
         description:
           'Directory of IMTA life members across the country.',

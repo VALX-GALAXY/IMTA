@@ -5,6 +5,7 @@ import { EventsPage } from '@/pages/content/EventsPage'
 import { AwardsPage, AwardAnnouncementPage } from '@/pages/content/AwardsPage'
 import { ConferencesPage } from '@/pages/content/ConferencesPage'
 import { BookshelfPage } from '@/pages/content/BookshelfPage'
+import { EMagazinePage } from '@/pages/content/EMagazinePage'
 import { MembershipPage } from '@/pages/content/MembershipPage'
 
 export const pageComponents = {
@@ -16,5 +17,6 @@ export const pageComponents = {
   'award-announcement-2026': AwardAnnouncementPage,
   conferences: ConferencesPage,
   bookshelf: BookshelfPage,
+  'e-magazine': EMagazinePage,
   membership: MembershipPage,
 }

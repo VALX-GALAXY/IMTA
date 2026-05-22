@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion'
 import { useLayoutEffect, useRef } from 'react'
 import { SiteHeader } from '@/components/layout/SiteHeader'
+import { MusicNotesFloat, SoundWaves } from '@/components/home/HomeMusicDecor'
 import { HeroPromoCarousel } from '@/components/home/HeroPromoCarousel'
 import { PillButton } from '@/components/ui/pill-button'
 import { site } from '@/config/site'
 import { ROUTES } from '@/constants/routes'
 
-/** Served from public/ — faststart MP4 for mobile autoplay */
 const HERO_VIDEO_SRC = '/hero.mp4'
 
 function HeroBackgroundVideo() {
@@ -102,7 +102,11 @@ function HeroBackgroundVideo() {
   )
 }
 
-const headlineLines = ['HEALING THROUGH', 'MUSIC BEGINS', 'WITH YOU.']
+const headlineLines = [
+  { text: 'HEALING THROUGH', accent: false },
+  { text: 'MUSIC', accent: true },
+  { text: 'BEGINS WITH YOU.', accent: false },
+]
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -115,66 +119,86 @@ const fadeUp = {
 
 export function HeroSection() {
   return (
-    <section className="bg-canvas px-3 pb-3 pt-3 md:px-4 md:pb-4 md:pt-4">
-      <div className="relative min-h-[min(92vh,860px)] overflow-hidden rounded-[2rem] md:rounded-[2.5rem]">
+    <section className="home-hero bg-canvas px-3 pb-3 pt-3 md:px-4 md:pb-4 md:pt-4">
+      <div className="relative min-h-[min(92vh,860px)] overflow-hidden rounded-[2rem] ring-1 ring-gold/20 md:rounded-[2.5rem]">
         <HeroBackgroundVideo />
 
-        {/* Dark overlay for legibility */}
+        {/* Subtle bottom fade only — keeps text readable without tinting the video */}
         <div
-          className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/55 to-ink/30"
+          className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/15 to-transparent"
           aria-hidden
         />
-        <div className="absolute inset-0 bg-ink/20" aria-hidden />
+        <MusicNotesFloat />
+
+        <div className="absolute inset-x-0 bottom-0 text-gold/25">
+          <SoundWaves className="h-24 md:h-32" />
+        </div>
 
         <SiteHeader variant="hero" />
 
-        {/* Hero copy — left aligned like Amrita reference */}
         <div className="relative z-10 flex min-h-[min(92vh,860px)] flex-col justify-end px-5 pb-28 pt-28 md:px-10 md:pb-12 lg:pb-16">
           <div className="max-w-3xl">
+            <motion.p
+              custom={0}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              className="mb-4 inline-flex items-center gap-2 rounded-full border border-canvas/20 bg-canvas/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.25em] text-canvas/90 backdrop-blur-sm"
+            >
+              <span className="text-gold" aria-hidden>
+                ♪
+              </span>
+              Indian Music Therapy Association
+            </motion.p>
+
             <h1 className="font-sans text-[clamp(2.25rem,6vw,4.5rem)] font-bold uppercase leading-[0.95] tracking-tight text-canvas">
               {headlineLines.map((line, i) => (
                 <motion.span
-                  key={line}
-                  custom={i}
+                  key={line.text}
+                  custom={i + 1}
                   variants={fadeUp}
                   initial="hidden"
                   animate="visible"
-                  className="block"
+                  className={line.accent ? 'home-hero-accent block font-serif normal-case' : 'block'}
                 >
-                  {line}
+                  {line.text}
                 </motion.span>
               ))}
             </h1>
 
             <motion.p
-              custom={3}
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              className="mt-5 max-w-xl text-sm leading-relaxed text-canvas/90 md:mt-6 md:text-base"
-            >
-              {site.tagline} Explore membership, national awards, conferences, and
-              resources for music therapy professionals across India.
-            </motion.p>
-
-            <motion.div
               custom={4}
               variants={fadeUp}
               initial="hidden"
               animate="visible"
-              className="mt-7 md:mt-8"
+              className="mt-5 max-w-xl font-serif text-base italic leading-relaxed text-canvas/90 md:mt-6 md:text-lg"
+            >
+              {site.tagline} — a sanctuary of sound for therapists, artists, and healers across India.
+            </motion.p>
+
+            <motion.div
+              custom={5}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              className="mt-7 flex flex-wrap gap-3 md:mt-8"
             >
               <PillButton to={ROUTES.introduction}>Explore IMTA</PillButton>
+              <PillButton
+                to={ROUTES.eMagazine}
+                showIcon={false}
+                className="border border-canvas/30 bg-canvas/10 text-canvas backdrop-blur-sm hover:bg-canvas/20"
+              >
+                E-Magazine
+              </PillButton>
             </motion.div>
           </div>
 
-          {/* Promo card — bottom right */}
           <div className="absolute bottom-5 right-5 z-20 hidden md:block">
             <HeroPromoCarousel />
           </div>
         </div>
 
-        {/* Mobile promo card */}
         <div className="relative z-20 px-5 pb-6 md:hidden">
           <HeroPromoCarousel />
         </div>

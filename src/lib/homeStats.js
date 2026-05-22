@@ -41,8 +41,8 @@ export function getHomeStats() {
     {
       id: 'conference-edition',
       value: maxConferenceEdition ? `${editionOrdinal(maxConferenceEdition)}` : '—',
-      label: 'Latest world conference edition',
-      hint: 'Archive on site',
+      label: 'Latest World Music Therapy Conference edition',
+      hint: 'Conference archive on site',
       href: ROUTES.conferences,
     },
     {
@@ -56,7 +56,7 @@ export function getHomeStats() {
       id: 'events',
       value: String(totalArchivedEvents),
       label: 'Past programmes in archive',
-      hint: 'Webinars to conferences',
+      hint: 'Webinars to World Music Therapy Conferences',
       href: ROUTES.events,
     },
   ]

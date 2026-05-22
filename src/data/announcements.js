@@ -7,6 +7,13 @@ import { publicAsset } from '@/lib/publicAsset'
  */
 export const announcements = [
   {
+    id: 'world-conference-2026',
+    title: '9th World Music Therapy Conference',
+    description: 'Trivandrum, Kerala — December 4–6, 2026. Poster from 1 July 2026.',
+    image: publicAsset('WORLD MUSIC THERAPY CONFERENC.jpeg'),
+    href: ROUTES.conferences,
+  },
+  {
     id: 'award-announcement-2026',
     title: 'Award Announcement 2026',
     description: 'Categories, timelines, and nomination guidance for national awards.',

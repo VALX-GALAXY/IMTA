@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { PageShell } from '@/components/layout/PageShell'
 import { ContentSection } from '@/components/content/ContentSection'
+import { UpcomingConferenceSections } from '@/components/content/UpcomingConferencePromo'
 import { EventCard, ForthcomingEventCard } from '@/components/content/EventCard'
 import { YearFilter } from '@/components/content/YearFilter'
 import { ROUTES } from '@/constants/routes'
@@ -61,9 +62,11 @@ export function EventsPage() {
         page.
       </p>
 
+      <UpcomingConferenceSections className="mb-14" showCta={false} />
+
       <ContentSection
         title="Forthcoming events"
-        description="Save the date — conferences, webinars, and IMTA community programmes."
+        description="Save the date — webinars and other IMTA community programmes."
       >
         <div className="grid gap-6 md:grid-cols-2">
           {forthcomingEvents.map((event) => (

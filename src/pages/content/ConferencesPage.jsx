@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { PageShell } from '@/components/layout/PageShell'
 import { ContentSection } from '@/components/content/ContentSection'
 import { ConferenceCard } from '@/components/content/ConferenceCard'
+import { UpcomingConferenceSections } from '@/components/content/UpcomingConferencePromo'
 import { conferences, conference2022Schedule } from '@/data/conferences'
 
 /** Latest year mentioned in a conference date string (e.g. "December 2025", "2024"). */
@@ -13,16 +14,27 @@ function conferenceSortYear(conference) {
 
 export function ConferencesPage() {
   const conferencesNewestFirst = useMemo(
-    () => [...conferences].sort((a, b) => conferenceSortYear(b) - conferenceSortYear(a)),
+    () =>
+      [...conferences]
+        .filter((c) => !c.upcoming)
+        .sort((a, b) => conferenceSortYear(b) - conferenceSortYear(a)),
     [],
   )
 
   return (
     <PageShell
-      title="Annual Conferences"
-      description="Archive of IMTA world conferences — newest editions first, from recent gatherings back to our inaugural Delhi meeting."
+      title="World Music Therapy Conference"
+      description="IMTA’s annual World Music Therapy Conference — upcoming 9th edition in Trivandrum and an archive of past gatherings."
       className="pb-20"
     >
+      <UpcomingConferenceSections className="mb-14" showCta={false} />
+
+      <ContentSection
+        title="Past conferences"
+        description="Editions from our inaugural Delhi meeting through recent gatherings."
+        className="mb-10"
+      />
+
       <div className="space-y-10">
         {conferencesNewestFirst.map((conference, index) => (
           <ConferenceCard

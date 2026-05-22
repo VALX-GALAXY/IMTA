@@ -1,26 +1,67 @@
 import { publicAsset } from '@/lib/publicAsset'
 
+const worldConference2026Base = {
+  edition: 9,
+  title: '9th World Music Therapy Conference',
+  date: 'December 4–6, 2026',
+  venue: 'Trivandrum, Kerala',
+  format: 'In-person',
+  upcoming: true,
+}
+
+/** Slides for the upcoming conferences carousel (poster + video). */
+export const upcomingConferenceSlides = [
+  {
+    id: 'wmtc-2026-poster',
+    mediaType: 'poster',
+    mediaLabel: 'Conference poster',
+    posterStartsFrom: '1 July 2026',
+    ...worldConference2026Base,
+    image: publicAsset('WORLD MUSIC THERAPY CONFERENC.jpeg'),
+  },
+  {
+    id: 'wmtc-2026-video',
+    mediaType: 'video',
+    mediaLabel: 'Conference preview video',
+    ...worldConference2026Base,
+    video: publicAsset('9TH WORLD MUSIC THERAPY CONFERENCE, TRIVANDRUM, DEC.4-6. 2026..mp4'),
+  },
+]
+
+/** Combined record for archive list & announcements. */
+export const worldConference2026 = {
+  ...worldConference2026Base,
+  highlights: [
+    'Indian Music Therapy Association annual world conference',
+    'In-person gathering of members, clinicians, and researchers',
+    'Registration and programme details to follow',
+  ],
+  image: upcomingConferenceSlides[0].image,
+  video: upcomingConferenceSlides[1].video,
+}
+
 export const conferences = [
   {
     edition: 1,
-    title: 'First IMTA World Conference',
+    title: '1st World Music Therapy Conference',
     theme: 'Music Therapy in the Indian Milieu',
-    date: 'December 1–2, 2018',
-    venue: 'YWCA of Delhi, Ashoka Road, New Delhi',
+    date: 'December 2018',
+    venue: 'New Delhi',
     highlights: [
       'Official launch of the Indian Music Therapy Association',
       'Pre-conference dinner at CSOI, K.G. Marg, New Delhi',
     ],
-    image: publicAsset('FIRST IMTA WORLD CONFERENCE, NEW DELHI. DEC 2018.jpeg'),
+    image: publicAsset('1st WORLD MUSIC THERAPY CONFERENCE, NEW DELHI , DEC. 2018..jpeg'),
     format: 'In-person',
   },
   {
     edition: 2,
-    title: '2nd IMTA World Conference',
+    title: '2nd World Music Therapy Conference',
     theme: 'Music Therapy in the Indian Milieu',
-    date: 'December 1–2, 2019',
-    venue: 'MIT-World Peace University, Pune, Maharashtra',
+    date: 'December 2019',
+    venue: 'Pune',
     highlights: [
+      'MIT-World Peace University, Pune, Maharashtra',
       'Inaugurated by the Hon\'ble Vice Chancellor of MIT-WPU',
       'Pre-conference workshop in New Delhi',
     ],
@@ -89,6 +130,7 @@ export const conferences = [
     image: publicAsset('8th World Conference.jpeg'),
     format: 'In-person',
   },
+  worldConference2026,
 ]
 
 export const conference2022Schedule = {

@@ -44,15 +44,15 @@ export const pages = [
     id: 'e-magazine',
     path: ROUTES.eMagazine,
     title: 'E-Magazine',
-    description: 'Digital magazine issues with covers, features, and downloadable PDFs.',
-    note: 'Magazine cover cards, PDF links',
+    description: 'Features, reflections, and stories from the IMTA community.',
     category: 'publications',
   },
   {
     id: 'conferences',
     path: ROUTES.conferences,
-    title: 'Annual Conferences (Past)',
-    description: 'Archive of past annual conferences with themes, venues, and highlights.',
+    title: 'World Music Therapy Conference',
+    description:
+      '9th World Music Therapy Conference, Trivandrum (Dec 2026) and archive of past IMTA editions.',
     category: 'awards-events',
   },
   {
@@ -136,7 +136,7 @@ export const pages = [
   {
     id: 'life-members',
     path: ROUTES.lifeMembers,
-    title: 'Life Members',
+    title: 'IMTA Life Members',
     description: 'Searchable directory of IMTA life members across the country.',
     category: 'about',
   },
