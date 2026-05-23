@@ -59,7 +59,7 @@ export function AuthShell({
       <motion.div
         role="dialog"
         aria-modal="true"
-        aria-label={activeTab === 'login' ? 'Login' : 'Register'}
+        aria-label={activeTab === 'login' ? 'Login' : 'register'}
         className="relative mx-auto flex h-full min-h-0 w-full max-w-[1400px] flex-col overflow-hidden rounded-[2rem] bg-surface shadow-surface-lg md:h-auto md:min-h-[min(92vh,860px)] md:max-h-[min(92vh,860px)] md:rounded-[2.5rem]"
         {...panelMotion}
       >

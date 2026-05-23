@@ -51,13 +51,6 @@ export const lifeMembers = [
     image: publicAsset('Dr Renu Kishore,.jpeg'),
   },
   {
-    name: 'Dr Vidya Shenoy',
-    title: 'Integrative Therapist, Ageing & Dementia Care Specialist',
-    location: 'Mumbai',
-    membershipId: 'LM-0082',
-    image: publicAsset('Dr Vidya Shenoy,.jpeg'),
-  },
-  {
     name: 'K. Komala Gowri',
     location: 'Erode',
     membershipId: 'LM-0019',

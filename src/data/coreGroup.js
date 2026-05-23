@@ -15,11 +15,6 @@ export const coreGroupMembers = [
     image: publicAsset(' T. V. Sairam, Honorary President & C.E.O. .jpeg'),
   },
   {
-    name: 'Mr. Satish Kumar',
-    role: 'Honorary Vice President',
-    location: 'New Delhi',
-  },
-  {
     name: 'Ms. Jayashree Raja',
     role: 'Honorary Vice President',
     location: 'Ghaziabad',
@@ -34,12 +29,6 @@ export const coreGroupMembers = [
     name: 'Dr. Vijayalakshmi Subramaniam',
     role: 'Honorary Secretary',
     location: 'Mangalore',
-  },
-  {
-    name: 'Mr. Siddharth Sahai',
-    role: 'Honorary Joint Secretary',
-    location: 'Faridabad',
-    image: publicAsset('Dr. Siddharth Sahai, .jpeg'),
   },
   {
     name: 'Mr. K. V. Sastry',

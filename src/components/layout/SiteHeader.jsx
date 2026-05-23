@@ -43,7 +43,7 @@ export function SiteHeader({ variant = 'hero', className }) {
               showIcon={false}
               className="h-10 px-3 text-xs sm:h-11 sm:px-5 sm:text-sm"
             >
-              Register
+              Apply for Membership
             </PillButton>
           ) : null}
           <PillButton to={ROUTES.membership} className="hidden lg:inline-flex">

@@ -5,7 +5,7 @@ export const saraswatiImage = publicAsset('God_Swaraswati.png')
 export const whyImtaParagraphs = [
   {
     letter: 'M',
-    text: 'Music Therapy is a growing, non-invasive intervention in hospitals, hospices, rehab centres, elders\u2019 homes, army barracks, pre and post \u2013surgical wards, health centres and the like all over the world. Decades back, the Americans had pioneered using music as a therapeutic intervention for rehabilitation of the world war veterans. However, historically and legendarily it is the Indians who pioneered the application of nada as a form of yoga to uplift once level of consciousness to achieve \u2018relaxed alertness\u2019.',
+    text: 'Therapeutic music intervention is growing, non-invasive intervention in hospitals, hospices, rehab centres, elders\u2019 homes, army barracks, pre and post \u2013surgical wards, health centres and the like all over the world. Decades back, the Americans had pioneered using music as a therapeutic intervention for rehabilitation of the world war veterans. However, historically and legendarily it is the Indians who pioneered the application of nada as a form of yoga to uplift once level of consciousness to achieve \u2018relaxed alertness\u2019.',
   },
   {
     letter: 'I',
@@ -25,6 +25,7 @@ export const visionMissionItems = [
   'To propogate Music Therapy as an alternative intervention in hospitals, hospices and various other areas, where music could be profitably used for the benefit of mankind. To make a professional forum for the working Music Therapists of India so that they can meet at regular intervals to exchange their professional skills and understanding of this nascent subject.',
   'Apart from being an interest group the association will also strive in enlarging the research and education of Music Therapy in India.',
   'We wish to install Music Therapy as a dependable medical intervention in many hospitals in the country and also introduce the subject of Music in schools and colleges.',
+  'To accredit individuals (such as therapists, educators, or professionals in Music Therapy/Raga Therapy) and institutions (such as universities, colleges, schools, and hospitals) involved in teaching, training, or research in Music Therapy/Raga Therapy as a National Agency.',
   'All music therapists, music healers, musicians, music lovers, medical professionals, psychologists, social service volunteers and the common people believing in the power of music are welcome to join this Association as members.',
 ]
 

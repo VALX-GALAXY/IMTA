@@ -92,12 +92,12 @@ export function RegisterPage() {
       footer={<LoginAuthFooter />}
     >
       <div className="mx-auto w-full max-w-lg">
-        <h1 className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Registration</h1>
+        <h1 className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">MEMBERSHIP APPLICATION</h1>
         <p className="mt-3 text-2xl font-bold tracking-tight text-ink md:text-3xl">
-          Create your account
+          Apply for IMTA Membership
         </p>
         <p className="mt-2 text-sm text-earth">
-          Already a member?{' '}
+          Existing member? Login{' '}
           <Link to={ROUTES.login} className="font-semibold text-ink transition-colors hover:text-gold">
             Login
           </Link>

@@ -107,6 +107,19 @@ export const conferences = [
     souvenir: true,
   },
   {
+    edition: 6,
+    title: '6th World Music Therapy Conference & Art Festival',
+    date: 'December , 2023',
+    venue: 'Chitra Kala Parishad, Bengaluru',
+    partner: 'IMTA ',
+    highlights: [
+      'Music therapy conference and art festival',
+      'Sessions and participation from music therapists and artists',
+    ],
+    image: publicAsset('6thConference.jpeg'),
+    format: 'In-person',
+  },
+  {
     edition: 7,
     title: '7th IMTA World Conference',
     date: '2024',
@@ -126,8 +139,10 @@ export const conferences = [
     highlights: [
       'Gathering of IMTA life members',
       'World conference programme and community sessions',
+      'Convocation scene of Music Therapy graduates',
     ],
     image: publicAsset('8th World Conference.jpeg'),
+    image: publicAsset('8th World Conference1.jpeg'),
     format: 'In-person',
   },
   worldConference2026,
