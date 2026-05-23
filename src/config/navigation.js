@@ -53,7 +53,7 @@ export const megaMenuCategories = [
         title: 'IMTA Distance Learning — PG Diploma Course',
         href: ROUTES.distanceLearning,
         description:
-          'Postgraduate diploma in music therapy — curriculum, eligibility, and enrolment.',
+          '22nd batch (July 2026) — prospectus, syllabus, application PDF, and how to apply by email.',
       },
       {
         title: 'IMTA Online Programme for Beginners',

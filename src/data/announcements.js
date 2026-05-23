@@ -14,6 +14,14 @@ export const announcements = [
     href: ROUTES.conferences,
   },
   {
+    id: 'beginners-certificate',
+    title: "2-month Beginners' Certificate Programme",
+    description:
+      'in Music Therapy (To be announced shortly; thanks for your patience !😊',
+    image: publicAsset('Indian Music.jpeg'),
+    href: ROUTES.onlineProgramme,
+  },
+  {
     id: 'award-announcement-2026',
     title: 'Award Announcement 2026',
     description: 'Categories, timelines, and nomination guidance for national awards.',

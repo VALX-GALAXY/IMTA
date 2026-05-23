@@ -15,13 +15,16 @@ const benefits = [
 ]
 
 const categories = [
-  <>One-time entrance fee: <strong>₹ 3,000</strong></>,
   <>
-    <strong>Annual / Ordinary membership:</strong> ₹ 2,000 per calendar year (1 January – 31 December).
-    Renew by the notified date (typically by early April) to stay in good standing.
+    <strong>Membership fee:</strong> ₹ 5,000 — one-time fee when you first join IMTA (pay before or with
+    your application).
   </>,
   <>
-    <strong>Life membership:</strong> ₹ 20,000 (in addition to the ₹ 3,000 entrance fee).
+    <strong>Yearly renewal fee:</strong> ₹ 2,000 per calendar year (1 January – 31 December), payable after
+    your membership fee. Renew by the notified date (typically by early April) to stay in good standing.
+  </>,
+  <>
+    <strong>Life membership fee:</strong> ₹ 25,000 — one-time payment in lieu of yearly renewals.
   </>,
 ]
 
@@ -92,8 +95,8 @@ export function MembershipPage() {
 
             <SectionCard title="Payment and application">
               <p className="mb-6 text-sm font-medium text-ink md:text-base">
-                For those who wish to transfer the membership fee (online / cheque / DD), the bank details
-                are as follows:
+                Transfer the applicable amount — membership fee (₹ 5,000), yearly renewal (₹ 2,000), or
+                life membership (₹ 25,000) — via online transfer / cheque / DD. Bank details are as follows:
               </p>
 
               <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">

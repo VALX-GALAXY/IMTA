@@ -1,105 +1,103 @@
 import { motion } from 'framer-motion'
-import { useLayoutEffect, useRef } from 'react'
+import { useCallback, useLayoutEffect, useRef } from 'react'
 import { SiteHeader } from '@/components/layout/SiteHeader'
 import { MusicNotesFloat, SoundWaves } from '@/components/home/HomeMusicDecor'
 import { HeroPromoCarousel } from '@/components/home/HeroPromoCarousel'
 import { PillButton } from '@/components/ui/pill-button'
 import { site } from '@/config/site'
 import { ROUTES } from '@/constants/routes'
+import { publicAsset } from '@/lib/publicAsset'
 
 const HERO_VIDEO_SRC = '/hero.mp4'
+const HERO_AUDIO_SRC = publicAsset('AUDIO-2026-05-23-11-58-21.mp3')
 
-function HeroBackgroundVideo() {
+function useHeroMedia() {
   const videoRef = useRef(null)
+  const audioRef = useRef(null)
+
+  const playAudio = useCallback(async () => {
+    const audio = audioRef.current
+    const video = videoRef.current
+    if (!audio || video?.paused) return
+    try {
+      if (video && Math.abs(audio.currentTime - video.currentTime) > 0.35) {
+        audio.currentTime = video.currentTime
+      }
+      await audio.play()
+    } catch {
+      /* Autoplay may be blocked until user interacts with the page */
+    }
+  }, [])
+
+  const pauseAudio = useCallback(() => {
+    audioRef.current?.pause()
+  }, [])
 
   useLayoutEffect(() => {
     const video = videoRef.current
-    if (!video) return
+    const audio = audioRef.current
+    if (!video || !audio) return
 
-    const prepare = () => {
-      video.muted = true
-      video.defaultMuted = true
-      video.volume = 0
-      video.playsInline = true
-      video.controls = false
-      video.setAttribute('muted', '')
-      video.setAttribute('playsinline', '')
-      video.setAttribute('webkit-playsinline', '')
-      video.removeAttribute('controls')
-    }
+    audio.loop = true
+    audio.preload = 'auto'
+    audio.volume = 0.85
+    audio.muted = false
 
-    const play = async () => {
-      prepare()
-      if (!video.paused) return
-      try {
-        await video.play()
-      } catch {
-        /* retry after buffer */
+    video.muted = true
+    video.defaultMuted = true
+    video.volume = 0
+    video.playsInline = true
+    video.setAttribute('muted', '')
+    video.setAttribute('playsinline', '')
+
+    const playVideo = async () => {
+      if (video.paused) {
+        try {
+          await video.play()
+        } catch {
+          /* buffer */
+        }
       }
+      if (!video.paused) void playAudio()
     }
 
-    prepare()
-    void play()
+    const onVideoPlay = () => void playAudio()
+    const onVideoPause = () => pauseAudio()
 
-    const onReady = () => void play()
-    video.addEventListener('loadedmetadata', onReady)
-    video.addEventListener('loadeddata', onReady)
-    video.addEventListener('canplay', onReady)
-    video.addEventListener('canplaythrough', onReady)
+    video.addEventListener('play', onVideoPlay)
+    video.addEventListener('pause', onVideoPause)
+    video.addEventListener('canplay', playVideo)
 
-    const rafId = requestAnimationFrame(() => void play())
-    const tId = window.setTimeout(() => void play(), 100)
+    void playVideo()
+    const tId = window.setTimeout(playVideo, 100)
 
     const onVisible = () => {
-      if (document.visibilityState === 'visible') void play()
+      if (document.visibilityState === 'visible') void playVideo()
+      else pauseAudio()
     }
     document.addEventListener('visibilitychange', onVisible)
 
-    const onPageShow = (e) => {
-      if (e.persisted) void play()
-    }
-    window.addEventListener('pageshow', onPageShow)
-
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries.some((e) => e.isIntersecting)) void play()
+        if (entries.some((e) => e.isIntersecting)) void playVideo()
+        else pauseAudio()
       },
       { threshold: 0.1 },
     )
     observer.observe(video)
 
     return () => {
-      cancelAnimationFrame(rafId)
       window.clearTimeout(tId)
-      video.removeEventListener('loadedmetadata', onReady)
-      video.removeEventListener('loadeddata', onReady)
-      video.removeEventListener('canplay', onReady)
-      video.removeEventListener('canplaythrough', onReady)
+      video.removeEventListener('play', onVideoPlay)
+      video.removeEventListener('pause', onVideoPause)
+      video.removeEventListener('canplay', playVideo)
       document.removeEventListener('visibilitychange', onVisible)
-      window.removeEventListener('pageshow', onPageShow)
       observer.disconnect()
+      pauseAudio()
     }
-  }, [])
+  }, [pauseAudio, playAudio])
 
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-      <video
-        ref={videoRef}
-        className="hero-bg-video size-full object-cover"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        disablePictureInPicture
-        disableRemotePlayback
-        controlsList="nodownload noplaybackrate nofullscreen"
-        tabIndex={-1}
-      >
-        <source src={HERO_VIDEO_SRC} type="video/mp4" />
-      </video>
-    </div>
-  )
+  return { videoRef, audioRef }
 }
 
 const headlineLines = [
@@ -118,12 +116,29 @@ const fadeUp = {
 }
 
 export function HeroSection() {
+  const { videoRef, audioRef } = useHeroMedia()
+
   return (
     <section className="home-hero bg-canvas px-3 pb-3 pt-3 md:px-4 md:pb-4 md:pt-4">
       <div className="relative min-h-[min(92vh,860px)] overflow-hidden rounded-[2rem] ring-1 ring-gold/20 md:rounded-[2.5rem]">
-        <HeroBackgroundVideo />
+        <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+          <video
+            ref={videoRef}
+            className="hero-bg-video size-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            disablePictureInPicture
+            disableRemotePlayback
+            tabIndex={-1}
+          >
+            <source src={HERO_VIDEO_SRC} type="video/mp4" />
+          </video>
+          <audio ref={audioRef} src={HERO_AUDIO_SRC} loop preload="auto" className="hidden" />
+        </div>
 
-        {/* Subtle bottom fade only — keeps text readable without tinting the video */}
         <div
           className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/15 to-transparent"
           aria-hidden

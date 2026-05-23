@@ -25,10 +25,9 @@ export const site = {
 export const heroPromoSlides = [
   {
     id: 'pg-diploma',
-    title: 'PG Diploma Course',
-    description: 'Postgraduate diploma in music therapy — distance learning pathway.',
-    image:
-      'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=200&h=120&fit=crop',
+    title: 'PG Diploma — 22nd Batch',
+    description: 'T.V. Sairam’s Music Therapy programme from 1 July 2026. Download the application form.',
+    image: publicAsset('book .jpeg'),
     href: '/distance-learning',
   },
   {

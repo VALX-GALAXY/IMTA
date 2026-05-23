@@ -5,32 +5,29 @@ import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 import { heroPromoSlides } from '@/config/site'
-import { getLatestAnnouncement } from '@/data/announcements'
+import { announcements, getLatestAnnouncement } from '@/data/announcements'
 import { cn } from '@/lib/utils'
 
 import 'swiper/css'
 
 function buildCarouselSlides() {
   const latest = getLatestAnnouncement()
-  const rest = latest
-    ? heroPromoSlides.filter((s) => s.href !== latest.href && s.id !== latest.id)
-    : [...heroPromoSlides]
+  const latestId = latest?.id ?? null
 
-  if (!latest) return { slides: heroPromoSlides, latestId: null }
+  const fromAnnouncements = announcements.map((item) => ({
+    id: item.id,
+    title: item.title,
+    description: item.description,
+    image: item.image,
+    href: item.href,
+  }))
 
-  return {
-    slides: [
-      {
-        id: latest.id,
-        title: latest.title,
-        description: latest.description,
-        image: latest.image,
-        href: latest.href,
-      },
-      ...rest,
-    ],
-    latestId: latest.id,
-  }
+  const usedHrefs = new Set(fromAnnouncements.map((s) => s.href))
+  const promos = heroPromoSlides.filter((s) => !usedHrefs.has(s.href))
+
+  const slides = fromAnnouncements.length > 0 ? [...fromAnnouncements, ...promos] : heroPromoSlides
+
+  return { slides, latestId }
 }
 
 export function HeroPromoCarousel({ className }) {

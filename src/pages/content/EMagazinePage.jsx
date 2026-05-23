@@ -1,4 +1,5 @@
 import { EMagazineCover } from '@/components/content/EMagazineCover'
+import { EMagazineFeatureArticle } from '@/components/content/EMagazineFeatureArticle'
 import { PageShell } from '@/components/layout/PageShell'
 import { eMagazineArticles } from '@/data/eMagazine'
 
@@ -36,10 +37,26 @@ export function EMagazinePage() {
       className="pb-20"
     >
       <div className="mx-auto max-w-5xl space-y-14 md:space-y-20">
-        {eMagazineArticles.map((article) => (
-          <div key={article.id} className="space-y-12 md:space-y-16">
-            <EMagazineCover article={article} />
-            <MagazineArticleBody article={article} />
+        {eMagazineArticles.map((article, index) => (
+          <div key={article.id}>
+            {index > 0 ? (
+              <div
+                className="mx-auto mb-14 flex max-w-md items-center gap-4 md:mb-20"
+                aria-hidden
+              >
+                <span className="h-px flex-1 bg-gradient-to-r from-transparent to-gold/40" />
+                <span className="font-serif text-sm text-gold">♪</span>
+                <span className="h-px flex-1 bg-gradient-to-l from-transparent to-gold/40" />
+              </div>
+            ) : null}
+            <div className="space-y-12 md:space-y-16">
+              <EMagazineCover article={article} />
+              {article.sections?.length ? (
+                <EMagazineFeatureArticle article={article} />
+              ) : (
+                <MagazineArticleBody article={article} />
+              )}
+            </div>
           </div>
         ))}
       </div>

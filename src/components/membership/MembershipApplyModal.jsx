@@ -1,6 +1,8 @@
-import { useId, useState } from 'react'
-import { FilePenLine, XIcon } from 'lucide-react'
+import { useId, useRef, useState } from 'react'
+import { FilePenLine, Loader2, XIcon } from 'lucide-react'
 import { toast } from 'sonner'
+import { submitMembershipApplication } from '@/lib/membershipApi'
+import { ApiRequestError } from '@/lib/api'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -35,19 +37,42 @@ function FormSection({ title, children, className }) {
 
 export function MembershipApplyModal({ open, onOpenChange }) {
   const formId = useId()
+  const formRef = useRef(null)
   const [declaration, setDeclaration] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (!declaration) {
       toast.error('Please confirm the declaration to continue.')
       return
     }
-    toast.success(
-      'Thank you. Your application details are recorded for review. The secretariat may contact you at the email provided. (Demo — connect this form to your backend when ready.)',
-    )
-    onOpenChange(false)
-    setDeclaration(false)
+
+    const form = formRef.current
+    if (!form) return
+
+    const formData = new FormData(form)
+    formData.set('declarationAccepted', 'true')
+
+    setSubmitting(true)
+    try {
+      await submitMembershipApplication(formData)
+      toast.success(
+        'Thank you. Your membership application has been submitted. The secretariat may contact you at the email provided.',
+      )
+      form.reset()
+      setDeclaration(false)
+      onOpenChange(false)
+    } catch (err) {
+      if (err instanceof ApiRequestError && err.errors?.length) {
+        const first = err.errors[0]
+        toast.error(first.message || err.message)
+      } else {
+        toast.error(err.message || 'Could not submit your application. Please try again.')
+      }
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -79,7 +104,7 @@ export function MembershipApplyModal({ open, onOpenChange }) {
           className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain [-webkit-overflow-scrolling:touch] px-5 py-6 pb-8 md:px-6"
           data-lenis-prevent
         >
-          <form id={formId} onSubmit={handleSubmit} className="space-y-6">
+          <form ref={formRef} id={formId} onSubmit={handleSubmit} className="space-y-6">
             <FormSection title="Apply membership for the role *">
               <Label htmlFor={`${formId}-post`} className="sr-only">
                 Membership role
@@ -272,12 +297,16 @@ export function MembershipApplyModal({ open, onOpenChange }) {
             </div>
 
             <div className="flex flex-wrap gap-3 border-t border-border pt-6">
-              <Button type="submit" className="gap-2">
-                <FilePenLine className="size-4" />
-                Submit application
+              <Button type="submit" className="gap-2" disabled={submitting}>
+                {submitting ? (
+                  <Loader2 className="size-4 animate-spin" />
+                ) : (
+                  <FilePenLine className="size-4" />
+                )}
+                {submitting ? 'Submitting…' : 'Submit application'}
               </Button>
               <DialogClose asChild>
-                <Button type="button" variant="outline">
+                <Button type="button" variant="outline" disabled={submitting}>
                   Cancel
                 </Button>
               </DialogClose>

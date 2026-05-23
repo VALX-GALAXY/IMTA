@@ -73,9 +73,9 @@ export const pages = [
   {
     id: 'distance-learning',
     path: ROUTES.distanceLearning,
-    title: 'PG Diploma Course',
-    description: 'Postgraduate diploma in music therapy — curriculum, eligibility, and enrolment.',
-    note: 'Course detail, enrol CTA',
+    title: "T.V. Sairam's Music Therapy — PG Diploma",
+    description:
+      '22nd batch from July 2026 — prospectus, syllabus, INR 20,000 fee, application PDF, and email submission.',
     category: 'programs',
   },
   {

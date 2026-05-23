@@ -95,8 +95,10 @@ export function EMagazineCover({ article, className }) {
               <img
                 src={article.image}
                 alt={article.imageAlt}
-                className="mx-auto w-full object-contain object-center"
+                className="mx-auto size-full max-h-56 w-full object-cover object-center sm:max-h-64"
                 loading="eager"
+                decoding="async"
+                referrerPolicy="no-referrer"
               />
             </div>
             <figcaption className="sr-only">{article.imageAlt}</figcaption>
@@ -109,7 +111,9 @@ export function EMagazineCover({ article, className }) {
             <h3 className="magazine-cover__title mx-auto mt-3 max-w-xl font-serif text-xl font-medium leading-snug text-canvas sm:text-2xl md:text-[1.75rem]">
               {article.title}
             </h3>
-            <p className="mt-4 font-serif text-base text-gold sm:text-lg">by {article.author}</p>
+            {article.author ? (
+              <p className="mt-4 font-serif text-base text-gold sm:text-lg">by {article.author}</p>
+            ) : null}
             <OrnamentDivider className="mt-5 sm:mt-6" />
             {article.pdf ? (
               <a
