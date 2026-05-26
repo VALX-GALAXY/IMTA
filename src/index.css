@@ -266,6 +266,46 @@
     background: var(--color-gold);
   }
 
+  .emagazine-feature-swiper__root .swiper-wrapper {
+    align-items: stretch;
+  }
+
+  .emagazine-feature-swiper__root .swiper-slide {
+    display: flex;
+    height: auto;
+    align-self: stretch;
+  }
+
+  .emagazine-photo-swiper__root .swiper-pagination {
+    bottom: 0.25rem;
+  }
+
+  .emagazine-photo-swiper__root .swiper-pagination-bullet {
+    background: color-mix(in srgb, var(--color-earth) 35%, transparent);
+    opacity: 1;
+  }
+
+  .emagazine-photo-swiper__root .swiper-pagination-bullet-active {
+    background: var(--color-gold);
+  }
+
+  .emagazine-feature-swiper__root .swiper-slide {
+    height: auto;
+  }
+
+  .emagazine-feature-swiper__root .swiper-pagination {
+    bottom: 0.25rem;
+  }
+
+  .emagazine-feature-swiper__root .swiper-pagination-bullet {
+    background: color-mix(in srgb, var(--color-earth) 35%, transparent);
+    opacity: 1;
+  }
+
+  .emagazine-feature-swiper__root .swiper-pagination-bullet-active {
+    background: var(--color-gold);
+  }
+
   .magazine-cover__bg {
     background:
       radial-gradient(ellipse 120% 80% at 50% -20%, rgb(93 170 212 / 0.35), transparent 55%),

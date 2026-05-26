@@ -188,7 +188,7 @@ export function HeroSection() {
               animate="visible"
               className="mt-5 max-w-xl font-serif text-base italic leading-relaxed text-canvas/90 md:mt-6 md:text-lg"
             >
-              {site.tagline} — a sanctuary of sound for therapists, artists, and healers across India.
+              {site.tagline} - a sanctuary of sound for therapists, artists, and healers across India.
             </motion.p>
 
             <motion.div

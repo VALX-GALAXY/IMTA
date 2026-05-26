@@ -33,7 +33,7 @@ export function HomeManifesto() {
           transition={{ delay: 0.16 }}
           className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-earth md:text-lg"
         >
-          The Indian Music Therapy Association welcomes you into a living gallery of sound — conferences,
+          The Indian Music Therapy Association welcomes you into a living gallery of sound - conferences,
           awards, learning, and stories shaped by raga, rhythm, and human connection.
         </motion.p>
 

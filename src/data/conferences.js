@@ -123,12 +123,13 @@ export const conferences = [
     edition: 7,
     title: '7th IMTA World Conference',
     date: '2024',
-    venue: 'India',
+    venue: 'Tiruchirappalli',
     highlights: [
       'Annual conference including awards and scientific sessions',
+      'Award-winning delegates honoured at the annual ceremony',
       'Popular Musician Award and other honours presented during the conference',
     ],
-    image: publicAsset('CONFERENCE 2024.jpeg'),
+    image: publicAsset('WORLD CONFERENCE 2024, TIRUCHIRAPPALLY..jpeg'),
     format: 'In-person',
   },
   {
@@ -142,7 +143,6 @@ export const conferences = [
       'Convocation scene of Music Therapy graduates',
     ],
     image: publicAsset('8th World Conference.jpeg'),
-    image: publicAsset('8th World Conference1.jpeg'),
     format: 'In-person',
   },
   worldConference2026,

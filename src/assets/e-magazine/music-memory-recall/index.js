@@ -20,4 +20,4 @@ export const musicMemoryRecallImages = {
   ],
 }
 
-export const musicMemoryRecallPhotoCredit = 'Photography: Unsplash'
+export const musicMemoryRecallPhotoCredit = ''

@@ -3,6 +3,7 @@ import { AnimatedSearchIcon } from '@/components/ui/animated-search-icon'
 import { AuthNavLink } from '@/components/layout/AuthNavLink'
 import { BrandLogo } from '@/components/layout/BrandLogo'
 import { MegaMenu } from '@/components/layout/MegaMenu'
+import { SiteSearchDialog } from '@/components/layout/SiteSearchDialog'
 import { IconButton } from '@/components/ui/icon-button'
 import { StaggeredMenuIcon } from '@/components/ui/staggered-menu-icon'
 import { PillButton } from '@/components/ui/pill-button'
@@ -12,6 +13,7 @@ import { cn } from '@/lib/utils'
 
 export function SiteHeader({ variant = 'hero', className }) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
   const { isLoggedIn } = useAuth()
   const isHero = variant === 'hero'
 
@@ -49,7 +51,11 @@ export function SiteHeader({ variant = 'hero', className }) {
           <PillButton to={ROUTES.membership} className="hidden lg:inline-flex">
             Membership
           </PillButton>
-          <IconButton aria-label="Search" className="group/search">
+          <IconButton
+            aria-label="Search site"
+            className="group/search"
+            onClick={() => setSearchOpen(true)}
+          >
             <AnimatedSearchIcon />
           </IconButton>
           <IconButton
@@ -64,6 +70,7 @@ export function SiteHeader({ variant = 'hero', className }) {
       </header>
 
       <MegaMenu open={menuOpen} onOpenChange={setMenuOpen} />
+      <SiteSearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
     </>
   )
 }

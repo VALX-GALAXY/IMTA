@@ -2,6 +2,12 @@ import { publicAsset } from '@/lib/publicAsset'
 
 export const forthcomingEvents = [
   {
+    title: 'Carnatic Music Therapy — Online Webinar',
+    date: 'March 3, 2026',
+    type: 'Webinar',
+    image: publicAsset('5.\u2060 \u2060IMTA WEBINAR ETC PAGE.jpeg'),
+  },
+  {
     title: 'Bollywood Music Therapy Webinar',
     date: 'May 17, 2026',
     type: 'Webinar',

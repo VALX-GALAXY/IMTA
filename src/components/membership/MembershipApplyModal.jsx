@@ -274,7 +274,7 @@ export function MembershipApplyModal({ open, onOpenChange }) {
                   — Select —
                 </option>
                 <option value="neft">NEFT / bank transfer</option>
-                <option value="upi">UPI (reference only — confirm with office)</option>
+                <option value="upi">UPI (reference only - confirm with office)</option>
                 <option value="cheque">Cheque / DD</option>
               </select>
             </FormSection>

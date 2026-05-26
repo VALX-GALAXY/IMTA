@@ -16,7 +16,10 @@ import {
   pgDiplomaProgramme,
   pgDiplomaSyllabus,
 } from '@/data/pgDiploma'
+import { publicAsset } from '@/lib/publicAsset'
 import { cn } from '@/lib/utils'
+
+const PG_DIPLOMA_HERO_IMAGE = publicAsset('7.   IMTA DISTANCE LEARNING PG DIPLOMA COURSE .jpeg')
 
 function SectionCard({ title, children, className, id }) {
   return (
@@ -63,6 +66,16 @@ export function PgDiplomaPage() {
             Prospectus, syllabus, course fee, application form, and how to apply by email.
           </p>
         </header>
+
+        <figure className="mx-auto mt-10 max-w-4xl overflow-hidden rounded-2xl border border-border shadow-surface">
+          <img
+            src={PG_DIPLOMA_HERO_IMAGE}
+            alt="IMTA Distance Learning PG Diploma in Music Therapy — 22nd batch"
+            className="aspect-[16/9] w-full object-cover object-center"
+            loading="eager"
+            decoding="async"
+          />
+        </figure>
 
         <div className="mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center">
           <a

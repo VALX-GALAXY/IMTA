@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { ArrowUpRight, Eye, EyeOff, FileText, Headphones, Users } from 'lucide-react'
+import { ArrowUpRight, Eye, EyeOff, FileText, Users } from 'lucide-react'
 import { toast } from 'sonner'
 import { register } from '@/api/auth/register'
 import { AuthField } from '@/components/auth/AuthField'
-import { AuthDivider, GoogleAuthButton } from '@/components/auth/GoogleAuthButton'
 import { AuthShell } from '@/components/auth/AuthShell'
 import { LoginAuthFooter } from '@/components/auth/LoginAuthFooter'
 import { PillButton } from '@/components/ui/pill-button'
@@ -204,27 +203,6 @@ export function RegisterPage() {
             </PillButton>
           </div>
         </form>
-
-        <AuthDivider />
-
-        <GoogleAuthButton>Sign up with Google</GoogleAuthButton>
-
-        <div className="mt-8 flex flex-col gap-4 rounded-xl border border-border bg-highlight p-5 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex gap-3">
-            <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-surface">
-              <Headphones className="size-5 text-gold" aria-hidden />
-            </div>
-            <p className="text-xs leading-relaxed text-earth">
-              Need help with registration? Our support team is available Mon–Fri, 9am – 6pm.
-            </p>
-          </div>
-          <button
-            type="button"
-            className="shrink-0 rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium text-ink transition-colors hover:bg-canvas"
-          >
-            Chat Now
-          </button>
-        </div>
       </div>
     </AuthShell>
   )

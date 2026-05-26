@@ -11,8 +11,6 @@ export const site = {
   footerAbout:
     'To propogate Music Therapy as an alternative intervention in hospitals, hospices and various other areas, where music could be profitably used for the benefit of mankind. To make a professional forum for the working Music Therapists of India so that they can meet at regular intervals to exchange their professional skills and understanding of this nascent subject.',
   contact: {
-    address:
-      'Office: No. 32, "Sree Maatha" 5th Main Road, Sir M V Nagar, Ramamurthy Nagar, Bangalore - 560016',
     phones: ['9891184950', '9886404328'],
     email: 'info@theimta.in',
   },

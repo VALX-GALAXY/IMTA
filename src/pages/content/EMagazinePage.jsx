@@ -1,25 +1,22 @@
-import { EMagazineCover } from '@/components/content/EMagazineCover'
+import { EMagazineDivider } from '@/components/content/EMagazineDivider'
 import { EMagazineFeatureArticle } from '@/components/content/EMagazineFeatureArticle'
+import { EMagazineJagarSection } from '@/components/content/EMagazineJagarSection'
+import { EMagazineMasthead } from '@/components/content/EMagazineMasthead'
+import { EMagazinePdfDownload } from '@/components/content/EMagazinePdfDownload'
+import { EMagazinePhotoSlider } from '@/components/content/EMagazinePhotoSlider'
+import { EMagazineSectionHeading } from '@/components/content/EMagazineSectionHeading'
+import { EMagazineStoryLead } from '@/components/content/EMagazineStoryLead'
 import { PageShell } from '@/components/layout/PageShell'
-import { eMagazineArticles } from '@/data/eMagazine'
+import { eMagazineArticles, eMagazineJagar, eMagazinePdfs } from '@/data/eMagazine'
 
 function MagazineArticleBody({ article }) {
   return (
     <article className="mx-auto max-w-3xl">
-      <header className="mb-8 text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold">Continue reading</p>
-        <h2 className="mt-3 font-serif text-2xl font-medium leading-snug text-ink md:text-3xl">
-          {article.title}
-        </h2>
-        <p className="mt-2 text-sm font-medium text-earth md:text-base">{article.author}</p>
-        <div className="mx-auto mt-5 h-px w-16 bg-gradient-to-r from-transparent via-gold to-transparent" />
-      </header>
-
-      <div className="space-y-6 rounded-2xl border border-border bg-surface p-6 shadow-surface md:p-10">
+      <div className="space-y-5 rounded-xl border border-border bg-surface p-5 shadow-surface md:p-8">
         {article.paragraphs.map((paragraph, index) => (
           <p
             key={index}
-            className="text-base leading-[1.9] text-ink/90 first:text-lg first:leading-[1.85] md:first:text-xl"
+            className="text-base leading-[1.85] text-ink/90 first:text-[1.05rem] md:first:text-lg"
           >
             {paragraph}
           </p>
@@ -36,29 +33,58 @@ export function EMagazinePage() {
       description="Features, reflections, and stories from the IMTA community."
       className="pb-20"
     >
-      <div className="mx-auto max-w-5xl space-y-14 md:space-y-20">
-        {eMagazineArticles.map((article, index) => (
-          <div key={article.id}>
-            {index > 0 ? (
-              <div
-                className="mx-auto mb-14 flex max-w-md items-center gap-4 md:mb-20"
-                aria-hidden
-              >
-                <span className="h-px flex-1 bg-gradient-to-r from-transparent to-gold/40" />
-                <span className="font-serif text-sm text-gold">♪</span>
-                <span className="h-px flex-1 bg-gradient-to-l from-transparent to-gold/40" />
-              </div>
-            ) : null}
-            <div className="space-y-12 md:space-y-16">
-              <EMagazineCover article={article} />
+      <div className="mx-auto max-w-4xl space-y-10 md:space-y-14">
+        <EMagazineMasthead />
+
+        <section aria-label="Articles" className="space-y-10 md:space-y-14">
+          {eMagazineArticles.map((article, index) => (
+            <div key={article.id} className="space-y-6 md:space-y-8">
+              {index > 0 ? <EMagazineDivider /> : null}
+              <EMagazineStoryLead article={article} />
               {article.sections?.length ? (
-                <EMagazineFeatureArticle article={article} />
+                <EMagazineFeatureArticle article={article} compactHeader />
               ) : (
                 <MagazineArticleBody article={article} />
               )}
             </div>
+          ))}
+        </section>
+
+        <EMagazineDivider className="pt-2" />
+
+        <section className="space-y-6" aria-labelledby="jagar-music-therapy">
+          <EMagazineSectionHeading
+            id="jagar-music-therapy"
+            title="Jagar Music Therapy"
+          />
+          <EMagazineJagarSection jagar={eMagazineJagar} className="mx-auto max-w-4xl" />
+        </section>
+
+        <EMagazineDivider />
+
+        <section className="space-y-6" aria-labelledby="emagazine-photos-heading">
+          <EMagazineSectionHeading
+            id="emagazine-photos-heading"
+            title="Photo features"
+            description="Event and field photographs from the IMTA community."
+          />
+          <EMagazinePhotoSlider className="mx-auto max-w-4xl" />
+        </section>
+
+        <EMagazineDivider />
+
+        <section className="mx-auto max-w-2xl space-y-5" aria-labelledby="emagazine-pdfs-heading">
+          <EMagazineSectionHeading
+            id="emagazine-pdfs-heading"
+            title="PDF articles"
+            description="Download full articles — separate from the photographs above."
+          />
+          <div className="space-y-4">
+            {eMagazinePdfs.map((item) => (
+              <EMagazinePdfDownload key={item.id} item={item} />
+            ))}
           </div>
-        ))}
+        </section>
       </div>
     </PageShell>
   )

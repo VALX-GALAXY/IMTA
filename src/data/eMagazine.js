@@ -16,7 +16,6 @@ export const eMagazineArticles = [
     author: 'Siddhartha Rao',
     image: publicAsset('Sid Flute Image.png'),
     imageAlt: 'Siddhartha Rao with flute',
-    pdf: publicAsset("Siddhartha's article for MT-1.pdf"),
     paragraphs: [
       'As a child, I did not dream of becoming a musician, a psychologist, or a music therapist. I simply dreamt of owning a flute.',
       'There was something magical about the flute music of Lord Krishna. Whenever I heard it in temples, bhajans, or on television, the world around me seemed to pause for a moment. I could never explain why, but the sound made me feel safe, calm, and deeply connected to something beyond words.',
@@ -66,5 +65,58 @@ export const eMagazineArticles = [
         imageAlt: 'Person listening to music with headphones',
       },
     ],
+  },
+]
+
+/** Dedicated section — photo + article + PDF (separate from sliders). */
+export const eMagazineJagar = {
+  id: 'jagar-music-therapy',
+  title: 'Jagar Music Therapy',
+  subtitle: 'Jagar held at Chitai Temple, Almora.',
+  image: publicAsset('WITH ARTICLE ON JAGAR MUSIC THERAPY.jpeg'),
+  imageAlt: 'Jagar held at Chitai Temple, Almora — community ritual with music',
+  pdf: publicAsset('Jagar Music Therapy.pdf'),
+  paragraphs: [
+    'Jagar is a living musical-ritual tradition of Uttarakhand, where voice, rhythm, and community participation come together in a shared healing space.',
+    'In music therapy contexts, Jagar is often discussed for how it holds collective emotion, memory, and meaning through sound — especially when guided with cultural sensitivity and care.',
+    'Read the full article in the PDF below.',
+  ],
+}
+
+/** Photo features — images only (not PDF previews). */
+export const eMagazinePhotos = [
+  {
+    id: 'raga-chikitsa-chart',
+    title: 'Raga Chikitsa — An Adjunct Therapy',
+    image: publicAsset('for E-magazine page.jpeg'),
+    imageAlt: 'Chart listing ailments and corresponding Hindustani ragas used in raga chikitsa',
+    caption:
+      'Ailments such as asthma, blood pressure, depression, and insomnia paired with Hindustani ragas — a reference for adjunct music therapy practice.',
+  },
+  {
+    id: 'music-daily-companion',
+    title: 'Music — Your Daily Companion',
+    image: publicAsset('For EMAGAZINE.jpeg'),
+    imageAlt: 'Infographic on everyday music therapy habits — alarm, mindful listening, and energy chores',
+    caption:
+      'Practical ways to bring music into daily life: gentler alarms, mindful listening breaks, and rhythm during routine tasks.',
+  },
+]
+
+/** PDF articles — downloads only (separate from photo features). */
+export const eMagazinePdfs = [
+  {
+    id: 'jagar-music-therapy',
+    title: 'Jagar Music Therapy',
+    pdf: publicAsset('Jagar Music Therapy.pdf'),
+    description:
+      'Full article on Jagar music therapy — practices, cultural context, and clinical reflections (PDF).',
+  },
+  {
+    id: 'flute-guiding-me-pdf',
+    title: 'The Flute I Never Knew Was Guiding Me',
+    author: 'Siddhartha Rao',
+    pdf: publicAsset("Siddhartha's article for MT-1.pdf"),
+    description: 'Complete article as submitted for Music Therapy (PDF).',
   },
 ]

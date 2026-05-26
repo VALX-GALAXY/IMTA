@@ -3,6 +3,7 @@ import { Download, FilePenLine } from 'lucide-react'
 import { MembershipApplyModal } from '@/components/membership/MembershipApplyModal'
 import { MEMBERSHIP_REGISTRATION_PDF } from '@/constants/membership'
 import { site } from '@/config/site'
+import { imtaAddress } from '@/data/introduction'
 import { cn } from '@/lib/utils'
 
 const benefits = [
@@ -175,7 +176,7 @@ export function MembershipPage() {
 
               <address className="mt-8 not-italic rounded-xl border border-border bg-highlight/50 p-5 text-sm text-earth">
                 <span className="font-semibold text-ink">Office address: </span>
-                {site.contact.address}
+                {imtaAddress.lines.join(', ')}
               </address>
             </SectionCard>
           </div>

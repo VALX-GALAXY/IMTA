@@ -5,7 +5,6 @@ import { toast } from 'sonner'
 import { login } from '@/api/auth/login'
 import { getSafeReturnPath } from '@/lib/safeReturnPath'
 import { AuthField } from '@/components/auth/AuthField'
-import { AuthDivider, GoogleAuthButton } from '@/components/auth/GoogleAuthButton'
 import { AuthPrimaryButton } from '@/components/auth/AuthPrimaryButton'
 import { AuthShell } from '@/components/auth/AuthShell'
 import { LoginAuthFooter } from '@/components/auth/LoginAuthFooter'
@@ -129,10 +128,6 @@ export function LoginPage() {
             {isSubmitting ? 'Signing in…' : 'Login'}
           </AuthPrimaryButton>
         </form>
-
-        <AuthDivider />
-
-        <GoogleAuthButton />
 
         <p className="mt-8 text-center text-sm text-earth">
           Don&apos;t have an account?{' '}
