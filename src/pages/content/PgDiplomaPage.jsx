@@ -13,13 +13,12 @@ import {
   pgDiplomaDisclaimer,
   pgDiplomaIntroParagraphs,
   pgDiplomaObjective,
+  pgDiplomaHeroImage,
   pgDiplomaProgramme,
   pgDiplomaSyllabus,
 } from '@/data/pgDiploma'
-import { publicAsset } from '@/lib/publicAsset'
+import { UpcomingPgDiplomaSection } from '@/components/content/UpcomingPgDiplomaSection'
 import { cn } from '@/lib/utils'
-
-const PG_DIPLOMA_HERO_IMAGE = publicAsset('7.   IMTA DISTANCE LEARNING PG DIPLOMA COURSE .jpeg')
 
 function SectionCard({ title, children, className, id }) {
   return (
@@ -67,9 +66,11 @@ export function PgDiplomaPage() {
           </p>
         </header>
 
-        <figure className="mx-auto mt-10 max-w-4xl overflow-hidden rounded-2xl border border-border shadow-surface">
+        <UpcomingPgDiplomaSection className="mt-8" />
+
+        <figure className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-2xl border border-border shadow-surface">
           <img
-            src={PG_DIPLOMA_HERO_IMAGE}
+            src={pgDiplomaHeroImage}
             alt="IMTA Distance Learning PG Diploma in Music Therapy — 22nd batch"
             className="aspect-[16/9] w-full object-cover object-center"
             loading="eager"

@@ -1,10 +1,14 @@
 import { publicAsset } from '@/lib/publicAsset'
 
+/** 9th WMTC preview video (replaces mis-uploaded DLP static video). */
+export const worldConference2026Video = publicAsset('for conf 26 page.mp4')
+export const worldConference2026Poster = publicAsset('Conf26kerla.jpeg')
+
 const worldConference2026Base = {
   edition: 9,
-  title: '9th World Music Therapy Conference',
+  title: 'World Music Therapy Conference 2026',
   date: 'December 4–6, 2026',
-  venue: 'Trivandrum, Kerala',
+  venue: 'Trivandrum Tennis Club, Kerala',
   format: 'In-person',
   upcoming: true,
 }
@@ -17,14 +21,26 @@ export const upcomingConferenceSlides = [
     mediaLabel: 'Conference poster',
     posterStartsFrom: '1 July 2026',
     ...worldConference2026Base,
-    image: publicAsset('WORLD MUSIC THERAPY CONFERENC.jpeg'),
+    image: worldConference2026Poster,
+    tagline: 'Healing Hearts... Enriching Lives...',
+    exploreLine: 'Explore • Learn • Experience',
+    website: 'www.imta.in',
+    registrationFee: 'INR 5000 (includes lunch, tea & conference kit)',
+    earlyBird: 'Early Bird Concession to IMTA Members: INR 3000',
+    earlyBirdExpires: '15 June',
+    contactName: 'Mr. KVS Sastry',
+    contactPhone: '9886404328',
+    highlights: [
+      'Songs · Demos · Lectures · Sight-seeing',
+      'Awards ceremony · Convocation · Competitions',
+    ],
   },
   {
     id: 'wmtc-2026-video',
     mediaType: 'video',
     mediaLabel: 'Conference preview video',
     ...worldConference2026Base,
-    video: publicAsset('9TH WORLD MUSIC THERAPY CONFERENCE, TRIVANDRUM, DEC.4-6. 2026..mp4'),
+    video: worldConference2026Video,
   },
 ]
 
@@ -32,12 +48,18 @@ export const upcomingConferenceSlides = [
 export const worldConference2026 = {
   ...worldConference2026Base,
   highlights: [
-    'Indian Music Therapy Association annual world conference',
-    'In-person gathering of members, clinicians, and researchers',
-    'Registration and programme details to follow',
+    'Indian Music Therapy Association (IMTA) presents World Music Therapy Conference 2026',
+    'Healing Hearts... Enriching Lives... · Explore • Learn • Experience',
+    'Venue: Trivandrum Tennis Club, Kerala',
+    'Dates: December 4–6, 2026',
+    'Registration fee: INR 5000 (includes lunch, tea & conference kit)',
+    'Early Bird concession to IMTA Members: INR 3000 (expires 15 June)',
+    'Highlights: Songs · Demos · Lectures · Sight-seeing · Awards ceremony · Convocation · Competitions',
+    'Website: www.imta.in',
+    'Contact: Mr. KVS Sastry — 9886404328',
   ],
-  image: upcomingConferenceSlides[0].image,
-  video: upcomingConferenceSlides[1].video,
+  image: worldConference2026Poster,
+  video: worldConference2026Video,
 }
 
 export const conferences = [

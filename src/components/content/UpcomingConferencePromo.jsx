@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { CalendarDays, ChevronLeft, ChevronRight, MapPin } from 'lucide-react'
+import { CalendarDays, ChevronLeft, ChevronRight, Globe, MapPin, Phone, Ticket } from 'lucide-react'
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -13,8 +13,42 @@ import { cn } from '@/lib/utils'
 import 'swiper/css'
 import 'swiper/css/pagination'
 
+function ConferencePromoCard({ slide }) {
+  return (
+    <div className="flex min-h-[320px] w-full flex-col items-center justify-center bg-gradient-to-br from-gold/15 via-highlight to-surface px-6 py-10 text-center md:min-h-[420px] md:px-12">
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+        Indian Music Therapy Association
+      </p>
+      <p className="mt-1 text-xs font-semibold text-ink">(IMTA)</p>
+      <p className="mt-4 text-xs font-semibold uppercase tracking-[0.22em] text-earth">Presents</p>
+      <p className="mt-2 text-sm font-medium text-earth">Save the date</p>
+      <h2 className="mt-4 max-w-2xl text-2xl font-bold leading-tight text-ink md:text-4xl">
+        {slide.title}
+      </h2>
+      {slide.tagline ? (
+        <p className="mt-3 text-sm font-semibold text-ink md:text-base">{slide.tagline}</p>
+      ) : null}
+      {slide.exploreLine ? <p className="mt-2 text-sm text-earth">{slide.exploreLine}</p> : null}
+      <p className="mt-6 text-xl font-semibold text-gold md:text-2xl">{slide.date}</p>
+      <p className="mt-2 text-lg text-earth">{slide.venue}</p>
+      <p className="mt-6 rounded-full bg-surface/80 px-4 py-1.5 text-sm font-medium text-ink ring-1 ring-gold/25">
+        {slide.format} · {slide.edition}
+        {getOrdinal(slide.edition)} Edition
+      </p>
+      {slide.posterStartsFrom ? (
+        <p className="mt-4 text-sm text-earth">Official poster from {slide.posterStartsFrom}</p>
+      ) : null}
+      {slide.website ? <p className="mt-3 text-sm font-medium text-gold">{slide.website}</p> : null}
+    </div>
+  )
+}
+
 function ConferenceSlideMedia({ slide }) {
   if (slide.mediaType === 'poster') {
+    if (slide.promoCard) {
+      return <ConferencePromoCard slide={slide} />
+    }
+
     return (
       <div className="flex min-h-[320px] w-full items-center justify-center bg-highlight p-4 md:min-h-[420px] md:p-8">
         <img
@@ -70,7 +104,44 @@ function ConferenceSlideDetails({ slide }) {
           <MapPin className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden />
           {slide.venue}
         </p>
+        {slide.registrationFee ? (
+          <p className="inline-flex items-start gap-2">
+            <Ticket className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden />
+            {slide.registrationFee}
+          </p>
+        ) : null}
+        {slide.earlyBird ? (
+          <p className="inline-flex items-start gap-2">
+            <CalendarDays className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden />
+            {slide.earlyBird}
+            {slide.earlyBirdExpires ? ` (expires ${slide.earlyBirdExpires})` : ''}
+          </p>
+        ) : null}
+        {slide.website ? (
+          <p className="inline-flex items-start gap-2">
+            <Globe className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden />
+            {slide.website}
+          </p>
+        ) : null}
+        {slide.contactPhone ? (
+          <p className="inline-flex items-start gap-2">
+            <Phone className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden />
+            {slide.contactName ? `${slide.contactName}: ` : ''}
+            {slide.contactPhone}
+          </p>
+        ) : null}
       </div>
+
+      {slide.highlights?.length ? (
+        <ul className="space-y-1.5 border-t border-border pt-4 text-sm text-earth">
+          {slide.highlights.map((item) => (
+            <li key={item} className="flex gap-2">
+              <span className="mt-2 size-1.5 shrink-0 rounded-full bg-gold" aria-hidden />
+              {item}
+            </li>
+          ))}
+        </ul>
+      ) : null}
     </div>
   )
 }

@@ -63,20 +63,6 @@ export function AwardsPage() {
         </div>
       </ContentSection>
 
-      <ContentSection
-        title="Awards Instituted"
-        description="Annual awards open to IMTA members — eligibility and prizes."
-        className="mt-16"
-      >
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {awardCategories.map((category) => (
-            <AwardCategoryCard key={category.name} category={category} />
-          ))}
-        </div>
-        <p className="mt-6 text-sm text-earth">
-          Note: Only IMTA members are eligible for the above awards.
-        </p>
-      </ContentSection>
     </PageShell>
   )
 }

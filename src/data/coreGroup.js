@@ -26,14 +26,26 @@ export const coreGroupMembers = [
     image: publicAsset('Sudha Ganesh.jpeg'),
   },
   {
-    name: 'Dr. Vijayalakshmi Subramaniam',
-    role: 'Honorary Secretary',
-    location: 'Mangalore',
+    name: 'Sanj Hall',
+    role: 'Secretary',
   },
   {
     name: 'Mr. K. V. Sastry',
-    role: 'Honorary Treasurer',
+    role: 'Treasurer',
     location: 'Bengaluru',
+    image: publicAsset('K V Sastry.jpeg'),
+  },
+  {
+    name: 'Sukrishna Mukherjee',
+    role: 'Joint Secretary',
+    location: 'Bengaluru',
+    image: publicAsset('Sukrishna Mukherjee.jpeg'),
+  },
+  {
+    name: 'Dr. C. Lalithambal',
+    role: 'Joint Secretary',
+    location: 'Bengaluru',
+    image: publicAsset('Lalithambal.jpeg'),
   },
 ]
 

@@ -32,7 +32,7 @@ export const heroPromoSlides = [
     id: 'annual-conference',
     title: '9th World Music Therapy Conference',
     description: 'Trivandrum — December 4–6, 2026. Watch the preview and save the date.',
-    image: publicAsset('WORLD MUSIC THERAPY CONFERENC.jpeg'),
+    image: publicAsset('8th World Conference.jpeg'),
     href: '/conferences',
   },
 ]

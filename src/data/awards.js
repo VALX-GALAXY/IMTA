@@ -1,30 +1,57 @@
 import { publicAsset } from '@/lib/publicAsset'
 
-export const awardCategories = [
+const AWARD_TEXT_FIELDS = ['name', 'title', 'description', 'category', 'eligibility', 'prize']
+
+/** Strip "+ Plaque" from award copy wherever it appears. */
+export function stripPlaqueFromAwardText(text) {
+  if (typeof text !== 'string' || !text) return text
+  return text.replace(/\s*\+\s*Plaque\b/gi, '').trim()
+}
+
+function sanitizeAwardEntry(entry) {
+  const sanitized = { ...entry }
+  for (const key of AWARD_TEXT_FIELDS) {
+    if (typeof sanitized[key] === 'string') {
+      sanitized[key] = stripPlaqueFromAwardText(sanitized[key])
+    }
+  }
+  return sanitized
+}
+
+const awardCategoriesRaw = [
   {
     name: 'Smt. Radha Sairam Annual Award for Creative Music Therapist',
     year: 2022,
     eligibility:
-      'Music therapists certified by any institution, or practitioners with over 5 years of demonstrated work in the field.',
-    prize: 'INR 10,000 + Plaque',
+      'Qualified and Experienced Music Therapists below 50 years as on 1st January of the Award announcement, with dynamic and proactive involvement with IMTA and with proven achievements in many aspects of music therapy such as presentation, singing, volunteering, organizing, educating, research and publication, broadcasting etc. Doctoral and post-doctoral research experience will be an added qualification. (Award Amount: INR 10,000.)',
+    prize: '',
   },
   {
     name: 'Dr. Ramachandran Narayanan Memorial IMTA–NADA Annual Fellowship',
     year: 2022,
     eligibility:
-      'Outstanding medical scholar with music background from India (MBBS minimum) for PG Diploma Distance Learning at NADA Centre, Chennai.',
-    prize: 'Full scholarship for one year',
+      'Outstanding medical scholars (from all types of medical disciplines/branches can aplly for this fellowship for free admission to one year IMTA PG DIPLOMA PROGRAMME . (Notional value of the Fellowship: INR 20,000)',
+    prize: '',
   },
   {
     name: 'Dr. Krishnamurthy Chandramoleshwar Award for Best Research Article on Music Therapy',
     year: 2022,
     eligibility:
-      'Best scientific research article on Raga Therapy published in a reputed journal from India or abroad.',
-    prize: 'INR 5,000 + Certificate + Plaque',
+      'AUthors or the First Authors of Best scientific research article on MUSIC THERAPY published within two previous years of the year of Award . (Award Amount- INR 5000),',
+    prize: '',
+  },
+  {
+    name: 'IMTA AWARD FOR THE BEST MUSIC THERAPY BOOK',
+    year: 2022,
+    eligibility:
+      'Authors or the First Authof of a book, published within two previous years of the year of the Award. (Award amount-INR 5000)..',
+    prize: '',
   },
 ]
 
-export const awardWinners = [
+export const awardCategories = awardCategoriesRaw.map(sanitizeAwardEntry)
+
+const awardWinnersRaw = [
   {
     year: 2026,
     category: 'IMTA Awards',
@@ -131,3 +158,5 @@ export const awardWinners = [
     image: publicAsset('Chaitrra Sairam.jpeg'),
   },
 ]
+
+export const awardWinners = awardWinnersRaw.map(sanitizeAwardEntry)

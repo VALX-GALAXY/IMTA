@@ -81,7 +81,7 @@ export function AwardCategoryCard({ category }) {
         <div className="space-y-2">
           <h3 className="font-semibold text-ink">{category.name}</h3>
           <p className="text-sm leading-relaxed text-earth">{category.eligibility}</p>
-          <p className="text-sm font-medium text-gold">{category.prize}</p>
+          {category.prize ? <p className="text-sm font-medium text-gold">{category.prize}</p> : null}
         </div>
       </div>
     </article>

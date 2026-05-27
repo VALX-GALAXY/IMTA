@@ -1,3 +1,6 @@
+import { publicAsset } from '@/lib/publicAsset'
+import { PG_DIPLOMA_APPLICATION_EMAIL, PG_DIPLOMA_APPLY_BY } from '@/constants/pgDiploma'
+
 export const pgDiplomaProgramme = {
   title: "T.V. Sairam's Music Therapy — PG Diploma Programme",
   subtitle: 'Distance Learning Programme · 22nd Batch',
@@ -113,3 +116,39 @@ export const pgDiplomaContact = {
   website: 'https://www.theimta.in',
   websiteLabel: 'www.theimta.in',
 }
+
+const pgDiplomaSlideBase = {
+  title: pgDiplomaProgramme.title,
+  subtitle: pgDiplomaProgramme.subtitle,
+  batchStart: pgDiplomaProgramme.batchStart,
+  location: pgDiplomaProgramme.location,
+}
+
+/** Hero photo shown below the upcoming carousel (not in the slider). */
+export const pgDiplomaHeroImage = publicAsset('7.   IMTA DISTANCE LEARNING PG DIPLOMA COURSE .jpeg')
+
+/** Carousel slides for the upcoming PG Diploma section (poster + video). */
+export const upcomingPgDiplomaSlides = [
+  {
+    id: 'pg-diploma-poster',
+    mediaType: 'poster',
+    mediaLabel: 'Programme poster',
+    image: publicAsset('pg diplom1.jpeg'),
+    ...pgDiplomaSlideBase,
+    applyBy: PG_DIPLOMA_APPLY_BY,
+    applicationEmail: PG_DIPLOMA_APPLICATION_EMAIL,
+    studyMaterials: '12 clear study materials with innovative assignments',
+    eligibility: 'Graduates trained in music are welcome to join',
+    badges: [
+      'A unique, world-pioneering distance learning program in Music Therapy',
+      'Time-tested, time-honoured & accredited under the aegis of IMTA',
+    ],
+  },
+  {
+    id: 'pg-diploma-video',
+    mediaType: 'video',
+    mediaLabel: 'Programme video',
+    video: publicAsset('pgvideo.mp4'),
+    ...pgDiplomaSlideBase,
+  },
+]
