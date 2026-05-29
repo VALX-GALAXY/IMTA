@@ -4,7 +4,7 @@ export const governingCouncil = {
   name: 'Dr. T. V. Sairam',
   role: 'Honorary President & C.E.O.',
   location: 'Bengaluru',
-  image: publicAsset(' T. V. Sairam, Honorary President & C.E.O. .jpeg'),
+  image: publicAsset('Dr. T. V. Sairam.jpeg'),
 }
 
 export const coreGroupMembers = [
@@ -12,7 +12,7 @@ export const coreGroupMembers = [
     name: 'Dr. T. V. Sairam',
     role: 'Honorary President',
     location: 'Bengaluru',
-    image: publicAsset(' T. V. Sairam, Honorary President & C.E.O. .jpeg'),
+    image: publicAsset('Dr. T. V. Sairam.jpeg'),
   },
   {
     name: 'Ms. Jayashree Raja',

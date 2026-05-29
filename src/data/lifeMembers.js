@@ -1,6 +1,6 @@
 import { publicAsset } from '@/lib/publicAsset'
 
-/** IMTA life members — official register (LM0001–LM0031). Photos in /public when available. */
+/** IMTA life members — official register (LM0001–LM0032). Photos in /public when available. */
 export const lifeMembers = [
   {
     name: 'Dr Shivayogi R. Baligar',
@@ -80,7 +80,7 @@ export const lifeMembers = [
     name: 'Dr T. V. Sairam',
     location: 'Bengaluru, Karnataka',
     membershipId: 'IMTA/LM0013',
-    image: publicAsset(' T. V. Sairam, Honorary President & C.E.O. .jpeg'),
+    image: publicAsset('Dr. T. V. Sairam.jpeg'),
   },
   {
     name: 'Srilatha Chandrasekaran',
@@ -188,5 +188,10 @@ export const lifeMembers = [
     location: 'Bengaluru, Karnataka',
     membershipId: 'IMTA/LM0031',
     image: publicAsset('Sukrishna Mukherjee.jpeg'),
+  },
+  {
+    name: 'Sanjay Hallan',
+    role: 'Patron',
+    membershipId: 'IMTA/LM0032',
   },
 ]
