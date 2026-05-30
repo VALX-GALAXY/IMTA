@@ -18,6 +18,7 @@ export const coreGroupMembers = [
     name: 'Ms. Jayashree Raja',
     role: 'Honorary Vice President',
     location: 'Ghaziabad',
+    image: publicAsset('Jayashree Raja .jpeg'),
   },
   {
     name: 'Ms. Sudha Ganesh',
@@ -28,6 +29,7 @@ export const coreGroupMembers = [
   {
     name: 'Sanj Hall',
     role: 'Secretary',
+    image: publicAsset('Sanj Hallon.jpeg'),
   },
   {
     name: 'Mr. K. V. Sastry',

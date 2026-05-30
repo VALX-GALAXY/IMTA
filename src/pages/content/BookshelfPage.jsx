@@ -9,9 +9,9 @@ export function BookshelfPage() {
       description={memberBooksNote}
       className="pb-20"
     >
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
         {books.map((book) => (
-          <BookCard key={book.title} book={book} />
+          <BookCard key={book.id} book={book} />
         ))}
       </div>
     </PageShell>
