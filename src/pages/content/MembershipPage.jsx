@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Download, FilePenLine } from 'lucide-react'
 import { MembershipApplyModal } from '@/components/membership/MembershipApplyModal'
-import { MEMBERSHIP_REGISTRATION_PDF } from '@/constants/membership'
+import { MEMBERSHIP_REGISTRATION_PDF, MEMBERSHIP_OPTIONS, MEMBERSHIP_FEES_INR, formatInr } from '@/constants/membership'
 import { site } from '@/config/site'
 import { imtaAddress } from '@/data/introduction'
 import { cn } from '@/lib/utils'
@@ -15,19 +15,23 @@ const benefits = [
   '40% concession on IMTA workshops and 15% rebate on publications.',
 ]
 
-const categories = [
-  <>
-    <strong>Membership fee:</strong> ₹ 5,000 — one-time fee when you first join IMTA (pay before or with
-    your application).
-  </>,
-  <>
-    <strong>Yearly renewal fee:</strong> ₹ 2,000 per calendar year (1 January – 31 December), payable after
-    your membership fee. Renew by the notified date (typically by early April) to stay in good standing.
-  </>,
-  <>
-    <strong>Life membership fee:</strong> ₹ 25,000 — one-time payment in lieu of yearly renewals.
-  </>,
-]
+const categories = MEMBERSHIP_OPTIONS.map((option) => {
+  if (option.id === 'annual') {
+    return (
+      <>
+        <strong>{option.label}:</strong> first year {formatInr(MEMBERSHIP_FEES_INR.annualFirstYear)};
+        subsequent calendar-year renewals {formatInr(MEMBERSHIP_FEES_INR.annualRenewal)} each (1 January
+        – 31 December).
+      </>
+    )
+  }
+
+  return (
+    <>
+      <strong>{option.label}:</strong> {formatInr(option.feeInr)} — {option.description}
+    </>
+  )
+})
 
 function SectionCard({ title, children, className }) {
   return (
@@ -92,12 +96,19 @@ export function MembershipPage() {
 
             <SectionCard title="Categories of membership">
               <NumberedList items={categories} />
+              <p className="mt-6 rounded-xl border border-gold/30 bg-gold/5 p-4 text-sm leading-relaxed text-earth">
+                Membership is not automatic on submitting an application. Pay the applicable fee (see above)
+                via bank transfer / UPI / cheque or DD, then submit your form with payment details. The
+                secretariat will verify payment and approve membership before you are enrolled.
+              </p>
             </SectionCard>
 
             <SectionCard title="Payment and application">
               <p className="mb-6 text-sm font-medium text-ink md:text-base">
-                Transfer the applicable amount — membership fee (₹ 5,000), yearly renewal (₹ 2,000), or
-                life membership (₹ 25,000) — via online transfer / cheque / DD. Bank details are as follows:
+                Transfer the applicable fee — corporate ({formatInr(MEMBERSHIP_FEES_INR.corporate)}), life (
+                {formatInr(MEMBERSHIP_FEES_INR.life)}), or annual first-year (
+                {formatInr(MEMBERSHIP_FEES_INR.annualFirstYear)}) — via online transfer / UPI / cheque /
+                DD. Bank details are as follows:
               </p>
 
               <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">

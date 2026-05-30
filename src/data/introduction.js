@@ -30,11 +30,11 @@ export const visionMissionItems = [
 ]
 
 export const imtaAddress = {
-  name: 'Sree Maatha',
+  name: 'Office Address',
   lines: [
-    'No. 32, "Sree Maatha", 5th Main Road',
+    'No. 32, 5th Main Road',
     'Sir. M V Nagar, Ramamurthy Nagar',
     'Bengaluru — 560016',
   ],
-  mapQuery: 'Sree Maatha, 5th Main Road, Ramamurthy Nagar, Bengaluru 560016',
+  mapQuery: 'No. 32, 5th Main Road, Sir. M V Nagar, Ramamurthy Nagar, Bengaluru 560016',
 }

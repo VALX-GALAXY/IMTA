@@ -118,7 +118,7 @@ export function IntroductionPage() {
 
           <div className="relative aspect-[4/3] min-h-[280px] bg-highlight lg:aspect-auto lg:min-h-[360px]">
             <iframe
-              title="IMTA office location — Sree Maatha, Bengaluru"
+              title="IMTA office location — Bengaluru"
               src={mapSrc}
               className="absolute inset-0 size-full border-0"
               loading="lazy"
