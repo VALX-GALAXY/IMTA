@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { SiteBackgroundAudio } from '@/components/layout/SiteBackgroundAudio'
 import { pages } from '@/config/pages'
 import { MainLayout } from '@/layouts/MainLayout'
 import { LenisProvider } from '@/providers/LenisProvider'
@@ -13,6 +14,7 @@ const contentRoutes = pages.filter((p) => p.path !== '/' && p.layout !== 'home')
 export function AppRouter() {
   return (
     <BrowserRouter>
+      <SiteBackgroundAudio />
       <LenisProvider>
         <Routes>
           <Route path="login" element={<LoginPage />} />

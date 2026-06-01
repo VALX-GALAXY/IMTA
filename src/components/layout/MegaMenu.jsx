@@ -123,28 +123,31 @@ export function MegaMenu({ open, onOpenChange }) {
                 <div className="order-3 hidden md:order-none md:block md:flex-1" aria-hidden />
               )}
 
-              <div className="flex items-center gap-2 md:gap-3">
+              <div className="flex shrink-0 items-center gap-1.5 sm:gap-2 md:gap-3">
                 <AuthNavLink
                   onNavigate={close}
-                  className="inline-flex h-10 items-center rounded-full border border-border px-3 text-xs font-medium text-ink transition-colors hover:bg-highlight sm:h-11 sm:px-4 sm:text-sm"
+                  className="inline-flex h-10 shrink-0 items-center rounded-full border border-border px-2.5 text-xs font-medium text-ink transition-colors hover:bg-highlight sm:h-11 sm:px-4 sm:text-sm"
                 />
                 {!isLoggedIn ? (
                   <PillButton
                     to={ROUTES.register}
                     showIcon={false}
-                    className="h-10 px-3 text-xs sm:h-11 sm:px-5 sm:text-sm"
+                    className="inline-flex h-10 shrink-0 px-3 text-xs sm:h-11 sm:px-5 sm:text-sm"
                     onClick={close}
                   >
-                    Register
+                    <span className="sm:hidden">Apply</span>
+                    <span className="hidden sm:inline">Apply for Membership</span>
                   </PillButton>
-                ) : null}
-                <PillButton
-                  to={ROUTES.membership}
-                  className="hidden lg:inline-flex"
-                  onClick={close}
-                >
-                  Membership
-                </PillButton>
+                ) : (
+                  <PillButton
+                    to={ROUTES.membership}
+                    showIcon={false}
+                    className="inline-flex h-10 shrink-0 px-3 text-xs sm:h-11 sm:px-5 sm:text-sm"
+                    onClick={close}
+                  >
+                    Membership
+                  </PillButton>
+                )}
                 <button
                   type="button"
                   onClick={close}
@@ -160,12 +163,16 @@ export function MegaMenu({ open, onOpenChange }) {
             <div className="flex min-h-0 flex-1 flex-col overflow-hidden md:flex-row">
               {/* Left feature panel */}
               <div className="relative hidden shrink-0 flex-col justify-center overflow-hidden border-r border-gold px-8 py-10 md:flex md:w-[32%] lg:w-[30%] lg:px-10">
-                <h2 className="relative font-sans text-2xl font-bold uppercase leading-tight tracking-tight text-ink lg:text-3xl">
-                  {active.headline}
-                </h2>
-                <p className="relative mt-4 text-sm leading-relaxed text-earth lg:text-base">
-                  {active.description}
-                </p>
+                {active.headline ? (
+                  <h2 className="relative font-sans text-2xl font-bold uppercase leading-tight tracking-tight text-ink lg:text-3xl">
+                    {active.headline}
+                  </h2>
+                ) : null}
+                {active.description ? (
+                  <p className="relative mt-4 text-sm leading-relaxed text-earth lg:text-base">
+                    {active.description}
+                  </p>
+                ) : null}
                 {active.intro ? (
                   <p className="relative mt-4 border-l-2 border-gold/40 pl-4 text-sm italic leading-relaxed text-ink/90">
                     {active.intro}
@@ -174,7 +181,10 @@ export function MegaMenu({ open, onOpenChange }) {
                 <Link
                   to={ROUTES.home}
                   onClick={close}
-                  className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-ink transition-colors hover:text-gold"
+                  className={cn(
+                    'inline-flex items-center gap-2 text-sm font-semibold text-ink transition-colors hover:text-gold',
+                    active.headline || active.description || active.intro ? 'mt-4' : '',
+                  )}
                 >
                   Homepage
                   <ArrowUpRight className="size-4" />
@@ -197,12 +207,14 @@ export function MegaMenu({ open, onOpenChange }) {
                 data-lenis-prevent
                 className="min-h-0 flex-1 touch-pan-y overflow-y-auto overscroll-y-contain px-5 py-6 [-webkit-overflow-scrolling:touch] md:px-8 md:py-8 lg:px-10"
               >
-                {/* Mobile active summary */}
+                {/* Mobile intro — same copy as desktop left panel, without duplicate section tag below */}
                 <div className="mb-8 border-b border-border pb-6 md:hidden">
-                  <h2 className="font-sans text-xl font-bold uppercase text-ink">
-                    {active.headline}
-                  </h2>
-                  <p className="mt-2 text-sm text-earth">{active.description}</p>
+                  {active.headline ? (
+                    <h2 className="font-sans text-xl font-bold uppercase text-ink">{active.headline}</h2>
+                  ) : null}
+                  {active.description ? (
+                    <p className="mt-2 text-sm text-earth">{active.description}</p>
+                  ) : null}
                   {active.intro ? (
                     <p className="mt-3 border-l-2 border-gold/40 pl-3 text-sm italic text-ink/90">
                       {active.intro}
@@ -220,10 +232,6 @@ export function MegaMenu({ open, onOpenChange }) {
                       }}
                       className="scroll-mt-4"
                     >
-                      <h3 className="mb-5 border-b border-border pb-2 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                        {category.headline ?? category.label}
-                      </h3>
-
                       {category.links?.length ? (
                         <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                           {category.links.map((link) => (

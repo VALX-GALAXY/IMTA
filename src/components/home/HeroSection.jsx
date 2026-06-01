@@ -1,47 +1,20 @@
 import { motion } from 'framer-motion'
-import { useCallback, useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import { SiteHeader } from '@/components/layout/SiteHeader'
 import { MusicNotesFloat, SoundWaves } from '@/components/home/HomeMusicDecor'
 import { HeroPromoCarousel } from '@/components/home/HeroPromoCarousel'
 import { PillButton } from '@/components/ui/pill-button'
 import { site } from '@/config/site'
 import { ROUTES } from '@/constants/routes'
-import { publicAsset } from '@/lib/publicAsset'
 
 const HERO_VIDEO_SRC = '/hero.mp4'
-const HERO_AUDIO_SRC = publicAsset('AUDIO-2026-05-23-11-58-21.mp3')
 
-function useHeroMedia() {
+function useHeroVideo() {
   const videoRef = useRef(null)
-  const audioRef = useRef(null)
-
-  const playAudio = useCallback(async () => {
-    const audio = audioRef.current
-    const video = videoRef.current
-    if (!audio || video?.paused) return
-    try {
-      if (video && Math.abs(audio.currentTime - video.currentTime) > 0.35) {
-        audio.currentTime = video.currentTime
-      }
-      await audio.play()
-    } catch {
-      /* Autoplay may be blocked until user interacts with the page */
-    }
-  }, [])
-
-  const pauseAudio = useCallback(() => {
-    audioRef.current?.pause()
-  }, [])
 
   useLayoutEffect(() => {
     const video = videoRef.current
-    const audio = audioRef.current
-    if (!video || !audio) return
-
-    audio.loop = true
-    audio.preload = 'auto'
-    audio.volume = 0.85
-    audio.muted = false
+    if (!video) return
 
     video.muted = true
     video.defaultMuted = true
@@ -55,32 +28,26 @@ function useHeroMedia() {
         try {
           await video.play()
         } catch {
-          /* buffer */
+          /* Autoplay may be blocked until user interacts */
         }
       }
-      if (!video.paused) void playAudio()
     }
-
-    const onVideoPlay = () => void playAudio()
-    const onVideoPause = () => pauseAudio()
-
-    video.addEventListener('play', onVideoPlay)
-    video.addEventListener('pause', onVideoPause)
-    video.addEventListener('canplay', playVideo)
 
     void playVideo()
     const tId = window.setTimeout(playVideo, 100)
 
     const onVisible = () => {
       if (document.visibilityState === 'visible') void playVideo()
-      else pauseAudio()
+      else video.pause()
     }
     document.addEventListener('visibilitychange', onVisible)
+
+    video.addEventListener('canplay', playVideo)
 
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) void playVideo()
-        else pauseAudio()
+        else video.pause()
       },
       { threshold: 0.1 },
     )
@@ -88,16 +55,13 @@ function useHeroMedia() {
 
     return () => {
       window.clearTimeout(tId)
-      video.removeEventListener('play', onVideoPlay)
-      video.removeEventListener('pause', onVideoPause)
       video.removeEventListener('canplay', playVideo)
       document.removeEventListener('visibilitychange', onVisible)
       observer.disconnect()
-      pauseAudio()
     }
-  }, [pauseAudio, playAudio])
+  }, [])
 
-  return { videoRef, audioRef }
+  return videoRef
 }
 
 const headlineLines = [
@@ -116,7 +80,7 @@ const fadeUp = {
 }
 
 export function HeroSection() {
-  const { videoRef, audioRef } = useHeroMedia()
+  const videoRef = useHeroVideo()
 
   return (
     <section className="home-hero bg-canvas px-3 pb-3 pt-3 md:px-4 md:pb-4 md:pt-4">
@@ -136,7 +100,6 @@ export function HeroSection() {
           >
             <source src={HERO_VIDEO_SRC} type="video/mp4" />
           </video>
-          <audio ref={audioRef} src={HERO_AUDIO_SRC} loop preload="auto" className="hidden" />
         </div>
 
         <div

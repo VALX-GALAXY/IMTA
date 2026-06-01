@@ -160,10 +160,18 @@ export function MembershipPage() {
                 </div>
 
                 <div className="flex flex-col justify-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setApplyOpen(true)}
+                    className="order-1 flex min-h-[52px] w-full items-center justify-center gap-3 rounded-xl border border-gold/40 bg-ink px-5 py-4 text-center text-sm font-medium text-canvas shadow-sm transition-all hover:bg-ink/90 md:order-2 md:text-base"
+                  >
+                    <FilePenLine className="size-5 shrink-0 text-gold" aria-hidden />
+                    Apply for membership
+                  </button>
                   <a
                     href={MEMBERSHIP_REGISTRATION_PDF}
                     download
-                    className="group flex min-h-[52px] items-center justify-center gap-3 rounded-xl border border-border bg-surface px-5 py-4 text-center text-sm font-medium text-ink shadow-sm transition-all hover:border-gold/50 hover:bg-highlight md:text-base"
+                    className="order-2 group flex min-h-[52px] w-full items-center justify-center gap-3 rounded-xl border border-border bg-surface px-5 py-4 text-center text-sm font-medium text-ink shadow-sm transition-all hover:border-gold/50 hover:bg-highlight md:order-1 md:text-base"
                   >
                     <Download
                       className="size-5 shrink-0 text-gold transition-transform group-hover:translate-y-0.5"
@@ -171,14 +179,6 @@ export function MembershipPage() {
                     />
                     Download membership form (PDF)
                   </a>
-                  <button
-                    type="button"
-                    onClick={() => setApplyOpen(true)}
-                    className="flex min-h-[52px] items-center justify-center gap-3 rounded-xl border border-gold/40 bg-ink px-5 py-4 text-center text-sm font-medium text-canvas shadow-sm transition-all hover:bg-ink/90 md:text-base"
-                  >
-                    <FilePenLine className="size-5 shrink-0 text-gold" aria-hidden />
-                    Apply for membership
-                  </button>
                   <p className="text-center text-xs leading-relaxed text-earth">
                     Prefer offline? Download the PDF, complete it, and send as per the note above.
                   </p>

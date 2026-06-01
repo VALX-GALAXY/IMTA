@@ -8,10 +8,10 @@ export const megaMenuCategories = [
   {
     id: 'imta-sections',
     label: 'Sections',
-    headline: 'IMTA Life Members',
+    headline: 'Sections',
     description:
       'Award programmes, governance, learning pathways, archives, publications, and professional accreditation.',
-    knowMoreHref: ROUTES.lifeMembers,
+    knowMoreHref: ROUTES.introduction,
     links: [
       {
         title: 'IMTA Award Winners',
