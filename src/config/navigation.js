@@ -62,28 +62,10 @@ export const megaMenuCategories = [
           'Introductory online learning pathway for newcomers to music therapy.',
       },
       {
-        title: 'IMTA M.O.A',
-        href: ROUTES.moa,
-        description:
-          'Memorandum of Association — constitution and organisational framework.',
-      },
-      {
-        title: 'IMTA Annual Financial Statements (Past)',
-        href: ROUTES.financialStatements,
-        description:
-          'Audited financial statements sorted by year for transparency and review.',
-      },
-      {
         title: 'IMTA Activity Reports (Past)',
         href: ROUTES.activityReports,
         description:
           'Annual activity reports documenting programmes, outreach, and milestones.',
-      },
-      {
-        title: 'IMTA Financial Statement (2025–26) for 9th AGM',
-        href: ROUTES.agmFinancialStatement,
-        description:
-          'Featured financial statement presented at the Annual General Meeting.',
       },
       {
         title: 'IMTA Activity Report (2025–26) for 9th AGM',

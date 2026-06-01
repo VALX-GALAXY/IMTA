@@ -77,6 +77,7 @@ export function SiteBackgroundAudio() {
       } else {
         pause()
       }
+
     }
 
     void tryPlay()
