@@ -22,7 +22,7 @@ function DropCapParagraph({ letter, text }) {
 }
 
 export function IntroductionPage() {
-  const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(imtaAddress.mapQuery)}&t=&z=15&ie=UTF8&iwloc=&output=embed`
+  const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(imtaAddress.mapQuery)}&t=&z=16&ie=UTF8&iwloc=&output=embed`
 
   return (
     <PageShell
@@ -95,9 +95,7 @@ export function IntroductionPage() {
             </div>
             <div>
               <h2 className="text-xl font-semibold text-ink">{imtaAddress.name}</h2>
-              <p className="mt-1 text-sm font-medium text-gold">
-                Indian Music Therapy Association
-              </p>
+              <p className="mt-1 text-sm font-medium text-gold">Registered office — Bengaluru</p>
             </div>
             <address className="space-y-0.5 not-italic text-sm leading-relaxed text-earth">
               {imtaAddress.lines.map((line) => (
@@ -125,6 +123,15 @@ export function IntroductionPage() {
               referrerPolicy="no-referrer-when-downgrade"
               allowFullScreen
             />
+            <div
+              className="pointer-events-none absolute left-1/2 top-[42%] z-10 flex -translate-x-1/2 -translate-y-full flex-col items-center"
+              aria-hidden
+            >
+              <span className="rounded-lg bg-imta-indigo px-3 py-1.5 text-sm font-bold tracking-wide text-white shadow-lg ring-2 ring-white">
+                {imtaAddress.mapLabel}
+              </span>
+              <span className="size-0 border-x-[10px] border-t-[14px] border-x-transparent border-t-imta-indigo drop-shadow-sm" />
+            </div>
           </div>
         </div>
       </section>
