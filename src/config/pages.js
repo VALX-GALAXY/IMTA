@@ -143,9 +143,9 @@ export const pages = [
   {
     id: 'collaborating-institutions',
     path: ROUTES.collaboratingInstitutions,
-    title: 'Collaborating Institutions',
-    description: 'Partner hospitals, universities, and organisations working with IMTA.',
-    note: 'Cards with logo',
+    title: 'Collaborating Institutions & Universities',
+    description:
+      'Partner hospitals, universities, and organisations that supported past IMTA music therapy initiatives and conferences.',
     category: 'about',
   },
   {

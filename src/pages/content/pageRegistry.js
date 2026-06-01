@@ -8,6 +8,7 @@ import { BookshelfPage } from '@/pages/content/BookshelfPage'
 import { EMagazinePage } from '@/pages/content/EMagazinePage'
 import { MembershipPage } from '@/pages/content/MembershipPage'
 import { PgDiplomaPage } from '@/pages/content/PgDiplomaPage'
+import { CollaboratingInstitutionsPage } from '@/pages/content/CollaboratingInstitutionsPage'
 
 export const pageComponents = {
   introduction: IntroductionPage,
@@ -21,4 +22,5 @@ export const pageComponents = {
   'e-magazine': EMagazinePage,
   membership: MembershipPage,
   'distance-learning': PgDiplomaPage,
+  'collaborating-institutions': CollaboratingInstitutionsPage,
 }

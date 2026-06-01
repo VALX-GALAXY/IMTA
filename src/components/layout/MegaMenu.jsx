@@ -43,6 +43,31 @@ export function MegaMenu({ open, onOpenChange }) {
     sectionRefs.current[id]?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
+  useEffect(() => {
+    if (!open || !scrollRef.current) return
+
+    const root = scrollRef.current
+    const sections = megaMenuCategories
+      .map((cat) => sectionRefs.current[cat.id])
+      .filter(Boolean)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+        const top = visible[0]
+        if (top?.target?.dataset?.categoryId) {
+          setActiveId(top.target.dataset.categoryId)
+        }
+      },
+      { root, threshold: [0.15, 0.35, 0.55], rootMargin: '-8% 0px -55% 0px' },
+    )
+
+    for (const el of sections) observer.observe(el)
+    return () => observer.disconnect()
+  }, [open])
+
   return (
     <AnimatePresence>
       {open ? (
@@ -134,13 +159,18 @@ export function MegaMenu({ open, onOpenChange }) {
             {/* Body */}
             <div className="flex min-h-0 flex-1 flex-col overflow-hidden md:flex-row">
               {/* Left feature panel */}
-              <div className="relative hidden shrink-0 flex-col justify-center border-r border-gold px-8 py-10 md:flex md:w-[32%] lg:w-[30%] lg:px-10">
-                <h2 className="font-sans text-2xl font-bold uppercase leading-tight tracking-tight text-ink lg:text-3xl">
+              <div className="relative hidden shrink-0 flex-col justify-center overflow-hidden border-r border-gold px-8 py-10 md:flex md:w-[32%] lg:w-[30%] lg:px-10">
+                <h2 className="relative font-sans text-2xl font-bold uppercase leading-tight tracking-tight text-ink lg:text-3xl">
                   {active.headline}
                 </h2>
-                <p className="mt-4 text-sm leading-relaxed text-earth lg:text-base">
+                <p className="relative mt-4 text-sm leading-relaxed text-earth lg:text-base">
                   {active.description}
                 </p>
+                {active.intro ? (
+                  <p className="relative mt-4 border-l-2 border-gold/40 pl-4 text-sm italic leading-relaxed text-ink/90">
+                    {active.intro}
+                  </p>
+                ) : null}
                 <Link
                   to={ROUTES.home}
                   onClick={close}
@@ -149,14 +179,16 @@ export function MegaMenu({ open, onOpenChange }) {
                   Homepage
                   <ArrowUpRight className="size-4" />
                 </Link>
-                <Link
-                  to={active.knowMoreHref}
-                  onClick={close}
-                  className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-ink transition-colors hover:text-gold"
-                >
-                  Know more
-                  <ArrowUpRight className="size-4" />
-                </Link>
+                {active.knowMoreHref ? (
+                  <Link
+                    to={active.knowMoreHref}
+                    onClick={close}
+                    className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-ink transition-colors hover:text-gold"
+                  >
+                    Know more
+                    <ArrowUpRight className="size-4" />
+                  </Link>
+                ) : null}
               </div>
 
               {/* Right — all sections visible, scrollable */}
@@ -171,41 +203,50 @@ export function MegaMenu({ open, onOpenChange }) {
                     {active.headline}
                   </h2>
                   <p className="mt-2 text-sm text-earth">{active.description}</p>
+                  {active.intro ? (
+                    <p className="mt-3 border-l-2 border-gold/40 pl-3 text-sm italic text-ink/90">
+                      {active.intro}
+                    </p>
+                  ) : null}
                 </div>
 
                 <div className="space-y-10">
                   {megaMenuCategories.map((category) => (
                     <section
                       key={category.id}
+                      data-category-id={category.id}
                       ref={(el) => {
                         sectionRefs.current[category.id] = el
                       }}
                       className="scroll-mt-4"
                     >
                       <h3 className="mb-5 border-b border-border pb-2 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                        {category.label}
+                        {category.headline ?? category.label}
                       </h3>
-                      <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-                        {category.links.map((link) => (
-                          <li key={link.href}>
-                            <Link
-                              to={link.href}
-                              onClick={close}
-                              className="group block rounded-xl p-3 transition-colors hover:bg-highlight"
-                            >
-                              <span className="inline-flex items-center gap-1 text-base font-semibold text-ink transition-colors group-hover:text-gold">
-                                {link.title}
-                                <span className="text-earth transition-transform group-hover:translate-x-0.5 group-hover:text-gold">
-                                  ›
+
+                      {category.links?.length ? (
+                        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+                          {category.links.map((link) => (
+                            <li key={link.href}>
+                              <Link
+                                to={link.href}
+                                onClick={close}
+                                className="group block rounded-xl p-3 transition-colors hover:bg-highlight"
+                              >
+                                <span className="inline-flex items-center gap-1 text-base font-semibold text-ink transition-colors group-hover:text-gold">
+                                  {link.title}
+                                  <span className="text-earth transition-transform group-hover:translate-x-0.5 group-hover:text-gold">
+                                    ›
+                                  </span>
                                 </span>
-                              </span>
-                              <p className="mt-1.5 text-sm leading-relaxed text-earth">
-                                {link.description}
-                              </p>
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
+                                <p className="mt-1.5 text-sm leading-relaxed text-earth">
+                                  {link.description}
+                                </p>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
                     </section>
                   ))}
                 </div>

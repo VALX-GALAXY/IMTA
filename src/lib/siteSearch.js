@@ -1,5 +1,6 @@
 import { footerColumns, megaMenuCategories } from '@/config/navigation'
 import { pages } from '@/config/pages'
+import { collaboratingInstitutions } from '@/data/collaboratingInstitutions'
 import { ROUTES } from '@/constants/routes'
 import { lifeMembers } from '@/data/lifeMembers'
 
@@ -48,6 +49,15 @@ function buildSiteSearchIndex() {
         category: group.label,
       })
     }
+  }
+
+  for (const inst of collaboratingInstitutions) {
+    addItem(items, seen, {
+      title: inst.name,
+      subtitle: inst.location ?? 'Collaborating institution',
+      href: ROUTES.collaboratingInstitutions,
+      category: 'Collaborating institutions',
+    })
   }
 
   for (const column of footerColumns) {
