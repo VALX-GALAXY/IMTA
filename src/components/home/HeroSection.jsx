@@ -161,7 +161,12 @@ export function HeroSection() {
               animate="visible"
               className="mt-7 flex flex-wrap gap-3 md:mt-8"
             >
-              <PillButton to={ROUTES.introduction}>Explore IMTA</PillButton>
+              <div className="flex flex-col">
+                <PillButton to={ROUTES.introduction}>Explore IMTA</PillButton>
+                <p className="mt-2 text-[10px] leading-relaxed text-canvas/70">
+                  Background Music - IMTA Signature Tune by Chaitrra Sairam
+                </p>
+              </div>
               <PillButton
                 to={ROUTES.eMagazine}
                 showIcon={false}
