@@ -289,6 +289,19 @@
     background: var(--color-gold);
   }
 
+  .award-announcement-swiper__root .swiper-pagination {
+    bottom: 0.25rem;
+  }
+
+  .award-announcement-swiper__root .swiper-pagination-bullet {
+    background: color-mix(in srgb, var(--color-canvas) 45%, transparent);
+    opacity: 1;
+  }
+
+  .award-announcement-swiper__root .swiper-pagination-bullet-active {
+    background: var(--color-gold);
+  }
+
   .emagazine-feature-swiper__root .swiper-slide {
     height: auto;
   }

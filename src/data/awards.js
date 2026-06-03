@@ -57,6 +57,7 @@ const awardWinnersRaw = [
     category: 'IMTA Awards',
     title: 'Award Announcement 2026',
     description: 'Official announcement of IMTA national awards for 2026.',
+    images: [publicAsset('ANNOUNCEMENT.jpeg'), publicAsset('ann.jpeg')],
     image: publicAsset('ANNOUNCEMENT.jpeg'),
     featured: true,
   },
