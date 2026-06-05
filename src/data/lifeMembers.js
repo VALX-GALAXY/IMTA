@@ -74,7 +74,7 @@ export const lifeMembers = [
     name: 'Dr Deepti Bansal',
     location: 'Ghaziabad, Uttar Pradesh',
     membershipId: 'IMTA/LM0012',
-    image: publicAsset('Dr Deepti Bhansal.jpeg'),
+    image: publicAsset('Dr Deepti Bansal.jpeg'),
   },
   {
     name: 'Dr T. V. Sairam',
@@ -190,8 +190,10 @@ export const lifeMembers = [
     image: publicAsset('Sukrishna Mukherjee.jpeg'),
   },
   {
-    name: 'Sanjay Hallan',
+    name: 'Sanjay Hallon',
     role: 'Patron',
     membershipId: 'IMTA/LM0032',
+    image: publicAsset('Sanj Hallon.jpeg'),
+    
   },
 ]

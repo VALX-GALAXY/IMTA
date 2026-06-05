@@ -42,6 +42,8 @@ export const eventsByYear = [
           publicAsset('event1.jpeg'),
           publicAsset('event2.jpeg'),
           publicAsset('event3.jpeg'),
+          publicAsset('music therphy1.jpeg'),
+          publicAsset('music therapy2.jpeg'),
         ],
       },
       {

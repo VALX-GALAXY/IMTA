@@ -101,6 +101,23 @@ export const eMagazinePhotos = [
     caption:
       'Practical ways to bring music into daily life: gentler alarms, mindful listening breaks, and rhythm during routine tasks.',
   },
+  {
+    id: 'gitam-music-therapy-panel',
+    title: 'Music Therapy at GITAM University',
+    image: publicAsset('music therphy1.jpeg'),
+    imageAlt:
+      'Panel discussion on music therapy at GITAM University, Visakhapatnam — IMTA collaboration with Dr. T. V. Sairam',
+    caption:
+      'Lecture and interactive session on Music Therapy — Department of Fine and Performing Arts, GITAM (Deemed to be University), with Indian Music Therapy Association.',
+  },
+  {
+    id: 'gitam-music-therapy-press',
+    title: 'Press coverage — The Hans India',
+    image: publicAsset('music therapy2.jpeg'),
+    imageAlt: 'The Hans India newspaper report on the GITAM music therapy programme, August 2024',
+    caption:
+      'Experts at the music therapy programme at GITAM campus, Visakhapatnam — coverage from The Hans India, 1 August 2024.',
+  },
 ]
 
 /** PDF articles — downloads only (separate from photo features). */
