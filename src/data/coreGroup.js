@@ -27,7 +27,7 @@ export const coreGroupMembers = [
     image: publicAsset('Sudha Ganesh.jpeg'),
   },
   {
-    name: 'Sanjay Hallon',
+    name: 'Sanjy Hallon',
     role: 'Secretary',
     image: publicAsset('Sanj Hallon.jpeg'),
   },

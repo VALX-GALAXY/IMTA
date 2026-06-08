@@ -190,7 +190,7 @@ export const lifeMembers = [
     image: publicAsset('Sukrishna Mukherjee.jpeg'),
   },
   {
-    name: 'Sanjay Hallon',
+    name: 'Sanjy Hallon',
     role: 'Patron',
     membershipId: 'IMTA/LM0032',
     image: publicAsset('Sanj Hallon.jpeg'),
