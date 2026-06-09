@@ -36,7 +36,7 @@ export const pages = [
   {
     id: 'core-group',
     path: ROUTES.coreGroup,
-    title: 'Core Group & Governing Council',
+    title: 'IMTA Core Group',
     description: 'Leadership and core committee members guiding IMTA initiatives.',
     category: 'about',
   },
