@@ -1,6 +1,6 @@
 import { publicAsset } from '@/lib/publicAsset'
 
-/** Member publications — featured titles plus book1–book9 in /public (book6 image not provided). */
+/** Member publications — featured titles plus book1–book10 in /public (book6 image not provided). */
 export const books = [
   {
     id: 'understanding-music-therapy',
@@ -72,6 +72,13 @@ export const books = [
     publisher: 'Student Edition · NADA Center for Music Therapy, New Delhi',
     year: 2022,
     image: publicAsset('book9.jpeg'),
+  },
+  {
+    id: 'book10',
+    title: 'Self-Music Therapy',
+    author: 'T. V. Sairam',
+    publisher: 'Musings on Music Therapy · Nāda, www.nada.in',
+    image: publicAsset('book10.jpeg'),
   },
 ]
 

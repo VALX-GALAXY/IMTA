@@ -13,6 +13,13 @@ export const forthcomingEvents = [
     type: 'Webinar',
     image: publicAsset('Bollywood Music Therapy Webinar  .jpeg'),
   },
+  {
+    title: 'Polish Music Therapy',
+    subtitle: "Last of the Year's IMTA Sunday Webinar Series",
+    date: 'Sunday, June 28, 2026 · 5:00 PM IST',
+    type: 'Webinar',
+    image: publicAsset('WEBINAR PAGE.jpeg'),
+  },
 ]
 
 /** Past archive — newest year first; within each year, broadly reverse chronological. */

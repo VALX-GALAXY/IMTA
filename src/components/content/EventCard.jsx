@@ -96,26 +96,29 @@ export function EventCard({ event, className }) {
 
 export function ForthcomingEventCard({ event }) {
   return (
-    <article className="group relative overflow-hidden rounded-2xl bg-surface shadow-surface-lg">
-      <div className="relative aspect-[16/9] overflow-hidden bg-highlight">
+    <article className="group flex flex-col overflow-hidden rounded-2xl bg-surface shadow-surface-lg transition-shadow hover:shadow-surface-lg">
+      <div className="flex min-h-[280px] items-center justify-center bg-highlight p-4 sm:min-h-[360px]">
         <img
           src={event.image}
-          alt=""
-          className="size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+          alt={event.title}
+          className="max-h-[min(420px,55vh)] w-full object-contain object-center transition-transform duration-500 group-hover:scale-[1.02]"
           loading="lazy"
+          decoding="async"
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 p-5 text-surface md:p-6">
-          <SectionBadge className="mb-3 bg-surface/20 text-surface">{event.type}</SectionBadge>
-          <h3 className="text-xl font-semibold md:text-2xl">{event.title}</h3>
+      </div>
+
+      <div className="flex flex-col gap-3 border-t border-border p-5 md:p-6">
+        <SectionBadge>{event.type}</SectionBadge>
+        <div>
+          <h3 className="text-xl font-semibold text-ink md:text-2xl">{event.title}</h3>
           {event.subtitle ? (
-            <p className="mt-1 text-sm text-surface/80">{event.subtitle}</p>
+            <p className="mt-1 text-sm text-gold">{event.subtitle}</p>
           ) : null}
-          <p className="mt-3 inline-flex items-center gap-1.5 text-sm text-surface/90">
-            <CalendarDays className="size-4 text-gold" aria-hidden />
-            {event.date}
-          </p>
         </div>
+        <p className="inline-flex items-center gap-1.5 text-sm text-earth">
+          <CalendarDays className="size-4 text-gold" aria-hidden />
+          {event.date}
+        </p>
       </div>
     </article>
   )

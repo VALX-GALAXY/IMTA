@@ -7,12 +7,15 @@ import { imtaAddress } from '@/data/introduction'
 import { cn } from '@/lib/utils'
 
 const benefits = [
-  'Networking with music therapists across India.',
-  'Member profiles with photos and contact links on the website.',
-  'Online platform to publicise workshops and events.',
-  'Showcasing universities and music therapy organisations.',
-  'Co-sponsoring members’ workshops.',
-  '40% concession on IMTA workshops and 15% rebate on publications.',
+  'All-India networking with global possibilities.',
+  'Professional resources and reports.',
+  'Professional meets — offline and online.',
+  'Annual conference discounts (up to 40%).',
+  'Access to job postings.',
+  'Life members listed on the website.',
+  'IMTA scholarship grant.',
+  'IMTA fellowship for the PG Diploma programme.',
+  'IMTA annual awards for recognized authors, healers, practitioners, presenters, researchers, singers, and writers in music therapy.',
 ]
 
 const categories = MEMBERSHIP_OPTIONS.map((option) => {
@@ -90,7 +93,7 @@ export function MembershipPage() {
           </header>
 
           <div className="mt-12 space-y-8 md:mt-14 md:space-y-10">
-            <SectionCard title="Benefits of IMTA">
+            <SectionCard title="Benefits of IMTA Membership">
               <NumberedList items={benefits} />
             </SectionCard>
 
