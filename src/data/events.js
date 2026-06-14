@@ -19,6 +19,7 @@ export const forthcomingEvents = [
     date: 'Sunday, June 28, 2026 · 5:00 PM IST',
     type: 'Webinar',
     image: publicAsset('WEBINAR PAGE.jpeg'),
+    video: publicAsset('Webinar page 2026.mp4'),
   },
 ]
 
