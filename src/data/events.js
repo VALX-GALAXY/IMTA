@@ -2,6 +2,15 @@ import { publicAsset } from '@/lib/publicAsset'
 
 export const forthcomingEvents = [
   {
+    title: 'Special Webinar — Adoring Our Nation Musically!',
+    subtitle: 'IMTA invites you to join a special Independence Day webinar',
+    date: 'August 15, 2026 · 5:00 PM IST',
+    type: 'Webinar',
+    image: publicAsset('Event12aug.jpeg'),
+    joinUrl: 'https://calendar.app.google/jj2Cijd5VLijNtZw6',
+    contact: 'Siddhartha Rao — 9160002786',
+  },
+  {
     title: 'Carnatic Music Therapy — Online Webinar',
     date: 'March 3, 2026',
     type: 'Webinar',

@@ -12,7 +12,8 @@ export const announcements = [
   {
     id: 'world-conference-2026',
     title: '9th World Music Therapy Conference',
-    description: 'Trivandrum, Kerala — December 4–6, 2026. Poster from 1 July 2026.',
+    description:
+      'Trivandrum, Keralam — December 4–6, 2026. Latest highlights update: August 8, 2026.',
     image: worldConference2026Thumb,
     href: ROUTES.conferences,
   },

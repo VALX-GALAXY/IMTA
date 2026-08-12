@@ -201,6 +201,19 @@ export function ForthcomingEventCard({ event }) {
           <CalendarDays className="size-4 text-gold" aria-hidden />
           {event.date}
         </p>
+        {event.joinUrl ? (
+          <a
+            href={event.joinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-medium text-gold underline decoration-gold/40 underline-offset-2 transition-colors hover:text-ink hover:decoration-ink/30"
+          >
+            Join via link
+          </a>
+        ) : null}
+        {event.contact ? (
+          <p className="text-sm text-earth">For inquiries: {event.contact}</p>
+        ) : null}
       </div>
     </article>
   )

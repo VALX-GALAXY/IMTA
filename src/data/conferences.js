@@ -8,9 +8,47 @@ const worldConference2026Base = {
   edition: 9,
   title: 'World Music Therapy Conference 2026',
   date: 'December 4–6, 2026',
-  venue: 'Trivandrum Tennis Club, Kerala',
+  venue: 'Trivandrum, Keralam, India',
   format: 'In-person',
   upcoming: true,
+}
+
+/** Official highlights bulletin — August 8, 2026. */
+export const worldConference2026Bulletin = {
+  issued: 'August 8, 2026',
+  title: 'IMTA World Conference Highlights',
+  subtitle: 'December 4–6, 2026 · Trivandrum, Keralam, India',
+  highlights: [
+    'A special delegation of an 8-member team from Sri Lanka is participating.',
+    'Due to overwhelming participation, the Academic Sessions on Day 1 are extended up to 10 pm.',
+    'A complimentary Presidential Dinner is hosted by IMTA on Day 1, and a complimentary sight-seeing with dinner on Day 2.',
+    'Participants for both Academic and Song Sessions are full now. Future requests will be placed in RAC (against cancellation, if any).',
+    'Conference Director Sudha Ganesh is doing her best to showcase glimpses of Kerala culture and cuisine to make the Conference memorable for all.',
+    'Convocation Ceremony and Music for Music Therapy Session are slated for Day 3.',
+    'There will be 3 Academic Sessions with two dozen presentations this year.',
+    'IMTA Awards will be announced in the Annual General Body Meeting scheduled on Day 1 and distributed on Day 3.',
+    'A book titled “Ragachikitsa: A Miracle of Microtones” (a collective work of 10 IMTA Members) is getting ready to be formally released at this year’s Conference.',
+    'IMTA has entered into music therapy education through distance learning for the first time this year. 19 highly qualified students from all over India are currently receiving world-class training from our Honorary Faculty — Dr T. V. Sairam & Dr C. Lalithamal.',
+    'All IMTA members are welcome to volunteer to help IMTA spread its wings by sponsoring new members and canvassing for the conference so as to support and nurture music therapy in India.',
+    'A detailed Time Schedule will be announced in the last week of November 2026.',
+  ],
+  contacts: [
+    {
+      name: 'T. V. Sairam',
+      role: 'President, IMTA, Bengaluru',
+      phone: '98911 84950',
+    },
+    {
+      name: 'Sudha Ganesh',
+      role: '9th IMTA World Conference Director — 2026, Trivandrum',
+      phone: '98474 66814',
+    },
+    {
+      name: 'K. V. Sastry',
+      role: 'Treasurer & Registrar, IMTA, Bengaluru',
+      phone: '98864 04328',
+    },
+  ],
 }
 
 /** Slides for the upcoming conferences carousel (poster + video). */
@@ -24,15 +62,18 @@ export const upcomingConferenceSlides = [
     image: worldConference2026Poster,
     tagline: 'Healing Hearts... Enriching Lives...',
     exploreLine: 'Explore • Learn • Experience',
-    website: 'www.imta.in',
+    website: 'www.theimta.in',
     registrationFee: 'INR 5000 (includes lunch, tea & conference kit)',
     earlyBird: 'Early Bird Concession to IMTA Members: INR 3000',
     earlyBirdExpires: '15 June',
-    contactName: 'Mr. KVS Sastry',
-    contactPhone: '9886404328',
+    contactName: 'Mr. K. V. Sastry',
+    contactPhone: '98864 04328',
     highlights: [
-      'Songs · Demos · Lectures · Sight-seeing',
-      'Awards ceremony · Convocation · Competitions',
+      'Special 8-member Sri Lanka delegation participating',
+      'Academic & Song Sessions full — further requests on RAC',
+      'Complimentary Presidential Dinner (Day 1) & sight-seeing with dinner (Day 2)',
+      'Book release: Ragachikitsa — A Miracle of Microtones',
+      'Detailed time schedule in the last week of November 2026',
     ],
   },
   {
@@ -50,13 +91,14 @@ export const worldConference2026 = {
   highlights: [
     'Indian Music Therapy Association (IMTA) presents World Music Therapy Conference 2026',
     'Healing Hearts... Enriching Lives... · Explore • Learn • Experience',
-    'Venue: Trivandrum Tennis Club, Kerala',
+    'Venue: Trivandrum, Keralam, India',
     'Dates: December 4–6, 2026',
     'Registration fee: INR 5000 (includes lunch, tea & conference kit)',
     'Early Bird concession to IMTA Members: INR 3000 (expires 15 June)',
-    'Highlights: Songs · Demos · Lectures · Sight-seeing · Awards ceremony · Convocation · Competitions',
-    'Website: www.imta.in',
-    'Contact: Mr. KVS Sastry — 9886404328',
+    ...worldConference2026Bulletin.highlights,
+    'Contact: T. V. Sairam (President) — 98911 84950',
+    'Contact: Sudha Ganesh (Conference Director) — 98474 66814',
+    'Contact: K. V. Sastry (Treasurer & Registrar) — 98864 04328',
   ],
   image: worldConference2026Poster,
   video: worldConference2026Video,
