@@ -1,56 +1,84 @@
 import { publicAsset } from '@/lib/publicAsset'
 
-export const awardCategories = [
+const AWARD_TEXT_FIELDS = ['name', 'title', 'description', 'category', 'eligibility', 'prize']
+
+/** Strip "+ Plaque" from award copy wherever it appears. */
+export function stripPlaqueFromAwardText(text) {
+  if (typeof text !== 'string' || !text) return text
+  return text.replace(/\s*\+\s*Plaque\b/gi, '').trim()
+}
+
+function sanitizeAwardEntry(entry) {
+  const sanitized = { ...entry }
+  for (const key of AWARD_TEXT_FIELDS) {
+    if (typeof sanitized[key] === 'string') {
+      sanitized[key] = stripPlaqueFromAwardText(sanitized[key])
+    }
+  }
+  return sanitized
+}
+
+const awardCategoriesRaw = [
   {
     name: 'Smt. Radha Sairam Annual Award for Creative Music Therapist',
     year: 2022,
     eligibility:
-      'Music therapists certified by any institution, or practitioners with over 5 years of demonstrated work in the field.',
-    prize: 'INR 10,000 + Plaque',
+      'Qualified and Experienced Music Therapists below 50 years as on 1st January of the Award announcement, with dynamic and proactive involvement with IMTA and with proven achievements in many aspects of music therapy such as presentation, singing, volunteering, organizing, educating, research and publication, broadcasting etc. Doctoral and post-doctoral research experience will be an added qualification. (Award Amount: INR 10,000.)',
+    prize: '',
   },
   {
     name: 'Dr. Ramachandran Narayanan Memorial IMTA–NADA Annual Fellowship',
     year: 2022,
     eligibility:
-      'Outstanding medical scholar with music background from India (MBBS minimum) for PG Diploma Distance Learning at NADA Centre, Chennai.',
-    prize: 'Full scholarship for one year',
+      'Outstanding medical scholars (from all types of medical disciplines/branches can aplly for this fellowship for free admission to one year IMTA PG DIPLOMA PROGRAMME . (Notional value of the Fellowship: INR 20,000)',
+    prize: '',
   },
   {
     name: 'Dr. Krishnamurthy Chandramoleshwar Award for Best Research Article on Music Therapy',
     year: 2022,
     eligibility:
-      'Best scientific research article on Raga Therapy published in a reputed journal from India or abroad.',
-    prize: 'INR 5,000 + Certificate + Plaque',
+      'AUthors or the First Authors of Best scientific research article on MUSIC THERAPY published within two previous years of the year of Award . (Award Amount- INR 5000),',
+    prize: '',
+  },
+  {
+    name: 'IMTA AWARD FOR THE BEST MUSIC THERAPY BOOK',
+    year: 2022,
+    eligibility:
+      'Authors or the First Authof of a book, published within two previous years of the year of the Award. (Award amount-INR 5000)..',
+    prize: '',
   },
 ]
 
-export const awardWinners = [
+export const awardCategories = awardCategoriesRaw.map(sanitizeAwardEntry)
+
+const awardWinnersRaw = [
   {
     year: 2026,
     category: 'IMTA Awards',
     title: 'Award Announcement 2026',
     description: 'Official announcement of IMTA national awards for 2026.',
+    images: [publicAsset('ANNOUNCEMENT.jpeg'), publicAsset('ann.jpeg')],
     image: publicAsset('ANNOUNCEMENT.jpeg'),
     featured: true,
   },
   {
     year: 2025,
-    category: 'Dr. Krishnamurthy Chandramouleshwar Award - Best Scientific Article on Music Therapy',
+    category: 'Dr. Krishnamurthy Chandramouleshwar Awardee - Best Scientific Article on Music Therapy',
     name: 'Dr. Farah Husain',
     location: 'New Delhi',
-    description: 'Chandramouleshwara Award for the best scientific article on music therapy (IMTA).',
+    description: 'Chandramouleshwara Awardee for the best scientific article on music therapy (IMTA).',
     image: publicAsset('Dr Farah Husain.jpeg'),
   },
   {
     year: 2025,
-    category: 'Smt. Radha Sairam Creative Music Therapist Award',
+    category: 'Smt. Radha Sairam Creative Music Therapist Awardee',
     name: 'Ms. Gitashree Majumdar',
     location: 'Hyderabad',
     image: publicAsset('Ms Gitashree Majumdar, Hyderabad. .jpeg'),
   },
   {
     year: 2025,
-    category: 'IMTA Award for Self-less Service',
+    category: 'IMTA Awardee for Self-less Service',
     name: 'Dr. Geetha R. Bhat',
     location: 'Bengaluru',
     image: publicAsset('Dr. Geetha R. Bhat, Bengaluru.jpeg'),
@@ -71,7 +99,7 @@ export const awardWinners = [
   },
   {
     year: 2024,
-    category: 'Popular Musician Award',
+    category: 'Popular Musician Awardee',
     name: 'Dr. C. Lalithambal',
     description: 'Recognised at the annual conference, 2024.',
     image: publicAsset('Lalithambal.jpeg'),
@@ -117,17 +145,19 @@ export const awardWinners = [
   },
   {
     year: 2020,
-    category: 'Smt. Radha Sairam Creative Music Therapist Award',
+    category: 'Smt. Radha Sairam Creative Music Therapist Awardee',
     name: 'Dr. Durgesh Upadhyay',
     location: 'Varanasi',
     image: publicAsset('d.jpeg'),
   },
   {
     year: 2020,
-    category: 'Best Signature Tune Award',
+    category: 'Best Signature Tune Awardee',
     name: 'Chaitrra Sairam',
     location: 'Chennai',
     description: 'Vocalist & Music Therapist',
     image: publicAsset('Chaitrra Sairam.jpeg'),
   },
 ]
+
+export const awardWinners = awardWinnersRaw.map(sanitizeAwardEntry)

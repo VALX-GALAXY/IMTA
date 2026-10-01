@@ -1,10 +1,12 @@
 import { useMemo, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { PageShell } from '@/components/layout/PageShell'
 import { ProfileCard } from '@/components/content/ProfileCard'
 import { lifeMembers } from '@/data/lifeMembers'
 
 export function LifeMembersPage() {
-  const [query, setQuery] = useState('')
+  const [searchParams] = useSearchParams()
+  const [query, setQuery] = useState(() => searchParams.get('q') ?? '')
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()

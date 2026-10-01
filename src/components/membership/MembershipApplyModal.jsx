@@ -1,6 +1,15 @@
-import { useId, useState } from 'react'
-import { FilePenLine, XIcon } from 'lucide-react'
+import { useId, useRef, useState } from 'react'
+import { FilePenLine, IndianRupee, Loader2, XIcon } from 'lucide-react'
 import { toast } from 'sonner'
+import {
+  MEMBERSHIP_OPTIONS,
+  MEMBERSHIP_FEES_INR,
+  formatInr,
+  membershipFeeAmount,
+  membershipFeeLabel,
+} from '@/constants/membership'
+import { submitMembershipApplication } from '@/lib/membershipApi'
+import { ApiRequestError } from '@/lib/api'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -35,19 +44,47 @@ function FormSection({ title, children, className }) {
 
 export function MembershipApplyModal({ open, onOpenChange }) {
   const formId = useId()
+  const formRef = useRef(null)
   const [declaration, setDeclaration] = useState(false)
+  const [selectedRole, setSelectedRole] = useState('')
+  const [submitting, setSubmitting] = useState(false)
 
-  const handleSubmit = (e) => {
+  const selectedFee = membershipFeeAmount(selectedRole)
+  const selectedFeeLabel = membershipFeeLabel(selectedRole)
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (!declaration) {
       toast.error('Please confirm the declaration to continue.')
       return
     }
-    toast.success(
-      'Thank you. Your application details are recorded for review. The secretariat may contact you at the email provided. (Demo — connect this form to your backend when ready.)',
-    )
-    onOpenChange(false)
-    setDeclaration(false)
+
+    const form = formRef.current
+    if (!form) return
+
+    const formData = new FormData(form)
+    formData.set('declarationAccepted', 'true')
+
+    setSubmitting(true)
+    try {
+      await submitMembershipApplication(formData)
+      toast.success(
+        'Thank you. Your membership application has been submitted. The secretariat may contact you at the email provided.',
+      )
+      form.reset()
+      setDeclaration(false)
+      setSelectedRole('')
+      onOpenChange(false)
+    } catch (err) {
+      if (err instanceof ApiRequestError && err.errors?.length) {
+        const first = err.errors[0]
+        toast.error(first.message || err.message)
+      } else {
+        toast.error(err.message || 'Could not submit your application. Please try again.')
+      }
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -79,19 +116,58 @@ export function MembershipApplyModal({ open, onOpenChange }) {
           className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain [-webkit-overflow-scrolling:touch] px-5 py-6 pb-8 md:px-6"
           data-lenis-prevent
         >
-          <form id={formId} onSubmit={handleSubmit} className="space-y-6">
+          <form ref={formRef} id={formId} onSubmit={handleSubmit} className="space-y-6">
+            <div className="rounded-xl border border-gold/30 bg-gold/5 p-4 text-sm leading-relaxed text-earth">
+              <p className="font-medium text-ink">Membership fees apply</p>
+              <ul className="mt-2 space-y-1">
+                {MEMBERSHIP_OPTIONS.map((option) => (
+                  <li key={option.id}>
+                    <span className="font-medium text-ink">{option.label}:</span>{' '}
+                    {option.id === 'annual'
+                      ? `${formatInr(option.feeInr)} (1st year); renewals ${formatInr(MEMBERSHIP_FEES_INR.annualRenewal)}/year`
+                      : formatInr(option.feeInr)}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-3">
+                Submitting this form does not grant immediate membership. Pay the applicable fee, then the
+                secretariat will verify payment and approve your application.
+              </p>
+            </div>
+
             <FormSection title="Apply membership for the role *">
               <Label htmlFor={`${formId}-post`} className="sr-only">
                 Membership role
               </Label>
-              <select id={`${formId}-post`} name="post" required className={selectClass} defaultValue="">
+              <select
+                id={`${formId}-post`}
+                name="post"
+                required
+                className={selectClass}
+                value={selectedRole}
+                onChange={(e) => setSelectedRole(e.target.value)}
+              >
                 <option value="" disabled>
-                  — Select —
+                  — Select membership type —
                 </option>
-                <option value="annual">Annual / Ordinary Member</option>
-                <option value="life">Life Member</option>
-                <option value="student">Student / Associate (if applicable)</option>
+                {MEMBERSHIP_OPTIONS.map((option) => (
+                  <option key={option.id} value={option.id}>
+                    {option.label} —{' '}
+                    {option.id === 'annual'
+                      ? `${formatInr(option.feeInr)} (1st year)`
+                      : formatInr(option.feeInr)}
+                  </option>
+                ))}
               </select>
+              {selectedRole ? (
+                <p className="mt-3 inline-flex items-start gap-2 rounded-lg border border-border bg-surface px-3 py-2 text-sm text-ink">
+                  <IndianRupee className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden />
+                  <span>
+                    <span className="font-medium">Fee payable with this application:</span>{' '}
+                    {selectedFeeLabel}. Transfer via NEFT / UPI / cheque or DD before or with submission.
+                  </span>
+                </p>
+              ) : null}
             </FormSection>
 
             <FormSection title="Add details">
@@ -235,23 +311,46 @@ export function MembershipApplyModal({ open, onOpenChange }) {
             </FormSection>
 
             <FormSection title="Payment">
-              <Label htmlFor={`${formId}-payment`} className="text-ink">
-                Add payment method <span className="text-destructive">*</span>
-              </Label>
-              <select
-                id={`${formId}-payment`}
-                name="paymentMethod"
-                required
-                className={cn(selectClass, 'mt-2')}
-                defaultValue=""
-              >
-                <option value="" disabled>
-                  — Select —
-                </option>
-                <option value="neft">NEFT / bank transfer</option>
-                <option value="upi">UPI (reference only — confirm with office)</option>
-                <option value="cheque">Cheque / DD</option>
-              </select>
+              {selectedRole ? (
+                <p className="mb-4 rounded-lg border border-border bg-surface px-3 py-2 text-sm text-ink">
+                  Amount due: <span className="font-semibold">{formatInr(selectedFee)}</span>
+                  {selectedRole === 'annual' ? (
+                    <span className="text-earth">
+                      {' '}
+                      (annual membership — 1st year; renewals{' '}
+                      {formatInr(MEMBERSHIP_FEES_INR.annualRenewal)}/year thereafter)
+                    </span>
+                  ) : null}
+                </p>
+              ) : (
+                <p className="mb-4 text-sm text-earth">
+                  Select a membership type above to see the applicable fee.
+                </p>
+              )}
+
+              <div className="space-y-1.5">
+                <Label htmlFor={`${formId}-payment`} className="text-ink">
+                  Payment method <span className="text-destructive">*</span>
+                </Label>
+                <select
+                  id={`${formId}-payment`}
+                  name="paymentMethod"
+                  required
+                  className={selectClass}
+                  defaultValue=""
+                >
+                  <option value="" disabled>
+                    — Select —
+                  </option>
+                  <option value="neft">NEFT / bank transfer</option>
+                  <option value="upi">UPI</option>
+                  <option value="cheque">Cheque / DD</option>
+                </select>
+                <p className="text-xs text-earth">
+                  Pay the applicable fee to IMTA&apos;s bank account (see membership page) before or with
+                  this application.
+                </p>
+              </div>
             </FormSection>
 
             <div className="flex items-start gap-3 rounded-xl border border-border bg-highlight/80 p-4">
@@ -267,17 +366,22 @@ export function MembershipApplyModal({ open, onOpenChange }) {
                 className="cursor-pointer text-sm leading-relaxed text-earth"
               >
                 I declare, with responsibility, that the contents are true to the best of my knowledge and
-                belief.
+                belief. I understand that membership requires payment of the applicable fee and approval by
+                the IMTA secretariat — submission alone does not make me a member.
               </Label>
             </div>
 
             <div className="flex flex-wrap gap-3 border-t border-border pt-6">
-              <Button type="submit" className="gap-2">
-                <FilePenLine className="size-4" />
-                Submit application
+              <Button type="submit" className="gap-2" disabled={submitting}>
+                {submitting ? (
+                  <Loader2 className="size-4 animate-spin" />
+                ) : (
+                  <FilePenLine className="size-4" />
+                )}
+                {submitting ? 'Submitting…' : 'Submit application'}
               </Button>
               <DialogClose asChild>
-                <Button type="button" variant="outline">
+                <Button type="button" variant="outline" disabled={submitting}>
                   Cancel
                 </Button>
               </DialogClose>

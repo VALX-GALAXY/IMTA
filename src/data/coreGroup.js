@@ -1,23 +1,17 @@
 import { publicAsset } from '@/lib/publicAsset'
 
-export const governingCouncil = {
-  name: 'Dr. T. V. Sairam',
-  role: 'Honorary President & C.E.O.',
-  location: 'Bengaluru',
-  image: publicAsset(' T. V. Sairam, Honorary President & C.E.O. .jpeg'),
-}
-
 export const coreGroupMembers = [
   {
     name: 'Dr. T. V. Sairam',
     role: 'Honorary President',
     location: 'Bengaluru',
-    image: publicAsset(' T. V. Sairam, Honorary President & C.E.O. .jpeg'),
+    image: publicAsset('Dr. T. V. Sairam.jpeg'),
   },
   {
     name: 'Ms. Jayashree Raja',
     role: 'Honorary Vice President',
     location: 'Ghaziabad',
+    image: publicAsset('Jayashree Raja .jpeg'),
   },
   {
     name: 'Ms. Sudha Ganesh',
@@ -26,28 +20,26 @@ export const coreGroupMembers = [
     image: publicAsset('Sudha Ganesh.jpeg'),
   },
   {
-    name: 'Dr. Vijayalakshmi Subramaniam',
-    role: 'Honorary Secretary',
-    location: 'Mangalore',
+    name: 'Sanj Hallon',
+    role: 'Secretary',
+    image: publicAsset('Sanj Hallon.jpeg'),
   },
   {
     name: 'Mr. K. V. Sastry',
-    role: 'Honorary Treasurer',
+    role: 'Treasurer',
     location: 'Bengaluru',
+    image: publicAsset('K V Sastry.jpeg'),
   },
-]
-
-export const organizingCommittee2022 = [
-  { name: 'Shivdayal Bisht', location: 'Bengaluru' },
-  { name: 'Chaitra Sairam', location: 'Chennai' },
-  { name: 'Jayashree Raja', location: 'Ghaziabad' },
-  { name: 'Sarvjit Kaur', location: 'Amritsar' },
-  { name: 'Siddharth Sahai', location: 'Faridabad' },
-  { name: 'Sukrishna Mukherjee', location: 'Bengaluru' },
-  { name: 'Dr. Vijayalakshmi Subramaniam', location: 'Mangalore' },
-  { name: 'Indrani Basu', location: 'Kolkata' },
-  { name: 'K. V. Sastry', location: 'Bengaluru' },
-  { name: 'Satish Kumar', location: 'New Delhi' },
-  { name: 'Sudha Ganesh', location: 'Trivandrum' },
-  { name: 'T. V. Sairam', location: 'Bengaluru' },
+  {
+    name: 'Sukrishna Mukherjee',
+    role: 'Joint Secretary',
+    location: 'Bengaluru',
+    image: publicAsset('Sukrishna Mukherjee.jpeg'),
+  },
+  {
+    name: 'Dr. C. Lalithambal',
+    role: 'Joint Secretary',
+    location: 'Trichy',
+    image: publicAsset('Lalithambal.jpeg'),
+  },
 ]

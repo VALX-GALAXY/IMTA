@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone } from 'lucide-react'
+import { Mail, Phone } from 'lucide-react'
 import { site } from '@/config/site'
 import { cn } from '@/lib/utils'
 
@@ -69,12 +69,6 @@ export function SiteFooter() {
             </h3>
             <div className="mt-3 h-0.5 w-12 rounded-full bg-gold" />
             <ul className="mt-5 space-y-4">
-              <li className="flex gap-3">
-                <MapPin className="mt-0.5 size-5 shrink-0 text-gold" aria-hidden />
-                <span className="text-sm leading-relaxed text-earth md:text-base">
-                  {site.contact.address}
-                </span>
-              </li>
               <li className="flex gap-3">
                 <Phone className="mt-0.5 size-5 shrink-0 text-gold" aria-hidden />
                 <a

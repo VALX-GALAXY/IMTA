@@ -69,7 +69,7 @@ export function QuickLinksSection() {
             Programmes &amp; resources
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-earth md:text-base">
-            Five doorways into the world of music therapy — awards, conferences, learning, stories,
+            Five doorways into the world of music therapy - awards, conferences, learning, stories,
             and membership.
           </p>
         </motion.div>

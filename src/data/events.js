@@ -1,11 +1,57 @@
 import { publicAsset } from '@/lib/publicAsset'
 
+export const upcomingBeginnerCourse = {
+  title: 'Music Therapy — Special Online Classes for Beginners',
+  description:
+    'Join IMTA’s Special Online Music Therapy Classes for Beginners and learn from certified IMTA faculty. A focused 5-day, 15-hour online programme designed for convenient learning and professional development.',
+  shortDescription:
+    'Special online Music Therapy classes for beginners, conducted by certified IMTA faculty from 25–29 November 2026.',
+  date: '25–29 November 2026',
+  time: '6–9 PM',
+  mode: 'Online',
+  duration: '5 Days / 15 Hours',
+  courseDirection: 'Dr. T.V. Sairam',
+  certification: 'IMTA',
+  image: publicAsset('events/upcoming-event-photo-1.jpg'),
+}
+
 export const forthcomingEvents = [
+  {
+    title: upcomingBeginnerCourse.title,
+    date: `${upcomingBeginnerCourse.date} · ${upcomingBeginnerCourse.time}`,
+    type: 'Online Course',
+    image: upcomingBeginnerCourse.image,
+    description: upcomingBeginnerCourse.shortDescription,
+    location: upcomingBeginnerCourse.mode,
+  },
+  {
+    title: 'Special Webinar — Adoring Our Nation Musically!',
+    subtitle: 'IMTA invites you to join a special Independence Day webinar',
+    date: 'August 15, 2026 · 5:00 PM IST',
+    type: 'Webinar',
+    image: publicAsset('Event12aug.jpeg'),
+    joinUrl: 'https://calendar.app.google/jj2Cijd5VLijNtZw6',
+    contact: 'Siddhartha Rao — 9160002786',
+  },
+  {
+    title: 'Carnatic Music Therapy — Online Webinar',
+    date: 'March 3, 2026',
+    type: 'Webinar',
+    image: publicAsset('5.\u2060 \u2060IMTA WEBINAR ETC PAGE.jpeg'),
+  },
   {
     title: 'Bollywood Music Therapy Webinar',
     date: 'May 17, 2026',
     type: 'Webinar',
     image: publicAsset('Bollywood Music Therapy Webinar  .jpeg'),
+  },
+  {
+    title: 'Polish Music Therapy',
+    subtitle: "Last of the Year's IMTA Sunday Webinar Series",
+    date: 'Sunday, June 28, 2026 · 5:00 PM IST',
+    type: 'Webinar',
+    image: publicAsset('WEBINAR PAGE.jpeg'),
+    video: publicAsset('Webinar page 2026.mp4'),
   },
 ]
 
@@ -36,6 +82,8 @@ export const eventsByYear = [
           publicAsset('event1.jpeg'),
           publicAsset('event2.jpeg'),
           publicAsset('event3.jpeg'),
+          publicAsset('music therphy1.jpeg'),
+          publicAsset('music therapy2.jpeg'),
         ],
       },
       {

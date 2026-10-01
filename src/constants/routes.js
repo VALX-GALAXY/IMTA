@@ -10,10 +10,7 @@ export const ROUTES = {
   awardAnnouncement2026: '/award-announcement-2026',
   distanceLearning: '/distance-learning',
   onlineProgramme: '/online-programme',
-  moa: '/moa',
-  financialStatements: '/financial-statements',
   activityReports: '/activity-reports',
-  agmFinancialStatement: '/agm/financial-statement',
   agmActivityReport: '/agm/activity-report',
   bookshelf: '/bookshelf',
   lifeMembers: '/life-members',
@@ -23,4 +20,7 @@ export const ROUTES = {
   login: '/login',
   register: '/register',
   membership: '/membership',
+  adminLogin: '/admin/login',
+  adminDashboard: '/admin/dashboard',
+  adminMembers: '/admin/members',
 }

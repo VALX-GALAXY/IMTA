@@ -1,12 +1,54 @@
 import { publicAsset } from '@/lib/publicAsset'
 
+/** 9th WMTC preview video (replaces mis-uploaded DLP static video). */
+export const worldConference2026Video = publicAsset('for conf 26 page.mp4')
+export const worldConference2026Poster = publicAsset('Conf26kerla.jpeg')
+
 const worldConference2026Base = {
   edition: 9,
-  title: '9th World Music Therapy Conference',
+  title: 'World Music Therapy Conference 2026',
   date: 'December 4–6, 2026',
-  venue: 'Trivandrum, Kerala',
+  venue: 'Trivandrum, Keralam, India',
   format: 'In-person',
   upcoming: true,
+}
+
+/** Official highlights bulletin — August 8, 2026. */
+export const worldConference2026Bulletin = {
+  issued: 'August 8, 2026',
+  title: 'IMTA World Conference Highlights',
+  subtitle: 'December 4–6, 2026 · Trivandrum, Keralam, India',
+  highlights: [
+    'A special delegation of an 8-member team from Sri Lanka is participating.',
+    'Due to overwhelming participation, the Academic Sessions on Day 1 are extended up to 10 pm.',
+    'A complimentary Presidential Dinner is hosted by IMTA on Day 1, and a complimentary sight-seeing with dinner on Day 2.',
+    'Participants for both Academic and Song Sessions are full now. Future requests will be placed in RAC (against cancellation, if any).',
+    'Conference Director Sudha Ganesh is doing her best to showcase glimpses of Kerala culture and cuisine to make the Conference memorable for all.',
+    'Convocation Ceremony and Music for Music Therapy Session are slated for Day 3.',
+    'There will be 3 Academic Sessions with two dozen presentations this year.',
+    'IMTA Awards will be announced in the Annual General Body Meeting scheduled on Day 1 and distributed on Day 3.',
+    'A book titled “Ragachikitsa: A Miracle of Microtones” (a collective work of 10 IMTA Members) is getting ready to be formally released at this year’s Conference.',
+    'IMTA has entered into music therapy education through distance learning for the first time this year. 19 highly qualified students from all over India are currently receiving world-class training from our Honorary Faculty — Dr T. V. Sairam & Dr C. Lalithamal.',
+    'All IMTA members are welcome to volunteer to help IMTA spread its wings by sponsoring new members and canvassing for the conference so as to support and nurture music therapy in India.',
+    'A detailed Time Schedule will be announced in the last week of November 2026.',
+  ],
+  contacts: [
+    {
+      name: 'T. V. Sairam',
+      role: 'President, IMTA, Bengaluru',
+      phone: '98911 84950',
+    },
+    {
+      name: 'Sudha Ganesh',
+      role: '9th IMTA World Conference Director — 2026, Trivandrum',
+      phone: '98474 66814',
+    },
+    {
+      name: 'K. V. Sastry',
+      role: 'Treasurer & Registrar, IMTA, Bengaluru',
+      phone: '98864 04328',
+    },
+  ],
 }
 
 /** Slides for the upcoming conferences carousel (poster + video). */
@@ -17,14 +59,29 @@ export const upcomingConferenceSlides = [
     mediaLabel: 'Conference poster',
     posterStartsFrom: '1 July 2026',
     ...worldConference2026Base,
-    image: publicAsset('WORLD MUSIC THERAPY CONFERENC.jpeg'),
+    image: worldConference2026Poster,
+    tagline: 'Healing Hearts... Enriching Lives...',
+    exploreLine: 'Explore • Learn • Experience',
+    website: 'www.theimta.in',
+    registrationFee: 'INR 5000 (includes lunch, tea & conference kit)',
+    earlyBird: 'Early Bird Concession to IMTA Members: INR 3000',
+    earlyBirdExpires: '15 June',
+    contactName: 'Mr. K. V. Sastry',
+    contactPhone: '98864 04328',
+    highlights: [
+      'Special 8-member Sri Lanka delegation participating',
+      'Academic & Song Sessions full — further requests on RAC',
+      'Complimentary Presidential Dinner (Day 1) & sight-seeing with dinner (Day 2)',
+      'Book release: Ragachikitsa — A Miracle of Microtones',
+      'Detailed time schedule in the last week of November 2026',
+    ],
   },
   {
     id: 'wmtc-2026-video',
     mediaType: 'video',
     mediaLabel: 'Conference preview video',
     ...worldConference2026Base,
-    video: publicAsset('9TH WORLD MUSIC THERAPY CONFERENCE, TRIVANDRUM, DEC.4-6. 2026..mp4'),
+    video: worldConference2026Video,
   },
 ]
 
@@ -32,12 +89,19 @@ export const upcomingConferenceSlides = [
 export const worldConference2026 = {
   ...worldConference2026Base,
   highlights: [
-    'Indian Music Therapy Association annual world conference',
-    'In-person gathering of members, clinicians, and researchers',
-    'Registration and programme details to follow',
+    'Indian Music Therapy Association (IMTA) presents World Music Therapy Conference 2026',
+    'Healing Hearts... Enriching Lives... · Explore • Learn • Experience',
+    'Venue: Trivandrum, Keralam, India',
+    'Dates: December 4–6, 2026',
+    'Registration fee: INR 5000 (includes lunch, tea & conference kit)',
+    'Early Bird concession to IMTA Members: INR 3000 (expires 15 June)',
+    ...worldConference2026Bulletin.highlights,
+    'Contact: T. V. Sairam (President) — 98911 84950',
+    'Contact: Sudha Ganesh (Conference Director) — 98474 66814',
+    'Contact: K. V. Sastry (Treasurer & Registrar) — 98864 04328',
   ],
-  image: upcomingConferenceSlides[0].image,
-  video: upcomingConferenceSlides[1].video,
+  image: worldConference2026Poster,
+  video: worldConference2026Video,
 }
 
 export const conferences = [
@@ -123,12 +187,13 @@ export const conferences = [
     edition: 7,
     title: '7th IMTA World Conference',
     date: '2024',
-    venue: 'India',
+    venue: 'Tiruchirappalli',
     highlights: [
       'Annual conference including awards and scientific sessions',
+      'Award-winning delegates honoured at the annual ceremony',
       'Popular Musician Award and other honours presented during the conference',
     ],
-    image: publicAsset('CONFERENCE 2024.jpeg'),
+    image: publicAsset('WORLD CONFERENCE 2024, TIRUCHIRAPPALLY..jpeg'),
     format: 'In-person',
   },
   {
@@ -142,7 +207,6 @@ export const conferences = [
       'Convocation scene of Music Therapy graduates',
     ],
     image: publicAsset('8th World Conference.jpeg'),
-    image: publicAsset('8th World Conference1.jpeg'),
     format: 'In-person',
   },
   worldConference2026,

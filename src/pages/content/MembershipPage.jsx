@@ -1,29 +1,40 @@
 import { useState } from 'react'
 import { Download, FilePenLine } from 'lucide-react'
 import { MembershipApplyModal } from '@/components/membership/MembershipApplyModal'
-import { MEMBERSHIP_REGISTRATION_PDF } from '@/constants/membership'
+import { MEMBERSHIP_REGISTRATION_PDF, MEMBERSHIP_OPTIONS, MEMBERSHIP_FEES_INR, formatInr } from '@/constants/membership'
 import { site } from '@/config/site'
+import { imtaAddress } from '@/data/introduction'
 import { cn } from '@/lib/utils'
 
 const benefits = [
-  'Networking with music therapists across India.',
-  'Member profiles with photos and contact links on the website.',
-  'Online platform to publicise workshops and events.',
-  'Showcasing universities and music therapy organisations.',
-  'Co-sponsoring members’ workshops.',
-  '40% concession on IMTA workshops and 15% rebate on publications.',
+  'All-India networking with global possibilities.',
+  'Professional resources and reports.',
+  'Professional meets — offline and online.',
+  'Annual conference discounts (up to 40%).',
+  'Access to job postings.',
+  'Life members listed on the website.',
+  'IMTA scholarship grant.',
+  'IMTA fellowship for the PG Diploma programme.',
+  'IMTA annual awards for recognized authors, healers, practitioners, presenters, researchers, singers, and writers in music therapy.',
 ]
 
-const categories = [
-  <>One-time entrance fee: <strong>₹ 3,000</strong></>,
-  <>
-    <strong>Annual / Ordinary membership:</strong> ₹ 2,000 per calendar year (1 January – 31 December).
-    Renew by the notified date (typically by early April) to stay in good standing.
-  </>,
-  <>
-    <strong>Life membership:</strong> ₹ 20,000 (in addition to the ₹ 3,000 entrance fee).
-  </>,
-]
+const categories = MEMBERSHIP_OPTIONS.map((option) => {
+  if (option.id === 'annual') {
+    return (
+      <>
+        <strong>{option.label}:</strong> first year {formatInr(MEMBERSHIP_FEES_INR.annualFirstYear)};
+        subsequent calendar-year renewals {formatInr(MEMBERSHIP_FEES_INR.annualRenewal)} each (1 January
+        – 31 December).
+      </>
+    )
+  }
+
+  return (
+    <>
+      <strong>{option.label}:</strong> {formatInr(option.feeInr)} — {option.description}
+    </>
+  )
+})
 
 function SectionCard({ title, children, className }) {
   return (
@@ -82,18 +93,25 @@ export function MembershipPage() {
           </header>
 
           <div className="mt-12 space-y-8 md:mt-14 md:space-y-10">
-            <SectionCard title="Benefits of IMTA">
+            <SectionCard title="Benefits of IMTA Membership">
               <NumberedList items={benefits} />
             </SectionCard>
 
             <SectionCard title="Categories of membership">
               <NumberedList items={categories} />
+              <p className="mt-6 rounded-xl border border-gold/30 bg-gold/5 p-4 text-sm leading-relaxed text-earth">
+                Membership is not automatic on submitting an application. Pay the applicable fee (see above)
+                via bank transfer / UPI / cheque or DD, then submit your form with payment details. The
+                secretariat will verify payment and approve membership before you are enrolled.
+              </p>
             </SectionCard>
 
             <SectionCard title="Payment and application">
               <p className="mb-6 text-sm font-medium text-ink md:text-base">
-                For those who wish to transfer the membership fee (online / cheque / DD), the bank details
-                are as follows:
+                Transfer the applicable fee — corporate ({formatInr(MEMBERSHIP_FEES_INR.corporate)}), life (
+                {formatInr(MEMBERSHIP_FEES_INR.life)}), or annual first-year (
+                {formatInr(MEMBERSHIP_FEES_INR.annualFirstYear)}) — via online transfer / UPI / cheque /
+                DD. Bank details are as follows:
               </p>
 
               <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
@@ -145,10 +163,18 @@ export function MembershipPage() {
                 </div>
 
                 <div className="flex flex-col justify-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setApplyOpen(true)}
+                    className="order-1 flex min-h-[52px] w-full items-center justify-center gap-3 rounded-xl border border-gold/40 bg-ink px-5 py-4 text-center text-sm font-medium text-canvas shadow-sm transition-all hover:bg-ink/90 md:order-2 md:text-base"
+                  >
+                    <FilePenLine className="size-5 shrink-0 text-gold" aria-hidden />
+                    Apply for membership
+                  </button>
                   <a
                     href={MEMBERSHIP_REGISTRATION_PDF}
                     download
-                    className="group flex min-h-[52px] items-center justify-center gap-3 rounded-xl border border-border bg-surface px-5 py-4 text-center text-sm font-medium text-ink shadow-sm transition-all hover:border-gold/50 hover:bg-highlight md:text-base"
+                    className="order-2 group flex min-h-[52px] w-full items-center justify-center gap-3 rounded-xl border border-border bg-surface px-5 py-4 text-center text-sm font-medium text-ink shadow-sm transition-all hover:border-gold/50 hover:bg-highlight md:order-1 md:text-base"
                   >
                     <Download
                       className="size-5 shrink-0 text-gold transition-transform group-hover:translate-y-0.5"
@@ -156,14 +182,6 @@ export function MembershipPage() {
                     />
                     Download membership form (PDF)
                   </a>
-                  <button
-                    type="button"
-                    onClick={() => setApplyOpen(true)}
-                    className="flex min-h-[52px] items-center justify-center gap-3 rounded-xl border border-gold/40 bg-ink px-5 py-4 text-center text-sm font-medium text-canvas shadow-sm transition-all hover:bg-ink/90 md:text-base"
-                  >
-                    <FilePenLine className="size-5 shrink-0 text-gold" aria-hidden />
-                    Apply for membership
-                  </button>
                   <p className="text-center text-xs leading-relaxed text-earth">
                     Prefer offline? Download the PDF, complete it, and send as per the note above.
                   </p>
@@ -172,7 +190,7 @@ export function MembershipPage() {
 
               <address className="mt-8 not-italic rounded-xl border border-border bg-highlight/50 p-5 text-sm text-earth">
                 <span className="font-semibold text-ink">Office address: </span>
-                {site.contact.address}
+                {imtaAddress.lines.join(', ')}
               </address>
             </SectionCard>
           </div>

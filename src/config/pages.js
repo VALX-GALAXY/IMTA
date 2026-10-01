@@ -36,7 +36,7 @@ export const pages = [
   {
     id: 'core-group',
     path: ROUTES.coreGroup,
-    title: 'Core Group & Governing Council',
+    title: 'IMTA Core Group',
     description: 'Leadership and core committee members guiding IMTA initiatives.',
     category: 'about',
   },
@@ -73,9 +73,9 @@ export const pages = [
   {
     id: 'distance-learning',
     path: ROUTES.distanceLearning,
-    title: 'PG Diploma Course',
-    description: 'Postgraduate diploma in music therapy — curriculum, eligibility, and enrolment.',
-    note: 'Course detail, enrol CTA',
+    title: "T.V. Sairam's Music Therapy — PG Diploma",
+    description:
+      '22nd batch from July 2026 — prospectus, syllabus, INR 20,000 fee, application PDF, and email submission.',
     category: 'programs',
   },
   {
@@ -87,35 +87,11 @@ export const pages = [
     category: 'programs',
   },
   {
-    id: 'moa',
-    path: ROUTES.moa,
-    title: 'Memorandum of Association',
-    description: 'Governance document outlining IMTA constitution and organisational framework.',
-    note: 'Document page',
-    category: 'about',
-  },
-  {
-    id: 'financial-statements',
-    path: ROUTES.financialStatements,
-    title: 'Financial Statements (Past)',
-    description: 'Audited financial statements sorted by year for transparency and review.',
-    note: 'Year-sorted document list',
-    category: 'publications',
-  },
-  {
     id: 'activity-reports',
     path: ROUTES.activityReports,
     title: 'Activity Reports (Past)',
     description: 'Annual activity reports documenting programmes, outreach, and milestones.',
     note: 'Year-sorted document list',
-    category: 'publications',
-  },
-  {
-    id: 'agm-financial-statement',
-    path: ROUTES.agmFinancialStatement,
-    title: 'AGM Financial Statement 2025–26',
-    description: 'Featured financial statement presented at the Annual General Meeting.',
-    note: 'Featured document',
     category: 'publications',
   },
   {
@@ -143,9 +119,9 @@ export const pages = [
   {
     id: 'collaborating-institutions',
     path: ROUTES.collaboratingInstitutions,
-    title: 'Collaborating Institutions',
-    description: 'Partner hospitals, universities, and organisations working with IMTA.',
-    note: 'Cards with logo',
+    title: 'Collaborating Institutions & Universities',
+    description:
+      'Partner hospitals, universities, and organisations that supported past IMTA music therapy initiatives and conferences.',
     category: 'about',
   },
   {

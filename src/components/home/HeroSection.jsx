@@ -9,97 +9,59 @@ import { ROUTES } from '@/constants/routes'
 
 const HERO_VIDEO_SRC = '/hero.mp4'
 
-function HeroBackgroundVideo() {
+function useHeroVideo() {
   const videoRef = useRef(null)
 
   useLayoutEffect(() => {
     const video = videoRef.current
     if (!video) return
 
-    const prepare = () => {
-      video.muted = true
-      video.defaultMuted = true
-      video.volume = 0
-      video.playsInline = true
-      video.controls = false
-      video.setAttribute('muted', '')
-      video.setAttribute('playsinline', '')
-      video.setAttribute('webkit-playsinline', '')
-      video.removeAttribute('controls')
-    }
+    video.muted = true
+    video.defaultMuted = true
+    video.volume = 0
+    video.playsInline = true
+    video.setAttribute('muted', '')
+    video.setAttribute('playsinline', '')
 
-    const play = async () => {
-      prepare()
-      if (!video.paused) return
-      try {
-        await video.play()
-      } catch {
-        /* retry after buffer */
+    const playVideo = async () => {
+      if (video.paused) {
+        try {
+          await video.play()
+        } catch {
+          /* Autoplay may be blocked until user interacts */
+        }
       }
     }
 
-    prepare()
-    void play()
-
-    const onReady = () => void play()
-    video.addEventListener('loadedmetadata', onReady)
-    video.addEventListener('loadeddata', onReady)
-    video.addEventListener('canplay', onReady)
-    video.addEventListener('canplaythrough', onReady)
-
-    const rafId = requestAnimationFrame(() => void play())
-    const tId = window.setTimeout(() => void play(), 100)
+    void playVideo()
+    const tId = window.setTimeout(playVideo, 100)
 
     const onVisible = () => {
-      if (document.visibilityState === 'visible') void play()
+      if (document.visibilityState === 'visible') void playVideo()
+      else video.pause()
     }
     document.addEventListener('visibilitychange', onVisible)
 
-    const onPageShow = (e) => {
-      if (e.persisted) void play()
-    }
-    window.addEventListener('pageshow', onPageShow)
+    video.addEventListener('canplay', playVideo)
 
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries.some((e) => e.isIntersecting)) void play()
+        if (entries.some((e) => e.isIntersecting)) void playVideo()
+        else video.pause()
       },
       { threshold: 0.1 },
     )
     observer.observe(video)
 
     return () => {
-      cancelAnimationFrame(rafId)
       window.clearTimeout(tId)
-      video.removeEventListener('loadedmetadata', onReady)
-      video.removeEventListener('loadeddata', onReady)
-      video.removeEventListener('canplay', onReady)
-      video.removeEventListener('canplaythrough', onReady)
+      video.removeEventListener('canplay', playVideo)
       document.removeEventListener('visibilitychange', onVisible)
-      window.removeEventListener('pageshow', onPageShow)
       observer.disconnect()
     }
   }, [])
 
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-      <video
-        ref={videoRef}
-        className="hero-bg-video size-full object-cover"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        disablePictureInPicture
-        disableRemotePlayback
-        controlsList="nodownload noplaybackrate nofullscreen"
-        tabIndex={-1}
-      >
-        <source src={HERO_VIDEO_SRC} type="video/mp4" />
-      </video>
-    </div>
-  )
+  return videoRef
 }
 
 const headlineLines = [
@@ -118,12 +80,28 @@ const fadeUp = {
 }
 
 export function HeroSection() {
+  const videoRef = useHeroVideo()
+
   return (
     <section className="home-hero bg-canvas px-3 pb-3 pt-3 md:px-4 md:pb-4 md:pt-4">
       <div className="relative min-h-[min(92vh,860px)] overflow-hidden rounded-[2rem] ring-1 ring-gold/20 md:rounded-[2.5rem]">
-        <HeroBackgroundVideo />
+        <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+          <video
+            ref={videoRef}
+            className="hero-bg-video size-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            disablePictureInPicture
+            disableRemotePlayback
+            tabIndex={-1}
+          >
+            <source src={HERO_VIDEO_SRC} type="video/mp4" />
+          </video>
+        </div>
 
-        {/* Subtle bottom fade only — keeps text readable without tinting the video */}
         <div
           className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/15 to-transparent"
           aria-hidden
@@ -173,7 +151,7 @@ export function HeroSection() {
               animate="visible"
               className="mt-5 max-w-xl font-serif text-base italic leading-relaxed text-canvas/90 md:mt-6 md:text-lg"
             >
-              {site.tagline} — a sanctuary of sound for therapists, artists, and healers across India.
+              {site.tagline} - a sanctuary of sound for therapists, artists, and healers across India.
             </motion.p>
 
             <motion.div
@@ -183,7 +161,12 @@ export function HeroSection() {
               animate="visible"
               className="mt-7 flex flex-wrap gap-3 md:mt-8"
             >
-              <PillButton to={ROUTES.introduction}>Explore IMTA</PillButton>
+              <div className="flex flex-col">
+                <PillButton to={ROUTES.introduction}>Explore IMTA</PillButton>
+                <p className="mt-2 text-[10px] leading-relaxed text-canvas/70">
+                  Background Music - IMTA Signature Tune by Chaitrra Sairam
+                </p>
+              </div>
               <PillButton
                 to={ROUTES.eMagazine}
                 showIcon={false}

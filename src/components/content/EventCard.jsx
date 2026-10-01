@@ -1,6 +1,96 @@
-import { CalendarDays, MapPin } from 'lucide-react'
+import { CalendarDays, ChevronLeft, ChevronRight, MapPin } from 'lucide-react'
+import { useRef } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay, Pagination } from 'swiper/modules'
 import { cn } from '@/lib/utils'
 import { SectionBadge } from '@/components/content/ContentSection'
+
+import 'swiper/css'
+import 'swiper/css/pagination'
+
+function ForthcomingEventMedia({ event }) {
+  const swiperRef = useRef(null)
+
+  if (!event.video) {
+    return (
+      <div className="flex min-h-[280px] items-center justify-center bg-highlight p-4 sm:min-h-[360px]">
+        <img
+          src={event.image}
+          alt={event.title}
+          className="max-h-[min(420px,55vh)] w-full object-contain object-center transition-transform duration-500 group-hover:scale-[1.02]"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    )
+  }
+
+  const slides = [
+    { id: 'poster', mediaType: 'poster', src: event.image },
+    { id: 'video', mediaType: 'video', src: event.video },
+  ]
+
+  return (
+    <div className="forthcoming-event-swiper relative overflow-hidden bg-highlight">
+      <Swiper
+        modules={[Autoplay, Pagination]}
+        spaceBetween={0}
+        slidesPerView={1}
+        loop
+        autoplay={{ delay: 5500, disableOnInteraction: false, pauseOnMouseEnter: true }}
+        pagination={{ clickable: true }}
+        onSwiper={(instance) => {
+          swiperRef.current = instance
+        }}
+      >
+        {slides.map((slide) => (
+          <SwiperSlide key={slide.id}>
+            {slide.mediaType === 'poster' ? (
+              <div className="flex min-h-[280px] items-center justify-center p-4 sm:min-h-[360px]">
+                <img
+                  src={slide.src}
+                  alt={`${event.title} poster`}
+                  className="max-h-[min(420px,55vh)] w-full object-contain object-center"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ) : (
+              <div className="flex min-h-[280px] items-center justify-center bg-ink p-4 sm:min-h-[360px]">
+                <video
+                  className="max-h-[min(420px,55vh)] w-full object-contain"
+                  controls
+                  playsInline
+                  preload="metadata"
+                  title={`${event.title} preview`}
+                >
+                  <source src={slide.src} type="video/mp4" />
+                </video>
+              </div>
+            )}
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      <button
+        type="button"
+        aria-label="Previous slide"
+        onClick={() => swiperRef.current?.slidePrev()}
+        className="absolute left-3 top-1/2 z-10 inline-flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-surface/95 text-ink shadow-md ring-1 ring-border transition-colors hover:bg-surface"
+      >
+        <ChevronLeft className="size-4" aria-hidden />
+      </button>
+      <button
+        type="button"
+        aria-label="Next slide"
+        onClick={() => swiperRef.current?.slideNext()}
+        className="absolute right-3 top-1/2 z-10 inline-flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-surface/95 text-ink shadow-md ring-1 ring-border transition-colors hover:bg-surface"
+      >
+        <ChevronRight className="size-4" aria-hidden />
+      </button>
+    </div>
+  )
+}
 
 export function EventCard({ event, className }) {
   const photos = event.images?.length
@@ -96,26 +186,37 @@ export function EventCard({ event, className }) {
 
 export function ForthcomingEventCard({ event }) {
   return (
-    <article className="group relative overflow-hidden rounded-2xl bg-surface shadow-surface-lg">
-      <div className="relative aspect-[16/9] overflow-hidden bg-highlight">
-        <img
-          src={event.image}
-          alt=""
-          className="size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-          loading="lazy"
-        />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 p-5 text-surface md:p-6">
-          <SectionBadge className="mb-3 bg-surface/20 text-surface">{event.type}</SectionBadge>
-          <h3 className="text-xl font-semibold md:text-2xl">{event.title}</h3>
+    <article className="group flex flex-col overflow-hidden rounded-2xl bg-surface shadow-surface-lg transition-shadow hover:shadow-surface-lg">
+      <ForthcomingEventMedia event={event} />
+
+      <div className="flex flex-col gap-3 border-t border-border p-5 md:p-6">
+        <SectionBadge>{event.type}</SectionBadge>
+        <div>
+          <h3 className="text-xl font-semibold text-ink md:text-2xl">{event.title}</h3>
           {event.subtitle ? (
-            <p className="mt-1 text-sm text-surface/80">{event.subtitle}</p>
+            <p className="mt-1 text-sm text-gold">{event.subtitle}</p>
           ) : null}
-          <p className="mt-3 inline-flex items-center gap-1.5 text-sm text-surface/90">
-            <CalendarDays className="size-4 text-gold" aria-hidden />
-            {event.date}
-          </p>
         </div>
+        {event.description ? (
+          <p className="text-sm leading-relaxed text-earth">{event.description}</p>
+        ) : null}
+        <p className="inline-flex items-center gap-1.5 text-sm text-earth">
+          <CalendarDays className="size-4 text-gold" aria-hidden />
+          {event.date}
+        </p>
+        {event.joinUrl ? (
+          <a
+            href={event.joinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-medium text-gold underline decoration-gold/40 underline-offset-2 transition-colors hover:text-ink hover:decoration-ink/30"
+          >
+            Join via link
+          </a>
+        ) : null}
+        {event.contact ? (
+          <p className="text-sm text-earth">For inquiries: {event.contact}</p>
+        ) : null}
       </div>
     </article>
   )

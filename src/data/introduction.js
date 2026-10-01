@@ -30,11 +30,13 @@ export const visionMissionItems = [
 ]
 
 export const imtaAddress = {
-  name: 'Sree Maatha',
+  name: 'Indian Music Therapy Association (IMTA)',
+  mapLabel: 'IMTA',
   lines: [
-    'No. 32, "Sree Maatha", 5th Main Road',
-    'Sir. M V Nagar, Ramamurthy Nagar',
+    'No. 32, 5th Main Road',
+    'Ramamurthy Nagar',
     'Bengaluru — 560016',
   ],
-  mapQuery: 'Sree Maatha, 5th Main Road, Ramamurthy Nagar, Bengaluru 560016',
+  mapQuery:
+    'Indian Music Therapy Association IMTA, No. 32, 5th Main Road, Ramamurthy Nagar, Bengaluru 560016',
 }

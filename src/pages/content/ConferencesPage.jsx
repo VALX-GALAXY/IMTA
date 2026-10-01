@@ -1,9 +1,14 @@
 import { useMemo } from 'react'
+import { Phone } from 'lucide-react'
 import { PageShell } from '@/components/layout/PageShell'
-import { ContentSection } from '@/components/content/ContentSection'
+import { ContentSection, SectionBadge } from '@/components/content/ContentSection'
 import { ConferenceCard } from '@/components/content/ConferenceCard'
 import { UpcomingConferenceSections } from '@/components/content/UpcomingConferencePromo'
-import { conferences, conference2022Schedule } from '@/data/conferences'
+import {
+  conferences,
+  conference2022Schedule,
+  worldConference2026Bulletin,
+} from '@/data/conferences'
 
 /** Latest year mentioned in a conference date string (e.g. "December 2025", "2024"). */
 function conferenceSortYear(conference) {
@@ -21,6 +26,8 @@ export function ConferencesPage() {
     [],
   )
 
+  const bulletin = worldConference2026Bulletin
+
   return (
     <PageShell
       title="World Music Therapy Conference"
@@ -28,6 +35,51 @@ export function ConferencesPage() {
       className="pb-20"
     >
       <UpcomingConferenceSections className="mb-14" showCta={false} />
+
+      <ContentSection
+        title={bulletin.title}
+        description={`${bulletin.subtitle} · Update dated ${bulletin.issued}`}
+        className="mb-14"
+      >
+        <div className="overflow-hidden rounded-2xl bg-surface shadow-surface ring-1 ring-gold/15">
+          <div className="flex flex-wrap items-center gap-2 border-b border-border px-5 py-4 md:px-6">
+            <SectionBadge>Latest update</SectionBadge>
+            <span className="text-xs font-medium text-earth">{bulletin.issued}</span>
+          </div>
+
+          <ol className="space-y-3 px-5 py-5 text-sm leading-relaxed text-earth md:px-6 md:text-base">
+            {bulletin.highlights.map((item, index) => (
+              <li key={item} className="flex gap-3">
+                <span className="mt-0.5 w-6 shrink-0 text-right text-xs font-semibold text-gold md:text-sm">
+                  {index + 1}.
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ol>
+
+          <div className="space-y-4 border-t border-border bg-highlight/40 px-5 py-5 md:px-6">
+            <p className="text-xs font-semibold uppercase tracking-wider text-gold">Contacts</p>
+            <ul className="grid gap-4 sm:grid-cols-3">
+              {bulletin.contacts.map((contact) => (
+                <li key={contact.phone} className="text-sm text-earth">
+                  <p className="font-semibold text-ink">{contact.name}</p>
+                  <p className="mt-0.5 text-xs leading-snug text-earth/90">{contact.role}</p>
+                  <p className="mt-2 inline-flex items-center gap-1.5">
+                    <Phone className="size-3.5 shrink-0 text-gold" aria-hidden />
+                    <a
+                      href={`tel:${contact.phone.replace(/\s/g, '')}`}
+                      className="font-medium text-ink hover:text-gold"
+                    >
+                      {contact.phone}
+                    </a>
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </ContentSection>
 
       <ContentSection
         title="Past conferences"
