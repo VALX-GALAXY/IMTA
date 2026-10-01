@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import { CalendarDays, ChevronLeft, ChevronRight, Globe, MapPin, Phone, Ticket } from 'lucide-react'
+import { CalendarDays, ChevronLeft, ChevronRight, Globe, MapPin, Phone, Ticket } from 'lucide-react'<<<<<<< abhay
+import { useEffect, useRef } from 'react
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -9,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { ROUTES } from '@/constants/routes'
 import { upcomingConferenceSlides } from '@/data/conferences'
 import { cn } from '@/lib/utils'
+import { setSiteVideoPlaying } from '@/lib/siteVideoPlayback'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -43,6 +45,29 @@ function ConferencePromoCard({ slide }) {
   )
 }
 
+
+function ConferenceSlideVideo({ slide }) {
+  const videoId = `save-date-${slide.id}`
+
+  useEffect(() => () => setSiteVideoPlaying(videoId, false), [videoId])
+
+  return (
+    <video
+      className="max-h-[min(70vh,520px)] w-full object-contain"
+      controls
+      playsInline
+      preload="metadata"
+      onPlay={() => setSiteVideoPlaying(videoId, true)}
+      onPause={() => setSiteVideoPlaying(videoId, false)}
+      onEnded={() => setSiteVideoPlaying(videoId, false)}
+      onError={() => setSiteVideoPlaying(videoId, false)}
+    >
+      <source src={slide.video} type="video/mp4" />
+    </video>
+  )
+}
+
+main
 function ConferenceSlideMedia({ slide }) {
   if (slide.mediaType === 'poster') {
     if (slide.promoCard) {
@@ -64,14 +89,7 @@ function ConferenceSlideMedia({ slide }) {
 
   return (
     <div className="flex min-h-[320px] w-full items-center justify-center bg-ink md:min-h-[420px]">
-      <video
-        className="max-h-[min(70vh,520px)] w-full object-contain"
-        controls
-        playsInline
-        preload="metadata"
-      >
-        <source src={slide.video} type="video/mp4" />
-      </video>
+      <ConferenceSlideVideo slide={slide} />
     </div>
   )
 }

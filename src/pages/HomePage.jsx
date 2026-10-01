@@ -5,6 +5,7 @@ import { GradientOrbs, SectionDivider, SoundWaves } from '@/components/home/Home
 import { HeroSection } from '@/components/home/HeroSection'
 import { IntroSection } from '@/components/home/IntroSection'
 import { QuickLinksSection } from '@/components/home/QuickLinksSection'
+import { UpcomingEvent } from '@/components/home/UpcomingEvent'
 
 export function HomePage() {
   return (
@@ -12,6 +13,7 @@ export function HomePage() {
       <HeroSection />
       <HomeManifesto />
       <HomeAnnouncementStrip />
+      <UpcomingEvent />
 
       <section className="home-conference-section relative overflow-hidden bg-gradient-to-b from-canvas via-highlight/50 to-canvas py-14 md:py-20">
         <GradientOrbs className="opacity-25" />

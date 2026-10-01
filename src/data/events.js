@@ -1,7 +1,32 @@
 import { publicAsset } from '@/lib/publicAsset'
 
+export const upcomingBeginnerCourse = {
+  title: 'Music Therapy — Special Online Classes for Beginners',
+  description:
+    'Join IMTA’s Special Online Music Therapy Classes for Beginners and learn from certified IMTA faculty. A focused 5-day, 15-hour online programme designed for convenient learning and professional development.',
+  shortDescription:
+    'Special online Music Therapy classes for beginners, conducted by certified IMTA faculty from 25–29 November 2026.',
+  date: '25–29 November 2026',
+  time: '6–9 PM',
+  mode: 'Online',
+  duration: '5 Days / 15 Hours',
+  courseDirection: 'Dr. T.V. Sairam',
+  certification: 'IMTA',
+  image: publicAsset('events/upcoming-event-photo-1.jpg'),
+}
+
 export const forthcomingEvents = [
   {
+
+    title: upcomingBeginnerCourse.title,
+    date: `${upcomingBeginnerCourse.date} · ${upcomingBeginnerCourse.time}`,
+    type: 'Online Course',
+    image: upcomingBeginnerCourse.image,
+    description: upcomingBeginnerCourse.shortDescription,
+    location: upcomingBeginnerCourse.mode,
+  },
+  {
+
     title: 'Special Webinar — Adoring Our Nation Musically!',
     subtitle: 'IMTA invites you to join a special Independence Day webinar',
     date: 'August 15, 2026 · 5:00 PM IST',

@@ -197,6 +197,10 @@ export function ForthcomingEventCard({ event }) {
             <p className="mt-1 text-sm text-gold">{event.subtitle}</p>
           ) : null}
         </div>
+         {event.description ? (
+          <p className="text-sm leading-relaxed text-earth">{event.description}</p>
+        ) : null}
+
         <p className="inline-flex items-center gap-1.5 text-sm text-earth">
           <CalendarDays className="size-4 text-gold" aria-hidden />
           {event.date}
