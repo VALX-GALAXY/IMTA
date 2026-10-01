@@ -17,6 +17,7 @@ export const upcomingBeginnerCourse = {
 
 export const forthcomingEvents = [
   {
+
     title: upcomingBeginnerCourse.title,
     date: `${upcomingBeginnerCourse.date} · ${upcomingBeginnerCourse.time}`,
     type: 'Online Course',
@@ -25,6 +26,7 @@ export const forthcomingEvents = [
     location: upcomingBeginnerCourse.mode,
   },
   {
+
     title: 'Special Webinar — Adoring Our Nation Musically!',
     subtitle: 'IMTA invites you to join a special Independence Day webinar',
     date: 'August 15, 2026 · 5:00 PM IST',

@@ -17,12 +17,15 @@ export function SiteBackgroundAudio() {
   const isHome = pathname === ROUTES.home
   const audioRef = useRef(null)
   const playingRef = useRef(false)
+
   const activeVideosRef = useRef(new Set())
   const resumeAfterVideoRef = useRef(false)
+
 
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
+
     const activeVideos = activeVideosRef.current
 
     audio.loop = true
@@ -35,8 +38,10 @@ export function SiteBackgroundAudio() {
     }
 
     if (!isHome) {
+
       activeVideos.clear()
       resumeAfterVideoRef.current = false
+
       pause()
       return
     }
@@ -51,8 +56,22 @@ export function SiteBackgroundAudio() {
 
     let listenersAttached = true
     const interactionEvents = ['pointerdown', 'keydown', 'touchstart', 'click']
+
     const tryPlay = async () => {
       if (!isHome || activeVideos.size > 0) return
+
+
+    const detachUnlockListeners = () => {
+      if (!listenersAttached) return
+      listenersAttached = false
+      for (const event of interactionEvents) {
+        document.removeEventListener(event, unlockAndPlay)
+      }
+    }
+
+    const tryPlay = async () => {
+      if (!isHome) return
+
       if (playingRef.current && !audio.paused) return
       try {
         await audio.play()
@@ -63,6 +82,7 @@ export function SiteBackgroundAudio() {
         playingRef.current = false
       }
     }
+
     const unlockAndPlay = () => {
       void tryPlay()
     }
@@ -74,12 +94,19 @@ export function SiteBackgroundAudio() {
       }
     }
 
+
+    const unlockAndPlay = () => {
+      void tryPlay()
+    }
+
+
     const onVisible = () => {
       if (document.visibilityState === 'visible' && isHome) {
         void tryPlay()
       } else {
         pause()
       }
+
     }
 
     const onVideoPlayback = (event) => {
@@ -100,6 +127,7 @@ export function SiteBackgroundAudio() {
       const shouldResume = resumeAfterVideoRef.current
       resumeAfterVideoRef.current = false
       if (shouldResume && document.visibilityState === 'visible') void tryPlay()
+
     }
 
     void tryPlay()
@@ -116,7 +144,9 @@ export function SiteBackgroundAudio() {
 
     audio.addEventListener('canplaythrough', onReady)
     audio.addEventListener('loadeddata', onReady)
+
     window.addEventListener(SITE_VIDEO_PLAYBACK_EVENT, onVideoPlayback)
+
 
     for (const event of interactionEvents) {
       document.addEventListener(event, unlockAndPlay, { passive: true })
@@ -128,11 +158,16 @@ export function SiteBackgroundAudio() {
       window.clearTimeout(retryId2)
       audio.removeEventListener('canplaythrough', onReady)
       audio.removeEventListener('loadeddata', onReady)
+
       window.removeEventListener(SITE_VIDEO_PLAYBACK_EVENT, onVideoPlayback)
       detachUnlockListeners()
       document.removeEventListener('visibilitychange', onVisible)
       activeVideos.clear()
       resumeAfterVideoRef.current = false
+
+      detachUnlockListeners()
+      document.removeEventListener('visibilitychange', onVisible)
+
       pause()
     }
   }, [isHome])
