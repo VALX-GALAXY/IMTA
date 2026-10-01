@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
-import { CalendarDays, ChevronLeft, ChevronRight, Globe, MapPin, Phone, Ticket } from 'lucide-react'<<<<<<< abhay
-import { useEffect, useRef } from 'react
-import { useRef } from 'react'
+import { CalendarDays, ChevronLeft, ChevronRight, Globe, MapPin, Phone, Ticket } from 'lucide-react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules'
@@ -45,7 +44,6 @@ function ConferencePromoCard({ slide }) {
   )
 }
 
-
 function ConferenceSlideVideo({ slide }) {
   const videoId = `save-date-${slide.id}`
 
@@ -67,7 +65,6 @@ function ConferenceSlideVideo({ slide }) {
   )
 }
 
-main
 function ConferenceSlideMedia({ slide }) {
   if (slide.mediaType === 'poster') {
     if (slide.promoCard) {
